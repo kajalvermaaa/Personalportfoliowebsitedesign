@@ -6,7 +6,8 @@ export function TheHuman() {
 
   return (
     <section id="about" ref={ref} className="py-32 px-6 bg-white relative overflow-hidden">
-      {/* Crumpled paper texture */}
+
+      {/* Texture */}
       <div 
         className="absolute inset-0 opacity-[0.015] pointer-events-none"
         style={{
@@ -14,151 +15,160 @@ export function TheHuman() {
           backgroundSize: '400px 400px',
         }}
       />
-      
-      {/* Decorative torn edge at top */}
+
+      {/* Torn edge */}
       <div className="absolute top-0 left-0 right-0 h-8 bg-[#FAF7F2]"
         style={{
           clipPath: 'polygon(0 0, 100% 0, 100% 100%, 95% 80%, 90% 100%, 85% 70%, 80% 100%, 75% 90%, 70% 100%, 65% 85%, 60% 100%, 55% 75%, 50% 100%, 45% 80%, 40% 100%, 35% 90%, 30% 100%, 25% 85%, 20% 100%, 15% 75%, 10% 100%, 5% 90%, 0 100%)'
         }}
       />
 
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          {/* Section Title */}
-          <div className="relative mb-16">
-            <h2 className="font-[family-name:var(--font-serif)] text-6xl md:text-7xl text-[#6B1B2E] mb-4">
-              The Human
-            </h2>
-            <div className="w-24 h-1 bg-[#D4A574]" />
-            
-            <div className="absolute -top-6 right-0 font-[family-name:var(--font-handwritten)] text-xl text-[#C97B63] rotate-0">
-              (the real story)
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+          {/* LEFT SIDE */}
+          <div className="lg:col-span-2">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+
+              {/* Title */}
+              <div className="relative mb-16">
+                <h2 className="font-[family-name:var(--font-serif)] text-6xl md:text-7xl text-[#6B1B2E] mb-4">
+                  The Human
+                </h2>
+                <div className="w-24 h-1 bg-[#D4A574]" />
+                <div className="absolute -top-6 right-0 font-[family-name:var(--font-handwritten)] text-xl text-[#C97B63]">
+                  (the real story)
+                </div>
+              </div>
+
+              {/* STORY */}
+              <div className="space-y-8 font-[family-name:var(--font-body)] text-xl leading-relaxed text-[#2D1B1B]">
+
+                <motion.div initial={{ opacity: 0, x: -20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.2 }}>
+                  <p>I didn’t start here.</p>
+                  <p className="mt-4">
+                    I started in <span className="text-[#6B1B2E] italic">operations</span> — spreadsheets, SOPs, exception handling.
+                    Managing 200+ records weekly where mistakes weren’t an option.
+                  </p>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, x: 20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.4 }}
+                  className="bg-[#FAF7F2] p-8 -mx-4 rotate-[-0.5deg] shadow-sm relative">
+                  <div className="absolute -top-3 -left-3 w-16 h-8 bg-[#D4A574]/30 rotate-[-12deg]" />
+                  <p className="italic text-[#6B5B4F]">
+                    “Every process I fixed, every workflow I mapped — had the same problem.”
+                  </p>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, x: -20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.6 }}>
+                  <p className="text-[#6B1B2E] font-semibold">
+                    They weren’t designed for humans.
+                  </p>
+                  <p className="mt-4">
+                    Systems optimized for efficiency, not clarity. Tools that worked — but felt like punishment.
+                  </p>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.8 }}
+                  className="pl-8 border-l-4 border-[#C97B63]">
+                  <p className="text-2xl text-[#6B1B2E]">So I taught myself design.</p>
+                  <p className="mt-4 text-[#6B5B4F]">
+                    Not to make things pretty —  
+                    but to make them <span className="italic text-[#2D1B1B]">make sense</span>.
+                  </p>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, x: 20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 1 }}>
+                  <p>
+                    I built real things — a full portfolio for an AI engineer, end-to-end.
+                  </p>
+                  <p className="mt-4">
+                    Then redesigned a refund system. Found friction. Fixed it.
+                  </p>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 1.2 }}
+                  className="bg-[#6B1B2E] text-[#FAF7F2] p-8 -mx-4 rotate-[0.5deg] shadow-lg">
+                  <p className="text-2xl">
+                    Now I’m deepening my product thinking through a PG in Product Management.
+                  </p>
+                  <p className="mt-4 text-[#E8A5A0]">
+                    Not just design. Not just ops.
+                  </p>
+                  <p className="mt-4 text-xl">
+                    I understand the <span className="italic">full system</span> —  
+                    from data to user experience.
+                  </p>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 1.4 }}>
+                  <p className="text-2xl">
+                    I don’t just design interfaces.  
+                    <span className="text-[#6B1B2E] italic"> I design how things work.</span>
+                  </p>
+                </motion.div>
+
+              </div>
+            </motion.div>
+          </div>
+
+          {/* RIGHT SIDE */}
+          <div>
+            <div className="lg:sticky lg:top-32 space-y-6">
+
+              <div className="bg-[#FAF7F2] p-8 shadow-md border border-[#EADFD4] rotate-[0.5deg]">
+                <p className="text-sm uppercase tracking-widest text-[#C97B63] mb-6">
+                  what i bring
+                </p>
+
+                <div className="space-y-6 text-[#2D1B1B]">
+
+                  <div>
+                    <p className="text-[#6B1B2E] font-semibold">UX & Product Design</p>
+                    <p className="text-sm text-[#6B5B4F]">
+                      flows, wireframes, prototyping
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-[#6B1B2E] font-semibold">Product Thinking</p>
+                    <p className="text-sm text-[#6B5B4F]">
+                      problem framing, user journeys
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-[#6B1B2E] font-semibold">Ops Mindset</p>
+                    <p className="text-sm text-[#6B5B4F]">
+                      process clarity, system efficiency
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-[#6B1B2E] font-semibold">Tools</p>
+                    <p className="text-sm text-[#6B5B4F]">
+                      Figma, Excel, Notion, Vercel
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+
+              <div className="font-[family-name:var(--font-handwritten)] text-[#C97B63] text-sm rotate-[-3deg]">
+                building things that actually work →
+              </div>
+
             </div>
           </div>
 
-          {/* Story in broken paragraphs - conversational */}
-          <div className="space-y-8 font-[family-name:var(--font-body)] text-xl leading-relaxed text-[#2D1B1B]">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.2 }}
-              className="relative"
-            >
-              <p>
-                I didn't start here.
-              </p>
-              <p className="mt-4">
-                I started in <span className="text-[#6B1B2E] italic">operations</span> — the unsexy world of spreadsheets, 
-                SOPs, and exception handling. Managing 200+ client records weekly with zero margin for error.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.4 }}
-              className="bg-[#FAF7F2] p-8 -mx-4 rotate-[-0.5deg] shadow-sm relative"
-            >
-              <div className="absolute -top-3 -left-3 w-16 h-8 bg-[#D4A574]/30 rotate-[-12deg]" />
-              <p className="italic text-[#6B5B4F]">
-                "But here's the thing: every broken process I fixed, every workflow I mapped, 
-                every dashboard I built — they all had the same problem."
-              </p>
-              <div className="absolute -middle-0 -left-40 font-[family-name:var(--font-handwritten)] text-m text-[#C97B63] rotate-[-7deg]">
-                this changed everything →
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.6 }}
-            >
-              <p>
-                <span className="text-[#6B1B2E] font-semibold">They weren't designed for humans.</span>
-              </p>
-              <p className="mt-4">
-                Systems built for scale, not clarity. Processes optimized for efficiency, not empathy. 
-                Tools that technically worked but felt like punishment.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.8 }}
-              className="pl-8 border-l-4 border-[#C97B63]"
-            >
-              <p className="text-2xl text-[#6B1B2E]">
-                So I taught myself design.
-              </p>
-              <p className="mt-4 text-[#6B5B4F]">
-                Not to make things pretty (though that helps).
-                <br />
-                To make things <span className="italic text-[#2D1B1B]">make sense</span>.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 1 }}
-            >
-              <p>
-                I built my first real project — a full production portfolio website for an AI engineer. 
-                End-to-end. UX layout, content architecture, deployment, zero handoff.
-              </p>
-              <p className="mt-4">
-                Then I redesigned a refund workflow as a product case study. Mapped the mess, 
-                found the friction, designed the fix.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1.2 }}
-              className="bg-[#6B1B2E] text-[#FAF7F2] p-8 -mx-4 rotate-[0.5deg] shadow-lg relative"
-            >
-              <div className="absolute -bottom-4 -right-4 font-[family-name:var(--font-handwritten)] text-2xl text-[#D4A574] rotate-6">
-                ★
-              </div>
-              <p className="text-2xl">
-                Now I'm deepening my product thinking through a PG in Product Management at Duke CE.
-              </p>
-              <p className="mt-4 text-[#E8A5A0]">
-                Because I'm not just a designer who can code, or an ops person who learned Figma.
-              </p>
-              <p className="mt-4 text-xl">
-                I'm someone who understands the <span className="italic">whole stack</span> — 
-                from data precision to user delight, from process design to product execution.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ delay: 1.4 }}
-              className="pt-8"
-            >
-              <p className="text-2xl text-[#2D1B1B]">
-                I don't just design interfaces.
-                <br />
-                <span className="text-[#6B1B2E] italic">I design the thinking behind them.</span>
-              </p>
-            </motion.div>
-          </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Decorative element */}
-      <div className="absolute bottom-12 right-12 font-[family-name:var(--font-handwritten)] text-6xl text-[#E8A5A0]/20 rotate-12 select-none">
-        ♡
-      </div>
     </section>
   );
 }
+      
