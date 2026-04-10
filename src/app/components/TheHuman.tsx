@@ -41,7 +41,7 @@ export function TheHuman() {
                 </h2>
                 <div className="w-24 h-1 bg-[#D4A574]" />
 
-                <div className="absolute -top-6 right-0 font-[family-name:var(--font-handwritten)] text-xl text-[#C97B63]">
+                <div className="absolute -top-6 left-30 font-[family-name:var(--font-handwritten)] text-xl text-[#C97B63]">
                   (the real story)
                 </div>
               </div>
@@ -117,58 +117,87 @@ export function TheHuman() {
             </motion.div>
           </div>
 
-          {/* RIGHT SIDE - SCATTERED BLOCKS */}
-          <div className="relative hidden lg:block">
+          {/* RIGHT SIDE - REALISTIC NOTES */}
+<div className="relative hidden lg:block">
 
-            <div className="sticky top-32 h-[550px]">
+  <div className="sticky top-32 h-[600px]">
 
-              <p className="absolute top-0 right-0 font-[family-name:var(--font-handwritten)] text-sm text-[#C97B63]">
-                things I’m good at
-              </p>
+    {/* heading */}
+    <p className="absolute top-0 right-0 font-[family-name:var(--font-handwritten)] text-sm text-[#C97B63]">
+      things I’m good at
+    </p>
 
-              <div className="absolute top-16 right-10 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[-2deg] text-sm">
-                UX flows
-              </div>
+    {/* NOTE 1 - PINNED */}
+    <motion.div
+      whileHover={{ scale: 1.05, y: -4 }}
+      className="absolute top-16 right-12 bg-[#FAF7F2] px-4 py-2 shadow-md rotate-[-2deg] text-sm"
+    >
+      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#C97B63] rounded-full shadow" />
+      UX flows
+    </motion.div>
 
-              <div className="absolute top-32 right-32 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[3deg] text-sm">
-                wireframing
-              </div>
+    {/* NOTE 2 - TAPE */}
+    <motion.div
+      whileHover={{ scale: 1.05, y: -4 }}
+      className="absolute top-32 right-36 bg-[#FAF7F2] px-4 py-2 shadow-md rotate-[3deg] text-sm"
+    >
+      <div className="absolute -top-2 left-2 w-6 h-3 bg-[#D4A574]/50 rotate-[-12deg]" />
+      wireframing
+    </motion.div>
 
-              <div className="absolute top-52 right-6 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[-1deg] text-sm">
-                product thinking
-              </div>
+    {/* NOTE 3 */}
+    <motion.div
+      animate={{ y: [0, -4, 0] }}
+      transition={{ duration: 4, repeat: Infinity }}
+      whileHover={{ scale: 1.05 }}
+      className="absolute top-52 right-8 bg-[#FAF7F2] px-4 py-2 shadow-md rotate-[-1deg] text-sm"
+    >
+      product thinking
+    </motion.div>
 
-              <div className="absolute top-72 right-28 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[2deg] text-sm">
-                user journeys
-              </div>
+    {/* NOTE 4 */}
+    <motion.div
+      whileHover={{ scale: 1.05, y: -4 }}
+      className="absolute top-72 right-28 bg-[#FAF7F2] px-4 py-2 shadow-md rotate-[2deg] text-sm"
+    >
+      user journeys
+    </motion.div>
 
-              <div className="absolute top-96 right-12 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[-3deg] text-sm">
-                SOP design
-              </div>
+    {/* NOTE 5 */}
+    <motion.div
+      animate={{ y: [0, -6, 0] }}
+      transition={{ duration: 5, repeat: Infinity }}
+      whileHover={{ scale: 1.05 }}
+      className="absolute top-96 right-12 bg-[#FAF7F2] px-4 py-2 shadow-md rotate-[-3deg] text-sm"
+    >
+      SOP design
+    </motion.div>
 
-              <div className="absolute top-[430px] right-40 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[1deg] text-sm">
-                system clarity
-              </div>
+    {/* NOTE 6 */}
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="absolute top-[430px] right-40 bg-[#FAF7F2] px-4 py-2 shadow-md rotate-[1deg] text-sm"
+    >
+      system clarity
+    </motion.div>
 
-              <div className="absolute top-[500px] right-20 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[-2deg] text-sm">
-                figma
-              </div>
+    {/* NOTE 7 */}
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="absolute top-[500px] right-20 bg-[#FAF7F2] px-4 py-2 shadow-md rotate-[-2deg] text-sm"
+    >
+      figma
+    </motion.div>
 
-              <div className="absolute bottom-0 right-0 font-[family-name:var(--font-handwritten)] text-xs text-[#C97B63] rotate-[-4deg]">
-                still figuring things out →
-              </div>
+    {/* handwritten note */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1 }}
+      className="absolute bottom-0 right-0 font-[family-name:var(--font-handwritten)] text-xs text-[#C97B63] rotate-[-4deg]"
+    >
+      still figuring things out →
+    </motion.div>
 
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Decorative */}
-      <div className="absolute bottom-12 right-12 text-6xl text-[#E8A5A0]/20 rotate-12 select-none">
-        ♡
-      </div>
-
-    </section>
-  );
-}
+  </div>
+</div>
