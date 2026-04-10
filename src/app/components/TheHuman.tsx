@@ -117,7 +117,7 @@ export function TheHuman() {
             </motion.div>
           </div>
 
-         {/* RIGHT SIDE - REALISTIC NOTES */}
+          {/* RIGHT SIDE - REALISTIC NOTES */}
 <div className="relative hidden lg:block">
 
   <div className="sticky top-32 h-[600px]">
