@@ -7,7 +7,7 @@ export function TheHuman() {
   return (
     <section id="about" ref={ref} className="py-32 px-6 bg-white relative overflow-hidden">
 
-      {/* Texture */}
+      {/* Background texture */}
       <div 
         className="absolute inset-0 opacity-[0.015] pointer-events-none"
         style={{
@@ -26,7 +26,7 @@ export function TheHuman() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
 
-          {/* LEFT SIDE */}
+          {/* LEFT SIDE - STORY */}
           <div className="lg:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -40,6 +40,7 @@ export function TheHuman() {
                   The Human
                 </h2>
                 <div className="w-24 h-1 bg-[#D4A574]" />
+
                 <div className="absolute -top-6 right-0 font-[family-name:var(--font-handwritten)] text-xl text-[#C97B63]">
                   (the real story)
                 </div>
@@ -116,50 +117,45 @@ export function TheHuman() {
             </motion.div>
           </div>
 
-          {/* RIGHT SIDE */}
-          <div>
-            <div className="lg:sticky lg:top-32 space-y-6">
+          {/* RIGHT SIDE - SCATTERED BLOCKS */}
+          <div className="relative hidden lg:block">
 
-              <div className="bg-[#FAF7F2] p-8 shadow-md border border-[#EADFD4] rotate-[0.5deg]">
-                <p className="text-sm uppercase tracking-widest text-[#C97B63] mb-6">
-                  what i bring
-                </p>
+            <div className="sticky top-32 h-[550px]">
 
-                <div className="space-y-6 text-[#2D1B1B]">
+              <p className="absolute top-0 right-0 font-[family-name:var(--font-handwritten)] text-sm text-[#C97B63]">
+                things I’m good at
+              </p>
 
-                  <div>
-                    <p className="text-[#6B1B2E] font-semibold">UX & Product Design</p>
-                    <p className="text-sm text-[#6B5B4F]">
-                      flows, wireframes, prototyping
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-[#6B1B2E] font-semibold">Product Thinking</p>
-                    <p className="text-sm text-[#6B5B4F]">
-                      problem framing, user journeys
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-[#6B1B2E] font-semibold">Ops Mindset</p>
-                    <p className="text-sm text-[#6B5B4F]">
-                      process clarity, system efficiency
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-[#6B1B2E] font-semibold">Tools</p>
-                    <p className="text-sm text-[#6B5B4F]">
-                      Figma, Excel, Notion, Vercel
-                    </p>
-                  </div>
-
-                </div>
+              <div className="absolute top-16 right-10 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[-2deg] text-sm">
+                UX flows
               </div>
 
-              <div className="font-[family-name:var(--font-handwritten)] text-[#C97B63] text-sm rotate-[-3deg]">
-                building things that actually work →
+              <div className="absolute top-32 right-32 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[3deg] text-sm">
+                wireframing
+              </div>
+
+              <div className="absolute top-52 right-6 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[-1deg] text-sm">
+                product thinking
+              </div>
+
+              <div className="absolute top-72 right-28 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[2deg] text-sm">
+                user journeys
+              </div>
+
+              <div className="absolute top-96 right-12 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[-3deg] text-sm">
+                SOP design
+              </div>
+
+              <div className="absolute top-[430px] right-40 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[1deg] text-sm">
+                system clarity
+              </div>
+
+              <div className="absolute top-[500px] right-20 bg-[#FAF7F2] px-4 py-2 shadow-sm rotate-[-2deg] text-sm">
+                figma
+              </div>
+
+              <div className="absolute bottom-0 right-0 font-[family-name:var(--font-handwritten)] text-xs text-[#C97B63] rotate-[-4deg]">
+                still figuring things out →
               </div>
 
             </div>
@@ -168,7 +164,11 @@ export function TheHuman() {
         </div>
       </div>
 
+      {/* Decorative */}
+      <div className="absolute bottom-12 right-12 text-6xl text-[#E8A5A0]/20 rotate-12 select-none">
+        ♡
+      </div>
+
     </section>
   );
 }
-      
