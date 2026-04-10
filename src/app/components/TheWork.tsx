@@ -1,365 +1,259 @@
-import { useRef, useState } from "react";
-import { Link } from "react-router";
-import { motion } from "motion/react";
-import { useInView } from "./hooks/useInView";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useRef } from "react";
+import useInView from "./hooks/useInView";
 
-// ─── Featured Real Projects ───────────────────────────────────────────────────
+const PortfolioThumbnail = () => (
+  <svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <rect width="800" height="460" fill="#0a0a0f" />
+    {/* Subtle grid */}
+    <defs>
+      <pattern id="grid1" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff08" strokeWidth="1" />
+      </pattern>
+    </defs>
+    <rect width="800" height="460" fill="url(#grid1)" />
+    {/* Glow blob */}
+    <ellipse cx="600" cy="200" rx="200" ry="180" fill="#6366f120" />
+    {/* Browser chrome */}
+    <rect x="60" y="40" width="680" height="380" rx="12" fill="#111118" stroke="#ffffff15" strokeWidth="1" />
+    <rect x="60" y="40" width="680" height="44" rx="12" fill="#1a1a24" />
+    <rect x="60" y="72" width="680" height="12" fill="#1a1a24" />
+    <circle cx="88" cy="62" r="6" fill="#ff5f57" />
+    <circle cx="108" cy="62" r="6" fill="#febc2e" />
+    <circle cx="128" cy="62" r="6" fill="#28c840" />
+    <rect x="220" y="52" width="280" height="20" rx="10" fill="#0f0f18" stroke="#ffffff10" strokeWidth="1" />
+    <rect x="236" y="59" width="120" height="6" rx="3" fill="#ffffff20" />
+    {/* Nav */}
+    <rect x="80" y="100" width="640" height="1" fill="#ffffff08" />
+    <rect x="80" y="108" width="60" height="10" rx="2" fill="#6366f1" opacity="0.9" />
+    <rect x="560" y="108" width="40" height="10" rx="2" fill="#ffffff15" />
+    <rect x="610" y="108" width="40" height="10" rx="2" fill="#ffffff15" />
+    <rect x="660" y="108" width="40" height="10" rx="2" fill="#ffffff15" />
+    {/* Hero */}
+    <rect x="80" y="148" width="320" height="28" rx="4" fill="#ffffff" opacity="0.92" />
+    <rect x="80" y="184" width="260" height="28" rx="4" fill="#6366f1" opacity="0.8" />
+    <rect x="80" y="222" width="280" height="10" rx="2" fill="#ffffff30" />
+    <rect x="80" y="238" width="240" height="10" rx="2" fill="#ffffff20" />
+    <rect x="80" y="268" width="120" height="36" rx="18" fill="#6366f1" />
+    <rect x="100" y="281" width="80" height="10" rx="2" fill="#fff" opacity="0.9" />
+    {/* Card on right */}
+    <rect x="460" y="132" width="240" height="260" rx="16" fill="#13131e" stroke="#6366f130" strokeWidth="1" />
+    <rect x="460" y="132" width="240" height="100" rx="16" fill="#1e1e30" />
+    <rect x="460" y="200" width="240" height="32" fill="#1e1e30" />
+    <rect x="480" y="152" width="100" height="12" rx="3" fill="#6366f1" opacity="0.7" />
+    <rect x="480" y="172" width="140" height="8" rx="2" fill="#ffffff25" />
+    <rect x="480" y="252" width="200" height="10" rx="2" fill="#ffffff20" />
+    <rect x="480" y="268" width="160" height="10" rx="2" fill="#ffffff15" />
+    <rect x="480" y="284" width="180" height="10" rx="2" fill="#ffffff15" />
+    <rect x="480" y="310" width="80" height="28" rx="14" fill="#6366f115" stroke="#6366f140" strokeWidth="1" />
+    <rect x="492" y="320" width="56" height="8" rx="2" fill="#6366f1" opacity="0.7" />
+    <rect x="570" y="310" width="80" height="28" rx="14" fill="#6366f115" stroke="#6366f140" strokeWidth="1" />
+    <rect x="582" y="320" width="56" height="8" rx="2" fill="#6366f1" opacity="0.7" />
+    {/* Bottom bar */}
+    <rect x="80" y="380" width="640" height="1" fill="#ffffff08" />
+    <rect x="80" y="392" width="80" height="8" rx="2" fill="#ffffff15" />
+    <rect x="180" y="392" width="80" height="8" rx="2" fill="#ffffff15" />
+    <rect x="280" y="392" width="80" height="8" rx="2" fill="#ffffff15" />
+  </svg>
+);
 
-const featuredProjects = [
+const CaseStudyThumbnail = () => (
+  <svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <rect width="800" height="460" fill="#f8f8f6" />
+    {/* Subtle dot grid */}
+    <defs>
+      <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.5" fill="#00000008" />
+      </pattern>
+    </defs>
+    <rect width="800" height="460" fill="url(#dots)" />
+    {/* Header */}
+    <rect x="0" y="0" width="800" height="60" fill="#fff" />
+    <rect x="0" y="59" width="800" height="1" fill="#e5e5e0" />
+    <rect x="40" y="22" width="120" height="16" rx="3" fill="#111" />
+    <rect x="600" y="20" width="80" height="20" rx="10" fill="#ecfdf5" stroke="#6ee7b7" strokeWidth="1" />
+    <rect x="616" y="28" width="48" height="5" rx="2" fill="#10b981" />
+    {/* Section label */}
+    <rect x="40" y="86" width="140" height="10" rx="2" fill="#10b981" opacity="0.7" />
+    {/* Flow diagram */}
+    {/* Step boxes */}
+    {[
+      { x: 40, label: "#e0e7ff", border: "#6366f1", text: "#6366f1", tag: "Request" },
+      { x: 188, label: "#fef2f2", border: "#ef4444", text: "#ef4444", tag: "Friction ⚠" },
+      { x: 336, label: "#fffbeb", border: "#f59e0b", text: "#f59e0b", tag: "Review" },
+      { x: 484, label: "#f0fdf4", border: "#22c55e", text: "#22c55e", tag: "Resolved ✓" },
+    ].map((s, i) => (
+      <g key={i}>
+        <rect x={s.x} y="116" width="130" height="76" rx="10" fill={s.label} stroke={s.border} strokeWidth="1.5" />
+        <rect x={s.x + 14} y="134" width="80" height="10" rx="2" fill={s.text} opacity="0.8" />
+        <rect x={s.x + 14} y="152" width="60" height="7" rx="2" fill="#00000020" />
+        <rect x={s.x + 14} y="165" width="70" height="7" rx="2" fill="#00000015" />
+        {i < 3 && (
+          <>
+            <line x1={s.x + 130} y1="154" x2={s.x + 148} y2="154" stroke="#6366f1" strokeWidth="2" />
+            <polygon points={`${s.x + 148},149 ${s.x + 158},154 ${s.x + 148},159`} fill="#6366f1" />
+          </>
+        )}
+      </g>
+    ))}
+    {/* Pain point callout */}
+    <rect x="158" y="106" width="90" height="22" rx="11" fill="#ef4444" />
+    <rect x="170" y="113" width="66" height="8" rx="2" fill="#fff" opacity="0.9" />
+    {/* Metrics panel */}
+    <rect x="40" y="220" width="720" height="180" rx="14" fill="#fff" stroke="#e5e5e0" strokeWidth="1" />
+    {/* Left metric */}
+    <rect x="64" y="244" width="100" height="12" rx="3" fill="#111" />
+    <rect x="64" y="262" width="140" height="8" rx="2" fill="#ccc" />
+    <rect x="64" y="276" width="120" height="8" rx="2" fill="#ccc" />
+    <rect x="64" y="290" width="100" height="8" rx="2" fill="#ccc" />
+    {/* Vertical divider */}
+    <line x1="240" y1="236" x2="240" y2="388" stroke="#f0f0ec" strokeWidth="1" />
+    {/* Bar chart */}
+    {[
+      { x: 268, h: 40, fill: "#6366f120", stroke: "#6366f1" },
+      { x: 308, h: 70, fill: "#6366f130", stroke: "#6366f1" },
+      { x: 348, h: 100, fill: "#6366f150", stroke: "#6366f1" },
+      { x: 388, h: 120, fill: "#6366f170", stroke: "#6366f1" },
+      { x: 428, h: 100, fill: "#10b98150", stroke: "#10b981" },
+      { x: 468, h: 80, fill: "#10b98130", stroke: "#10b981" },
+    ].map((b, i) => (
+      <g key={i}>
+        <rect x={b.x} y={380 - b.h} width="30" height={b.h} rx="4" fill={b.fill} stroke={b.stroke} strokeWidth="1" />
+      </g>
+    ))}
+    <line x1="256" y1="380" x2="520" y2="380" stroke="#e5e5e0" strokeWidth="1" />
+    {/* Vertical divider 2 */}
+    <line x1="540" y1="236" x2="540" y2="388" stroke="#f0f0ec" strokeWidth="1" />
+    {/* Right insight */}
+    <rect x="564" y="244" width="160" height="12" rx="3" fill="#111" />
+    <rect x="564" y="264" width="140" height="8" rx="2" fill="#ccc" />
+    <rect x="564" y="278" width="150" height="8" rx="2" fill="#ccc" />
+    <rect x="564" y="292" width="130" height="8" rx="2" fill="#ccc" />
+    <rect x="564" y="316" width="120" height="28" rx="14" fill="#ecfdf5" stroke="#6ee7b7" strokeWidth="1" />
+    <rect x="580" y="326" width="88" height="8" rx="2" fill="#10b981" />
+    <rect x="564" y="352" width="120" height="28" rx="14" fill="#eff6ff" stroke="#93c5fd" strokeWidth="1" />
+    <rect x="580" y="362" width="88" height="8" rx="2" fill="#3b82f6" />
+  </svg>
+);
+
+const projects = [
   {
-    id: "portfolio",
+    id: 1,
+    number: "01",
     title: "Personal Portfolio Website",
-    category: "Product Design × Development",
-    tagline: "From concept to deployment—building my own story",
-    color: "#6B1B2E",
-    year: "2025",
-    caseStudyId: "portfolio-website",
-    image: "https://images.unsplash.com/photo-1675557570482-df9926f61d86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBSSUyMHRlY2hub2xvZ3klMjBhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlfGVufDF8fHx8MTc3NTc2MDUyNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    externalLink: "https://ashwingupta.dev",
+    subtitle: "Ashwin Gupta — AI Engineer",
+    description:
+      "Designed and deployed a fully responsive production portfolio for an AI Engineer — handled end-to-end UX layout, content architecture, and live Vercel deployment. Full product execution from concept to shipped product with zero handoff.",
+    tags: ["UX Design", "Vercel", "Web Design", "End-to-End Delivery"],
+    link: "https://ashwingupta.dev",
+    linkLabel: "ashwingupta.dev",
+    thumbnail: <PortfolioThumbnail />,
   },
   {
-    id: "mmt-refund",
-    title: "MakeMyTrip Refund Experience",
-    category: "UX Case Study",
-    tagline: "Mapping mess, finding friction, designing trust",
-    color: "#C97B63",
-    year: "2024",
-    caseStudyId: "refund-redesign",
-    image: "https://images.unsplash.com/photo-1578057167755-b182496f4f3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmbGlnaHQlMjB0aWNrZXQlMjBtb2JpbGUlMjBhcHB8ZW58MXx8fHwxNzc1NzYwNTM0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    externalLink: "https://casestudyrefundprocess.vercel.app",
+    id: 2,
+    number: "02",
+    title: "Case Study: Refund Process Optimisation",
+    subtitle: "Product Discovery — Process Redesign",
+    description:
+      "Mapped an end-to-end refund workflow, identified friction points, and redesigned the process with defined success metrics. Documented user pain points and process flows structured as a product discovery exercise.",
+    tags: ["Process Mapping", "UX Research", "SOP Design", "Product Analytics"],
+    link: "https://casestudyrefundprocess.vercel.app",
+    linkLabel: "casestudyrefundprocess.vercel.app",
+    thumbnail: <CaseStudyThumbnail />,
   },
 ];
 
-// ─── Experimental Projects ────────────────────────────────────────────────────
-
-const experimentalProjects = [
-  {
-    id: "branding",
-    title: "Brand Identity Systems",
-    subtitle: "Visual language that scales",
-    color: "#D4A574",
-    caseStudyId: "brand-identity",
-    image: "https://images.unsplash.com/photo-1590102426275-8d1c367070d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGJyYW5kaW5nJTIwaWRlbnRpdHl8ZW58MXx8fHwxNzc1NzU4MjYwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-    rotation: -1.5,
-  },
-  {
-    id: "packaging",
-    title: "Shelf Stories",
-    subtitle: "Packaging that speaks first",
-    color: "#8B4513",
-    caseStudyId: "packaging-concept",
-    image: "https://images.unsplash.com/photo-1626253934161-08cfea22e968?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9kdWN0JTIwcGFja2FnaW5nJTIwZGVzaWdufGVufDF8fHx8MTc3NTcwMjIzNHww&ixlib=rb-4.1.0&q=80&w=1080",
-    rotation: 1,
-  },
-  {
-    id: "campaigns",
-    title: "Campaign Drops",
-    subtitle: "Bold ideas, bolder execution",
-    color: "#E8A5A0",
-    caseStudyId: "experimental",
-    image: "https://images.unsplash.com/photo-1734547459640-5e39e30e2c54?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZHZlcnRpc2luZyUyMGNhbXBhaWduJTIwcG9zdGVyfGVufDF8fHx8MTc3NTc1MjE3MXww&ixlib=rb-4.1.0&q=80&w=1080",
-    rotation: -0.5,
-  },
-  {
-    id: "concepts",
-    title: "Concept Work",
-    subtitle: "Pure exploration",
-    color: "#6B1B2E",
-    caseStudyId: "experimental",
-    image: "https://images.unsplash.com/photo-1773761193222-4ad3b5ac23dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRlc2lnbiUyMGNvbmNlcHQlMjBhcnR8ZW58MXx8fHwxNzc1NzU4MjYxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-    rotation: 0.5,
-  },
-];
-
-// ─── Featured Project Card ────────────────────────────────────────────────────
-
-interface FeaturedCardProps {
-  project: typeof featuredProjects[0];
-  index: number;
-}
-
-const FeaturedProjectCard = ({ project, index }: FeaturedCardProps) => {
+export default function TheWork() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { threshold: 0.1 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <Link
-      to={`/case-study/${project.caseStudyId}`}
-      ref={ref}
-      className="group relative block"
-      style={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0)" : "translateY(60px)",
-        transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.15}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.15}s`,
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Tape decorations */}
-      <div className="absolute -top-3 left-16 w-20 h-6 bg-[#D4A574]/20 backdrop-blur-sm rotate-[-3deg] z-10" />
-      <div className="absolute -top-3 right-20 w-20 h-6 bg-[#D4A574]/20 backdrop-blur-sm rotate-[5deg] z-10" />
-
-      {/* Card */}
-      <div
-        className="relative bg-white rounded-sm overflow-hidden shadow-xl"
-        style={{
-          transform: isHovered ? "translateY(-12px) rotate(0deg)" : "rotate(0.5deg)",
-          transition: "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
-        }}
-      >
-        {/* Image area */}
-        <div className="relative aspect-[16/9] overflow-hidden bg-[#FAF7F2]">
-          <ImageWithFallback
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-            style={{
-              transform: isHovered ? "scale(1.05)" : "scale(1)",
-              transition: "transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-          />
-
-          {/* Color overlay */}
-          <div
-            className="absolute inset-0 mix-blend-multiply opacity-40"
-            style={{ backgroundColor: project.color }}
-          />
-
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-
-          {/* Hover state */}
-          <div
-            className="absolute inset-0 flex items-center justify-center transition-opacity duration-500"
-            style={{ opacity: isHovered ? 1 : 0 }}
-          >
-            <div className="text-center">
-              <p className="text-white text-sm uppercase tracking-[0.3em] mb-2">Read Case Study</p>
-              <div className="w-12 h-px bg-white mx-auto" />
-            </div>
-          </div>
-
-          {/* Year badge */}
-          <div className="absolute top-6 right-6">
-            <span className="font-[family-name:var(--font-handwritten)] text-white text-2xl rotate-[-5deg] inline-block">
-              {project.year}
-            </span>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-8 md:p-10 bg-white">
-          <div className="flex items-center gap-3 mb-4">
-            <span
-              className="text-[9px] uppercase tracking-[0.3em] px-3 py-1.5 rounded-full font-semibold"
-              style={{
-                backgroundColor: `${project.color}22`,
-                color: project.color,
-              }}
-            >
-              Real Project
-            </span>
-          </div>
-
-          <h3 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl text-[#2D1B1B] leading-tight mb-3">
-            {project.title}
-          </h3>
-
-          <p className="text-sm text-[#C97B63] uppercase tracking-wide mb-3 font-[family-name:var(--font-sans)]">
-            {project.category}
-          </p>
-
-          <p className="font-[family-name:var(--font-body)] text-[#6B5B4F] leading-relaxed">
-            {project.tagline}
-          </p>
-        </div>
-      </div>
-    </Link>
-  );
-};
-
-// ─── Experimental Project Card ────────────────────────────────────────────────
-
-interface ExperimentalCardProps {
-  project: typeof experimentalProjects[0];
-  index: number;
-}
-
-const ExperimentalProjectCard = ({ project, index }: ExperimentalCardProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { threshold: 0.2 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <Link
-      to={`/case-study/${project.caseStudyId}`}
-      ref={ref}
-      className="group relative block"
-      style={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0)" : "translateY(40px)",
-        transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s`,
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Tape decoration */}
-      <div
-        className="absolute -top-2 right-8 w-16 h-5 bg-[#D4A574]/30 backdrop-blur-sm z-10"
-        style={{ rotate: `${project.rotation * 3}deg` }}
-      />
-
-      {/* Poster card */}
-      <div
-        className="relative aspect-[3/4] bg-white rounded-sm shadow-lg overflow-hidden"
-        style={{
-          transform: isHovered
-            ? "translateY(-8px) rotate(0deg)"
-            : `rotate(${project.rotation}deg)`,
-          transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-        }}
-      >
-        {/* Image */}
-        <div className="relative h-2/3 overflow-hidden">
-          <ImageWithFallback
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-            style={{
-              transform: isHovered ? "scale(1.1)" : "scale(1)",
-              transition: "transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-          />
-
-          {/* Color overlay */}
-          <div
-            className="absolute inset-0 mix-blend-multiply opacity-30"
-            style={{ backgroundColor: project.color }}
-          />
-
-          {/* Hover overlay */}
-          <div
-            className="absolute inset-0 bg-black/50 flex items-center justify-center transition-opacity duration-400"
-            style={{ opacity: isHovered ? 1 : 0 }}
-          >
-            <div className="text-center">
-              <p className="text-white text-xs uppercase tracking-[0.3em]">View Project</p>
-              <div className="w-8 h-px bg-white mx-auto mt-2" />
-            </div>
-          </div>
-        </div>
-
-        {/* Info */}
-        <div className="h-1/3 p-6 flex flex-col justify-center bg-white">
-          <h3 className="font-[family-name:var(--font-serif)] text-2xl text-[#2D1B1B] mb-2 leading-tight">
-            {project.title}
-          </h3>
-          <p className="font-[family-name:var(--font-sans)] text-xs text-[#6B5B4F] uppercase tracking-wide">
-            {project.subtitle}
-          </p>
-        </div>
-      </div>
-    </Link>
-  );
-};
-
-// ─── Main Component ───────────────────────────────────────────────────────────
-
-export function TheWork() {
-  const headingRef = useRef<HTMLDivElement>(null);
-  const headingInView = useInView(headingRef, { threshold: 0.3 });
 
   return (
     <section
       id="work"
-      className="min-h-screen bg-[#FAF7F2] py-24 md:py-32 px-6 md:px-12 lg:px-16 relative overflow-hidden"
+      ref={ref}
+      className="py-24 px-6 md:px-12 lg:px-24 bg-[var(--background)]"
     >
-      {/* Grain texture */}
-      <div
-        className="absolute inset-0 opacity-[0.02] pointer-events-none"
-        style={{
-          backgroundImage:
-            'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto relative">
-        {/* Header */}
+      <div className="max-w-5xl mx-auto">
+        {/* Section header */}
         <div
-          ref={headingRef}
-          className="mb-20 md:mb-28"
+          className="mb-16"
           style={{
-            opacity: headingInView ? 1 : 0,
-            transform: headingInView ? "translateY(0)" : "translateY(30px)",
-            transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateY(0)" : "translateY(24px)",
+            transition: "opacity 0.6s ease, transform 0.6s ease",
           }}
         >
-          <h2 className="font-[family-name:var(--font-serif)] text-6xl md:text-8xl text-[#6B1B2E] mb-6 leading-[0.9]">
+          <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-3">
+            Selected Work
+          </p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-[var(--foreground)] leading-tight">
             The Work
           </h2>
-
-          <p className="font-[family-name:var(--font-body)] text-xl md:text-2xl text-[#6B5B4F] max-w-2xl leading-relaxed">
-            Real projects that shipped.{" "}
-            <span className="italic text-[#2D1B1B]">Experiments that explore.</span>
-          </p>
-
-          {/* Handwritten note */}
-          <div className="absolute -top-8 right-0 font-[family-name:var(--font-handwritten)] text-lg text-[#C97B63] rotate-[-3deg]">
-            (click to see the full story)
-          </div>
         </div>
 
-        {/* Featured Work */}
-        <div className="mb-32">
-          <div className="flex items-center gap-3 mb-12">
-            <div className="w-2 h-2 rounded-full bg-[#6B1B2E]" />
-            <h3 className="font-[family-name:var(--font-sans)] text-sm uppercase tracking-[0.3em] text-[#6B1B2E] font-semibold">
-              Featured Work
-            </h3>
-            <div className="flex-1 h-px bg-[#6B1B2E] opacity-20" />
-          </div>
+        {/* Project cards */}
+        <div className="flex flex-col gap-16">
+          {projects.map((project, i) => (
+            <div
+              key={project.id}
+              style={{
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(32px)",
+                transition: `opacity 0.6s ease ${i * 0.15 + 0.2}s, transform 0.6s ease ${
+                  i * 0.15 + 0.2
+                }s`,
+              }}
+            >
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block rounded-2xl overflow-hidden border border-[var(--border)] hover:border-[var(--foreground)] transition-all duration-300 bg-[var(--card)]"
+              >
+                {/* Thumbnail */}
+                <div className="w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
+                  {project.thumbnail}
+                </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-            {featuredProjects.map((project, i) => (
-              <FeaturedProjectCard key={project.id} project={project} index={i} />
-            ))}
-          </div>
-        </div>
+                {/* Content */}
+                <div className="p-8">
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <div>
+                      <span className="text-xs text-[var(--muted)] tracking-widest uppercase font-mono mb-1 block">
+                        {project.number}
+                      </span>
+                      <h3 className="text-2xl font-semibold text-[var(--foreground)] group-hover:underline underline-offset-4">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-[var(--muted)] mt-1">{project.subtitle}</p>
+                    </div>
+                    <span className="shrink-0 mt-1 text-[var(--muted)] group-hover:text-[var(--foreground)] transition-colors text-xl">
+                      ↗
+                    </span>
+                  </div>
 
-        {/* Experimental Work */}
-        <div className="mb-20">
-          <div className="flex items-center gap-3 mb-12">
-            <div className="w-2 h-2 rounded-full bg-[#C97B63]" />
-            <h3 className="font-[family-name:var(--font-sans)] text-sm uppercase tracking-[0.3em] text-[#C97B63] font-semibold">
-              Experimental Work
-            </h3>
-            <div className="flex-1 h-px bg-[#C97B63] opacity-20" />
-          </div>
+                  <p className="text-[var(--muted)] leading-relaxed mb-6 max-w-2xl">
+                    {project.description}
+                  </p>
 
-          {/* Irregular grid - masonry-style */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-            {experimentalProjects.map((project, i) => (
-              <ExperimentalProjectCard key={project.id} project={project} index={i} />
-            ))}
-          </div>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs px-3 py-1 rounded-full border border-[var(--border)] text-[var(--muted)]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
 
-          {/* Handwritten note */}
-          <div className="mt-12 text-center">
-            <p className="font-[family-name:var(--font-handwritten)] text-lg text-[#6B5B4F] rotate-[1deg] inline-block">
-              more experiments in the lab →
-            </p>
-          </div>
-        </div>
-
-        {/* Footer note */}
-        <div className="mt-20 pt-12 border-t border-[#6B1B2E] border-opacity-10">
-          <p className="font-[family-name:var(--font-body)] text-sm text-[#6B5B4F] leading-relaxed max-w-lg italic">
-            Each project opens into a case study—context, thinking, and outcome.
-            <br />
-            Additional work available under NDA.
-          </p>
+                  <div className="flex items-center gap-2 text-sm text-[var(--muted)] group-hover:text-[var(--foreground)] transition-colors font-mono">
+                    <span>→</span>
+                    <span>{project.linkLabel}</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </section>
