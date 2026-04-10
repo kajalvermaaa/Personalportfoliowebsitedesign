@@ -1,122 +1,166 @@
-import { Link } from "react-router";
-import { motion } from "motion/react";
-import { useRef } from "react";
-import { useInView } from "./hooks/useInView";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 export function TheWork() {
-  const ref = useRef(null);
-  const inView = useInView(ref);
+  const [activeProject, setActiveProject] = useState(null);
+
+  const projects = [
+    {
+      id: "mmt",
+      title: "MMT Refund Redesign",
+      image: "/mmt.png",
+      notes: [
+        { text: "refund unclear", style: { top: "20%", left: "-10%" } },
+        { text: "too many steps", style: { bottom: "25%", right: "-10%" } },
+      ],
+      details: {
+        problem:
+          "Users couldn’t track refunds. No clarity, no timeline, high frustration.",
+        thinking:
+          "Mapped the entire journey → identified gaps in visibility → simplified flow into a single clear tracking system.",
+        outcome:
+          "Reduced confusion and made refund status instantly understandable.",
+      },
+    },
+    {
+      id: "portfolio",
+      title: "Portfolio Website",
+      image: "/portfolio.png",
+      notes: [
+        { text: "end-to-end build", style: { top: "15%", right: "-10%" } },
+        { text: "design + dev", style: { bottom: "20%", left: "-10%" } },
+      ],
+      details: {
+        problem:
+          "Client needed a strong digital presence but had no structured portfolio.",
+        thinking:
+          "Defined structure → created UX flow → built and deployed entire system.",
+        outcome:
+          "Delivered a complete working product with clear storytelling.",
+      },
+    },
+  ];
 
   return (
-    <section
-      id="work"
-      ref={ref}
-      className="py-32 px-6 bg-[#FAF7F2]"
-    >
+    <section className="py-32 px-6 bg-[#FAF7F2]">
       <div className="max-w-6xl mx-auto">
 
         {/* HEADER */}
         <div className="mb-24">
-          <h2 className="text-6xl md:text-7xl text-[#6B1B2E] mb-6 font-[family-name:var(--font-serif)]">
+          <h2 className="text-6xl text-[#6B1B2E] mb-6">
             Selected Work
           </h2>
-
-          <p className="text-xl text-[#6B5B4F] max-w-2xl leading-relaxed">
-            I focus on solving product problems — reducing friction, improving clarity,
-            and designing systems that actually work in real usage.
+          <p className="text-lg text-[#6B5B4F] max-w-xl">
+            I focus on solving product problems — not just making things look good.
           </p>
         </div>
 
-        {/* CASE STUDY 01 — MMT */}
-        <Link
-          to="/case-study/refund-redesign"
-          className="block mb-32 group"
-        >
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        {/* PROJECTS */}
+        <div className="grid md:grid-cols-2 gap-20">
 
-            {/* Image */}
-            <div className="relative overflow-hidden">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1578057167755-b182496f4f3d"
-                alt="MMT Refund"
-                className="w-full h-full object-cover"
-              />
+          {projects.map((project) => (
+            <motion.div
+              key={project.id}
+              whileHover={{ y: -8 }}
+              onClick={() => setActiveProject(project)}
+              className="relative bg-[#FDFBF7] p-6 shadow-xl rotate-[-1deg] cursor-pointer"
+            >
+              {/* Paper clip */}
+              <div className="absolute -top-6 left-6 text-4xl rotate-12">
+                📎
+              </div>
 
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500" />
-            </div>
-
-            {/* Content */}
-            <div>
-              <p className="text-sm uppercase tracking-widest text-[#C97B63] mb-4">
-                Case Study 01
+              {/* LIVE LINK */}
+              <p className="text-xs text-[#C97B63] mb-4 uppercase">
+                click to view thinking →
               </p>
 
-              <h3 className="text-4xl md:text-5xl text-[#2D1B1B] mb-6 font-[family-name:var(--font-serif)]">
-                MakeMyTrip Refund Experience
+              {/* IMAGE */}
+              <div className="flex justify-center mb-6">
+                <img
+                  src={project.image}
+                  className="w-[220px]"
+                />
+              </div>
+
+              {/* TITLE */}
+              <h3 className="text-2xl text-center text-[#2D1B1B] mb-6">
+                {project.title}
               </h3>
 
-              <p className="text-lg text-[#6B5B4F] mb-6 leading-relaxed">
-                Users couldn’t track refunds, leading to confusion and support overload.
-                I redesigned the flow to bring clarity, transparency, and trust.
-              </p>
-
-              <p className="text-[#6B1B2E] italic">
-                Reduced friction from multiple unclear steps → a single clear tracking flow.
-              </p>
-            </div>
-
-          </div>
-        </Link>
-
-        {/* CASE STUDY 02 — PORTFOLIO */}
-        <Link
-          to="/case-study/portfolio-website"
-          className="block group"
-        >
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-            {/* Image */}
-            <div className="relative overflow-hidden lg:order-2">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1675557570482-df9926f61d86"
-                alt="Portfolio"
-                className="w-full h-full object-cover"
-              />
-
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500" />
-            </div>
-
-            {/* Content */}
-            <div className="lg:order-1">
-              <p className="text-sm uppercase tracking-widest text-[#C97B63] mb-4">
-                Case Study 02
-              </p>
-
-              <h3 className="text-4xl md:text-5xl text-[#2D1B1B] mb-6 font-[family-name:var(--font-serif)]">
-                Portfolio Website (Client)
-              </h3>
-
-              <p className="text-lg text-[#6B5B4F] mb-6 leading-relaxed">
-                Designed and shipped a complete personal portfolio for an AI engineer —
-                from UX structure to deployment.
-              </p>
-
-              <p className="text-[#6B1B2E] italic">
-                End-to-end execution — design, content, and development.
-              </p>
-            </div>
-
-          </div>
-        </Link>
-
-        {/* FOOTER */}
-        <div className="mt-32 pt-12 border-t border-[#6B1B2E]/10">
-          <p className="text-sm text-[#6B5B4F] italic max-w-md">
-            Each project goes deep into problem, thinking, and outcome.
-            Additional work available on request.
-          </p>
+              {/* NOTES */}
+              {project.notes.map((note, i) => (
+                <p
+                  key={i}
+                  className="absolute text-xs text-[#6B5B4F]"
+                  style={note.style}
+                >
+                  {note.text}
+                </p>
+              ))}
+            </motion.div>
+          ))}
         </div>
+
+        {/* MODAL */}
+        <AnimatePresence>
+          {activeProject && (
+            <motion.div
+              className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveProject(null)}
+            >
+              <motion.div
+                className="bg-white max-w-2xl w-full p-10 relative"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* CLOSE */}
+                <button
+                  className="absolute top-4 right-4 text-xl"
+                  onClick={() => setActiveProject(null)}
+                >
+                  ✕
+                </button>
+
+                {/* TITLE */}
+                <h3 className="text-3xl mb-6">
+                  {activeProject.title}
+                </h3>
+
+                {/* CONTENT */}
+                <div className="space-y-6 text-[#6B5B4F]">
+
+                  <div>
+                    <p className="text-sm text-[#C97B63] uppercase mb-1">
+                      Problem
+                    </p>
+                    <p>{activeProject.details.problem}</p>
+                  </div>
+
+                  <div>
+                    <p className="text-sm text-[#C97B63] uppercase mb-1">
+                      Thinking
+                    </p>
+                    <p>{activeProject.details.thinking}</p>
+                  </div>
+
+                  <div>
+                    <p className="text-sm text-[#C97B63] uppercase mb-1">
+                      Outcome
+                    </p>
+                    <p>{activeProject.details.outcome}</p>
+                  </div>
+
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </section>
