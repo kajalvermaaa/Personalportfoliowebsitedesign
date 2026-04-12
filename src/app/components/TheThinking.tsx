@@ -40,7 +40,7 @@ export function TheThinking() {
       insight:
         "Designers dream. Developers build. Operations people ship. We know what breaks at scale, what users actually do (vs. what they say), and how to fix it fast.",
       takeaway: "Design isn't real until it works in production.",
-      annotation: "→ truth",
+      annotation: "truth →",
       annotationRotate: "rotate-[6deg]",
       annotationColor: "text-[#D4A574]",
       tapeRotate: "-rotate-[8deg]",
