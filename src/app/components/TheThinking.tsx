@@ -45,7 +45,7 @@ export function TheThinking() {
       annotationColor: "text-[#D4A574]",
       tapeRotate: "-rotate-[8deg]",
       cardRotate: "-0.4deg",
-      pullDir: "left" as const,
+      pullDir: "right" as const,
     },
   ];
 
