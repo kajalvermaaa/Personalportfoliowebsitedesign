@@ -148,46 +148,66 @@ export function TheHuman() {
             </motion.div>
           </div>
 
-          {/* RIGHT SIDE - FIXED CLEAN NOTES */}
-          <div className="relative hidden lg:flex justify-center">
+          {/* RIGHT SIDE - SKILLS TAGS */}
+          <div className="relative hidden lg:flex justify-start">
+            <div className="sticky top-32 w-full">
 
-            <div className="sticky top-32 w-[260px] h-[420px]">
-
-              <p className="text-xs text-[#C97B63] mb-6 font-[family-name:var(--font-handwritten)]">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ delay: 0.3 }}
+                className="font-[family-name:var(--font-handwritten)] text-base text-[#C97B63] mb-5 tracking-wide"
+              >
                 things I’m good at
-              </p>
+              </motion.p>
 
-              <div className="relative w-full h-full">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.5 }}
+                className="flex flex-wrap gap-2 mb-2"
+              >
+                {[
+                  { label: "UX Design",        variant: "filled"  },
+                  { label: "Wireframing",       variant: "outline-accent" },
+                  { label: "Product Thinking",  variant: "outline" },
+                  { label: "User Research",     variant: "filled"  },
+                  { label: "Figma",             variant: "outline" },
+                  { label: "User Journeys",     variant: "outline" },
+                  { label: "SOP Design",        variant: "filled"  },
+                  { label: "Design Systems",    variant: "outline-accent" },
+                  { label: "Prototyping",       variant: "outline" },
+                  { label: "System Clarity",    variant: "filled"  },
+                  { label: "Ops & Process",     variant: "outline" },
+                ].map(({ label, variant }, i) => (
+                  <motion.span
+                    key={label}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={inView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ delay: 0.5 + i * 0.06 }}
+                    className={[
+                      "px-3 py-1.5 text-sm font-[family-name:var(--font-body)] tracking-wide cursor-default transition-all duration-200",
+                      variant === "filled"
+                        ? "bg-[#2D1B1B] text-[#FAF7F2] border border-[#2D1B1B] hover:bg-[#6B1B2E] hover:border-[#6B1B2E]"
+                        : variant === "outline-accent"
+                        ? "bg-transparent text-[#C97B63] border border-[#C97B63] hover:bg-[#C97B63] hover:text-[#FAF7F2]"
+                        : "bg-transparent text-[#6B5B4F] border border-[#C4AFA5] hover:border-[#6B1B2E] hover:text-[#6B1B2E]",
+                    ].join(" ")}
+                  >
+                    {label}
+                  </motion.span>
+                ))}
+              </motion.div>
 
-                <motion.div className="absolute top-0 left-6 bg-[#FAF7F2] px-4 py-2 shadow rotate-[-2deg] text-sm">
-                  UX flows
-                </motion.div>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ delay: 1.2 }}
+                className="mt-4 font-[family-name:var(--font-handwritten)] text-sm text-[#C97B63] tracking-wide"
+              >
+                + always learning something new
+              </motion.p>
 
-                <motion.div className="absolute top-16 right-4 bg-[#FAF7F2] px-4 py-2 shadow rotate-[3deg] text-sm">
-                  wireframing
-                </motion.div>
-
-                <motion.div className="absolute top-32 left-0 bg-[#FAF7F2] px-4 py-2 shadow rotate-[-1deg] text-sm">
-                  product thinking
-                </motion.div>
-
-                <motion.div className="absolute top-52 right-6 bg-[#FAF7F2] px-4 py-2 shadow rotate-[2deg] text-sm">
-                  user journeys
-                </motion.div>
-
-                <motion.div className="absolute top-72 left-10 bg-[#FAF7F2] px-4 py-2 shadow rotate-[-3deg] text-sm">
-                  SOP design
-                </motion.div>
-
-                <motion.div className="absolute top-[300px] right-0 bg-[#FAF7F2] px-4 py-2 shadow rotate-[1deg] text-sm">
-                  system clarity
-                </motion.div>
-
-                <motion.div className="absolute bottom-0 left-16 bg-[#FAF7F2] px-4 py-2 shadow rotate-[-2deg] text-sm">
-                  figma
-                </motion.div>
-
-              </div>
             </div>
           </div>
 
