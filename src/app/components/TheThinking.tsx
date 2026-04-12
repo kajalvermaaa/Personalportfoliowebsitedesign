@@ -17,7 +17,7 @@ export function TheThinking() {
       annotationColor: "text-[#C97B63]",
       tapeRotate: "-rotate-[12deg]",
       cardRotate: "-0.6deg",
-      pullDir: "left" as const,
+      pullDir: "right" as const,
     },
     {
       number: "02",
@@ -31,7 +31,7 @@ export function TheThinking() {
       annotationColor: "text-[#6B1B2E]",
       tapeRotate: "rotate-[10deg]",
       cardRotate: "0.5deg",
-      pullDir: "right" as const,
+      pullDir: "left" as const,
     },
     {
       number: "03",
