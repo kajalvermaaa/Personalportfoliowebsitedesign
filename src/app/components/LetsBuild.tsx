@@ -6,7 +6,7 @@ export function LetsBuild() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="contact" ref={ref} className="py-32 px-6 bg-white relative overflow-hidden">
+    <section id="contact" ref={ref} className="py-20 sm:py-32 px-4 sm:px-6 bg-white relative overflow-hidden">
       {/* Torn edge transition */}
       <div className="absolute top-0 left-0 right-0 h-8 bg-[#FAF7F2]"
         style={{
@@ -19,23 +19,23 @@ export function LetsBuild() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="space-y-12"
+          className="space-y-8 sm:space-y-12"
         >
           {/* Title */}
           <div className="relative">
-            <h2 className="font-[family-name:var(--font-serif)] text-6xl md:text-7xl lg:text-8xl text-[#6B1B2E] mb-6 leading-tight">
-              Let's Build
-              <br />
-              Something Real
+            <h2 className="font-[family-name:var(--font-serif)] text-[#6B1B2E] mb-5 leading-tight"
+              style={{ fontSize: 'clamp(44px, 12vw, 96px)' }}
+            >
+              Let's Build<br />Something Real
             </h2>
-            <div className="w-32 h-1 bg-[#D4A574] mx-auto" />
-            
-            <motion.div 
+            <div className="w-28 sm:w-32 h-1 bg-[#D4A574] mx-auto" />
+
+            <motion.div
               animate={{ rotate: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="absolute -top-8 right-12 text-4xl"
+              className="absolute -top-6 right-8 sm:right-12"
             >
-              <Sparkles className="w-8 h-8 text-[#D4A574]" />
+              <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-[#D4A574]" />
             </motion.div>
           </div>
 
@@ -44,47 +44,45 @@ export function LetsBuild() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.3 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
-            <p className="font-[family-name:var(--font-body)] text-2xl md:text-3xl text-[#2D1B1B] leading-relaxed">
-              If you need someone who can map your chaos, find the real problem, 
+            <p className="font-[family-name:var(--font-body)] text-lg sm:text-2xl md:text-3xl text-[#2D1B1B] leading-relaxed">
+              If you need someone who can map your chaos, find the real problem,
               and ship solutions that actually work —
             </p>
-            
-            <p className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl text-[#6B1B2E] italic">
+            <p className="font-[family-name:var(--font-serif)] text-2xl sm:text-3xl md:text-4xl text-[#6B1B2E] italic">
               I'm your person.
             </p>
-
-            <div className="pt-4 font-[family-name:var(--font-handwritten)] text-xl text-[#C97B63]">
+            <div className="pt-2 font-[family-name:var(--font-handwritten)] text-lg sm:text-xl text-[#C97B63]">
               (No fluff. No templates. Just thoughtful work.)
             </div>
           </motion.div>
 
-          {/* Contact options */}
+          {/* Contact buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center pt-4 sm:pt-8"
           >
             <a
               href="mailto:kajalverma1104@gmail.com"
-              className="group flex items-center gap-3 bg-[#6B1B2E] text-[#FAF7F2] px-8 py-4 rounded-full font-[family-name:var(--font-sans)] hover:bg-[#C97B63] transition-all hover:shadow-xl hover:scale-105"
+              className="group flex items-center gap-3 bg-[#6B1B2E] text-[#FAF7F2] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-[family-name:var(--font-sans)] hover:bg-[#C97B63] transition-all hover:shadow-xl hover:scale-105 w-full sm:w-auto justify-center text-sm sm:text-base"
             >
-              <Mail className="w-5 h-5" />
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>Email Me</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </a>
 
             <a
               href="https://linkedin.com/in/kajalverma1104"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-3 bg-white border-2 border-[#6B1B2E] text-[#6B1B2E] px-8 py-4 rounded-full font-[family-name:var(--font-sans)] hover:bg-[#6B1B2E] hover:text-[#FAF7F2] transition-all hover:shadow-xl hover:scale-105"
+              className="group flex items-center gap-3 bg-white border-2 border-[#6B1B2E] text-[#6B1B2E] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-[family-name:var(--font-sans)] hover:bg-[#6B1B2E] hover:text-[#FAF7F2] transition-all hover:shadow-xl hover:scale-105 w-full sm:w-auto justify-center text-sm sm:text-base"
             >
-              <Linkedin className="w-5 h-5" />
+              <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>LinkedIn</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
 
@@ -93,36 +91,24 @@ export function LetsBuild() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.7 }}
-            className="grid sm:grid-cols-3 gap-6 pt-12"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-8 sm:pt-12"
           >
-            <div className="bg-[#FAF7F2] p-6 rotate-[-1deg] shadow-md">
-              <div className="font-[family-name:var(--font-handwritten)] text-xl text-[#6B1B2E] mb-2">
-                Open to
-              </div>
-              <div className="font-[family-name:var(--font-sans)] text-sm text-[#6B5B4F]">
+            <div className="bg-[#FAF7F2] p-5 sm:p-6 rotate-[-1deg] shadow-md">
+              <div className="font-[family-name:var(--font-handwritten)] text-lg sm:text-xl text-[#6B1B2E] mb-2">Open to</div>
+              <div className="font-[family-name:var(--font-sans)] text-xs sm:text-sm text-[#6B5B4F]">
                 Product roles, UX/UI projects, design systems, freelance work
               </div>
             </div>
-
-            <div className="bg-[#E8A5A0] p-6 rotate-[1deg] shadow-md">
-              <div className="font-[family-name:var(--font-handwritten)] text-xl text-[#2D1B1B] mb-2">
-                Based in
-              </div>
-              <div className="font-[family-name:var(--font-sans)] text-sm text-[#2D1B1B]">
-                Bangalore, India
-                <br />
-                (Open to remote)
+            <div className="bg-[#E8A5A0] p-5 sm:p-6 rotate-[1deg] shadow-md">
+              <div className="font-[family-name:var(--font-handwritten)] text-lg sm:text-xl text-[#2D1B1B] mb-2">Based in</div>
+              <div className="font-[family-name:var(--font-sans)] text-xs sm:text-sm text-[#2D1B1B]">
+                Bangalore, India<br />(Open to remote)
               </div>
             </div>
-
-            <div className="bg-[#D4A574] p-6 rotate-[-1deg] shadow-md">
-              <div className="font-[family-name:var(--font-handwritten)] text-xl text-[#2D1B1B] mb-2">
-                Response time
-              </div>
-              <div className="font-[family-name:var(--font-sans)] text-sm text-[#2D1B1B]">
-                Usually within 24 hours
-                <br />
-                (I'm fast like that)
+            <div className="bg-[#D4A574] p-5 sm:p-6 rotate-[-1deg] shadow-md">
+              <div className="font-[family-name:var(--font-handwritten)] text-lg sm:text-xl text-[#2D1B1B] mb-2">Response time</div>
+              <div className="font-[family-name:var(--font-sans)] text-xs sm:text-sm text-[#2D1B1B]">
+                Usually within 24 hours<br />(I'm fast like that)
               </div>
             </div>
           </motion.div>
@@ -132,15 +118,14 @@ export function LetsBuild() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.9 }}
-            className="pt-12"
+            className="pt-8 sm:pt-12"
           >
-            <div className="inline-block bg-[#6B1B2E] text-[#FAF7F2] px-12 py-8 rotate-[-0.5deg] shadow-2xl relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-[#D4A574]/40 rotate-[-3deg]" />
-              
-              <p className="font-[family-name:var(--font-body)] text-xl">
+            <div className="inline-block bg-[#6B1B2E] text-[#FAF7F2] px-8 sm:px-12 py-6 sm:py-8 rotate-[-0.5deg] shadow-2xl relative max-w-full">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-5 sm:h-6 bg-[#D4A574]/40 rotate-[-3deg]" />
+              <p className="font-[family-name:var(--font-body)] text-base sm:text-xl">
                 Let's turn complicated problems into simple solutions.
               </p>
-              <p className="font-[family-name:var(--font-handwritten)] text-2xl text-[#D4A574] mt-4">
+              <p className="font-[family-name:var(--font-handwritten)] text-xl sm:text-2xl text-[#D4A574] mt-4">
                 — Kajal ✨
               </p>
             </div>
@@ -153,9 +138,9 @@ export function LetsBuild() {
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 1.1 }}
-        className="mt-20 pt-8 border-t border-[#6B1B2E]/10 text-center"
+        className="mt-16 sm:mt-20 pt-6 sm:pt-8 border-t border-[#6B1B2E]/10 text-center"
       >
-        <p className="font-[family-name:var(--font-sans)] text-sm text-[#6B5B4F]">
+        <p className="font-[family-name:var(--font-sans)] text-xs sm:text-sm text-[#6B5B4F]">
           © 2026 Kajal Verma. Designed with chaos, built with care.
         </p>
       </motion.div>
