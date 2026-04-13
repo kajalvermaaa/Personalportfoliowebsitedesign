@@ -310,7 +310,7 @@ export function Hero() {
                 className="hidden sm:block"
                 style={{
                   position: "absolute",
-                  right: "clamp(-7px, 3vw, 30px)",
+                  right: "clamp(-20px, 3vw, 30px)",
                   top: "28%",
                   fontFamily: "var(--font-handwritten)",
                   fontSize: "clamp(14px, 1.6vw, 20px)",
