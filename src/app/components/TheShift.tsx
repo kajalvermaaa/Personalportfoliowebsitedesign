@@ -37,7 +37,6 @@ export function TheShift() {
       const W = canvas.width, H = canvas.height;
       ctx.clearRect(0, 0, W, H);
 
-      /* Soft blob orbs */
       blobs.forEach((b, i) => {
         const ox = Math.sin(tick * 0.008 + i) * 12;
         const oy = Math.cos(tick * 0.006 + i * 1.3) * 10;
@@ -50,7 +49,6 @@ export function TheShift() {
         ctx.stroke();
       });
 
-      /* Dot grid */
       ctx.fillStyle = "#6B1B2E12";
       for (let x = 36; x < W; x += 36) {
         for (let y = 36; y < H; y += 36) {
@@ -60,7 +58,6 @@ export function TheShift() {
         }
       }
 
-      /* Flowing diagonal lines */
       ctx.lineWidth = 1;
       for (let i = -4; i < 18; i++) {
         ctx.beginPath();
@@ -88,7 +85,6 @@ export function TheShift() {
     };
   }, []);
 
-  /* ── Stage data ── */
   const stages = [
     {
       Icon: Database,
@@ -129,17 +125,17 @@ export function TheShift() {
     <section
       id="shift"
       ref={ref}
-      className="relative overflow-hidden py-24 px-6"
+      className="relative overflow-hidden py-20 sm:py-24 px-4 sm:px-6"
       style={{ background: "#FAF7F2" }}
     >
-      {/* ── Animated background ── */}
+      {/* Animated background */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{ zIndex: 0 }}
       />
 
-      {/* ── Scattered doodle stars ── */}
+      {/* Scattered doodle stars */}
       {[
         { top: "5%",  left: "3%",  size: 80,  rot: -20 },
         { top: "10%", right: "5%", size: 50,  rot: 15  },
@@ -168,18 +164,18 @@ export function TheShift() {
 
       <div className="max-w-6xl mx-auto relative" style={{ zIndex: 2 }}>
 
-        {/* ── Section title ── */}
+        {/* Section title */}
         <motion.div
           initial={{ opacity: 0, y: 36 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
           <div className="relative inline-block">
             <h2
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "clamp(56px, 8vw, 96px)",
+                fontSize: "clamp(48px, 10vw, 96px)",
                 color: "#6B1B2E",
                 lineHeight: 1,
                 margin: 0,
@@ -187,7 +183,6 @@ export function TheShift() {
             >
               The Shift
             </h2>
-            {/* Hand-drawn squiggle underline */}
             <svg
               viewBox="0 0 400 18"
               fill="none"
@@ -203,37 +198,20 @@ export function TheShift() {
             </svg>
           </div>
 
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: 20,
-              color: "#6B5B4F",
-              marginTop: 24,
-            }}
-          >
+          <p style={{ fontFamily: "var(--font-body)", fontSize: 18, color: "#6B5B4F", marginTop: 24 }}>
             Not a pivot. An{" "}
-            <em style={{ fontFamily: "var(--font-serif)", color: "#6B1B2E" }}>
-              evolution
-            </em>
-            .
+            <em style={{ fontFamily: "var(--font-serif)", color: "#6B1B2E" }}>evolution</em>.
           </p>
-          <p
-            style={{
-              fontFamily: "var(--font-handwritten)",
-              fontSize: 18,
-              color: "#C97B63",
-              marginTop: 6,
-            }}
-          >
+          <p style={{ fontFamily: "var(--font-handwritten)", fontSize: 17, color: "#C97B63", marginTop: 6 }}>
             (each layer builds on the last ↓)
           </p>
         </motion.div>
 
-        {/* ── Stage cards ── */}
+        {/* Stage cards — stacked on mobile, grid on md+ */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
             gap: 24,
             alignItems: "start",
           }}
@@ -244,12 +222,12 @@ export function TheShift() {
               initial={{ opacity: 0, y: 60 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.18, duration: 0.75 }}
-              style={{ position: "relative", marginTop: stage.mt }}
+              style={{ position: "relative", marginTop: 0 }}
             >
               <div
                 style={{
                   background: "white",
-                  padding: "32px 28px 40px",
+                  padding: "28px 24px 36px",
                   border: `2px solid #6B1B2E`,
                   boxShadow: `6px 6px 0 ${stage.accent}`,
                   transform: `rotate(${stage.rotation})`,
@@ -285,60 +263,31 @@ export function TheShift() {
                   {index + 1}
                 </span>
 
-                {/* Icon */}
                 <div
                   style={{
-                    width: 52,
-                    height: 52,
+                    width: 48,
+                    height: 48,
                     borderRadius: "50%",
                     background: stage.accent,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    marginBottom: 16,
+                    marginBottom: 14,
                   }}
                 >
-                  <stage.Icon size={24} color="white" />
+                  <stage.Icon size={22} color="white" />
                 </div>
 
-                {/* Title */}
-                <h3
-                  style={{
-                    fontFamily: "var(--font-serif)",
-                    fontSize: 28,
-                    color: "#2D1B1B",
-                    margin: "0 0 4px",
-                  }}
-                >
+                <h3 style={{ fontFamily: "var(--font-serif)", fontSize: 26, color: "#2D1B1B", margin: "0 0 4px" }}>
                   {stage.title}
                 </h3>
-
-                {/* Subtitle */}
-                <p
-                  style={{
-                    fontFamily: "var(--font-handwritten)",
-                    fontSize: 17,
-                    color: stage.accent,
-                    margin: "0 0 12px",
-                  }}
-                >
+                <p style={{ fontFamily: "var(--font-handwritten)", fontSize: 16, color: stage.accent, margin: "0 0 10px" }}>
                   {stage.subtitle}
                 </p>
-
-                {/* Description */}
-                <p
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: 14,
-                    color: "#6B5B4F",
-                    lineHeight: 1.65,
-                    margin: "0 0 18px",
-                  }}
-                >
+                <p style={{ fontFamily: "var(--font-body)", fontSize: 14, color: "#6B5B4F", lineHeight: 1.65, margin: "0 0 16px" }}>
                   {stage.description}
                 </p>
 
-                {/* Skills */}
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                   {stage.skills.map((skill) => (
                     <span
@@ -357,7 +306,6 @@ export function TheShift() {
                   ))}
                 </div>
 
-                {/* Corner tear */}
                 <div
                   style={{
                     position: "absolute",
@@ -371,7 +319,7 @@ export function TheShift() {
                 />
               </div>
 
-              {/* Arrow connector (desktop only) */}
+              {/* Arrow connector — desktop only */}
               {index < 2 && (
                 <div
                   className="hidden md:flex"
@@ -399,12 +347,12 @@ export function TheShift() {
           ))}
         </div>
 
-        {/* ── Bottom insight quote ── */}
+        {/* Bottom insight quote */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.75, duration: 0.8 }}
-          className="mt-16"
+          className="mt-12 sm:mt-16"
         >
           <div
             style={{
@@ -412,14 +360,13 @@ export function TheShift() {
               margin: "0 auto",
               background: "#6B1B2E",
               color: "#FAF7F2",
-              padding: "clamp(32px, 6vw, 52px) clamp(28px, 6vw, 56px)",
+              padding: "clamp(28px, 5vw, 52px) clamp(20px, 5vw, 56px)",
               position: "relative",
               boxShadow: "8px 8px 0 #D4A574",
               border: "2px solid #2D1B1B",
               transform: "rotate(-0.4deg)",
             }}
           >
-            {/* Tape strip */}
             <div
               style={{
                 position: "absolute",
@@ -432,36 +379,13 @@ export function TheShift() {
                 border: "1px solid #D4A574",
               }}
             />
-
-            <p
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "clamp(16px, 2.5vw, 22px)",
-                lineHeight: 1.55,
-                margin: 0,
-              }}
-            >
+            <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2.5vw, 22px)", lineHeight: 1.55, margin: 0 }}>
               Most people see operations, product, and design as separate lanes.
             </p>
-            <p
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "clamp(20px, 3vw, 28px)",
-                fontStyle: "italic",
-                color: "#D4A574",
-                margin: "20px 0 0",
-              }}
-            >
+            <p style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(18px, 3vw, 28px)", fontStyle: "italic", color: "#D4A574", margin: "18px 0 0" }}>
               I see them as layers of the same problem.
             </p>
-            <p
-              style={{
-                fontFamily: "var(--font-handwritten)",
-                fontSize: 20,
-                color: "#E8A5A0",
-                margin: "18px 0 0",
-              }}
-            >
+            <p style={{ fontFamily: "var(--font-handwritten)", fontSize: 19, color: "#E8A5A0", margin: "16px 0 0" }}>
               ← and that's my unfair advantage
             </p>
           </div>
