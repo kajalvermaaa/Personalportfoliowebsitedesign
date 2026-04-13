@@ -63,7 +63,6 @@ function NavLink({ label, href }: { label: string; href: string }) {
       }}
     >
       {label}
-      {/* Animated underline */}
       <motion.span
         initial={false}
         animate={{ scaleX: hovered ? 1 : 0 }}
@@ -83,7 +82,7 @@ function NavLink({ label, href }: { label: string; href: string }) {
   );
 }
 
-/* ── CTA button with dot ── */
+/* ── CTA button ── */
 function CtaButton() {
   const [hovered, setHovered] = useState(false);
   return (
@@ -144,9 +143,10 @@ function Hamburger({ open }: { open: boolean }) {
   return (
     <motion.button
       whileHover={{ rotate: open ? 0 : 6 }}
+      aria-label={open ? "Close menu" : "Open menu"}
       style={{
-        width: 36,
-        height: 36,
+        width: 44,
+        height: 44,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -156,6 +156,7 @@ function Hamburger({ open }: { open: boolean }) {
         border: "none",
         cursor: "pointer",
         padding: 4,
+        touchAction: "manipulation",
       }}
     >
       <motion.span variants={variants.top}    initial="closed" animate={open ? "open" : "closed"} transition={{ duration: 0.25 }} style={lineStyle} />
@@ -176,6 +177,21 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close menu on resize to desktop
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) setMenuOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -195,44 +211,45 @@ export function Navigation() {
         boxShadow: scrolled ? "0 2px 20px #6B1B2E08" : "none",
       }}
     >
-      {/* ── Desktop bar ── */}
+      {/* ── Nav bar ── */}
       <div
         style={{
           maxWidth: 1280,
           margin: "0 auto",
-          padding: "0 28px",
+          padding: "0 16px",
           height: 64,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
         }}
       >
-        {/* Logo */}
+        {/* Logo — truncated on small screens */}
         <Link
           to="/"
           style={{
             fontFamily: "var(--font-handwritten)",
-            fontSize: 20,
+            fontSize: 'clamp(14px, 3vw, 20px)',
             color: "#6B1B2E",
             textDecoration: "none",
             display: "flex",
             alignItems: "center",
-            gap: 8,
+            gap: 6,
             transition: "color 0.2s",
+            overflow: "hidden",
             whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+            maxWidth: "calc(100vw - 80px)",
           }}
           onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#C97B63")}
           onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6B1B2E")}
         >
-          A small journal of things I've designed
+          <span className="hidden sm:inline">A small journal of things I've designed</span>
+          <span className="sm:hidden">Kajal Verma</span>
           <Heart />
         </Link>
 
-        {/* Desktop links — hidden on mobile */}
-        <div
-          className="hidden md:flex"
-          style={{ alignItems: "center", gap: 4 }}
-        >
+        {/* Desktop links */}
+        <div className="hidden md:flex" style={{ alignItems: "center", gap: 4 }}>
           {navLinks.map((link, i) => (
             <span key={link.href} style={{ display: "flex", alignItems: "center", gap: 4 }}>
               {i > 0 && <Dot />}
@@ -242,16 +259,13 @@ export function Navigation() {
           <CtaButton />
         </div>
 
-        {/* Hamburger — mobile only */}
-        <div
-          className="flex md:hidden"
-          onClick={() => setMenuOpen((v) => !v)}
-        >
+        {/* Hamburger — mobile/tablet only */}
+        <div className="flex md:hidden" onClick={() => setMenuOpen((v) => !v)}>
           <Hamburger open={menuOpen} />
         </div>
       </div>
 
-      {/* ── Mobile drawer ── */}
+      {/* ── Mobile/Tablet drawer ── */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -260,9 +274,13 @@ export function Navigation() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.28, ease: "easeInOut" }}
-            style={{ overflow: "hidden", background: "#FAF7F2", borderTop: "1px solid #6B1B2E0C" }}
+            style={{
+              overflow: "hidden",
+              background: "#FAF7F2",
+              borderTop: "1px solid #6B1B2E0C",
+            }}
           >
-            <div style={{ padding: "8px 24px 24px", display: "flex", flexDirection: "column", gap: 0 }}>
+            <div style={{ padding: "8px 20px 28px", display: "flex", flexDirection: "column", gap: 0 }}>
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.href}
@@ -273,21 +291,22 @@ export function Navigation() {
                   onClick={() => setMenuOpen(false)}
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: 15,
+                    fontSize: 16,
                     color: "#2D1B1B",
                     textDecoration: "none",
-                    padding: "11px 0",
+                    padding: "14px 0",
                     borderBottom: "1px solid #6B1B2E0C",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                     transition: "color 0.2s",
+                    touchAction: "manipulation",
                   }}
                   onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#6B1B2E")}
                   onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#2D1B1B")}
                 >
                   {link.label}
-                  <span style={{ color: "#D4A574", fontSize: 16 }}>→</span>
+                  <span style={{ color: "#D4A574", fontSize: 18 }}>→</span>
                 </motion.a>
               ))}
 
@@ -298,17 +317,18 @@ export function Navigation() {
                 transition={{ delay: navLinks.length * 0.06 + 0.05 }}
                 onClick={() => setMenuOpen(false)}
                 style={{
-                  marginTop: 16,
-                  padding: "13px 20px",
+                  marginTop: 20,
+                  padding: "15px 20px",
                   background: "#6B1B2E",
                   color: "#FAF7F2",
                   fontFamily: "var(--font-sans)",
-                  fontSize: 14,
+                  fontSize: 15,
                   textAlign: "center",
                   textDecoration: "none",
                   borderRadius: 100,
                   display: "block",
                   letterSpacing: "0.02em",
+                  touchAction: "manipulation",
                 }}
               >
                 Let's Talk ♡
