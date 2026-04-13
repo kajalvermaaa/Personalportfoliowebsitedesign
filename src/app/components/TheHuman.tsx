@@ -8,7 +8,7 @@ export function TheHuman() {
     <section
       id="about"
       ref={ref}
-      className="py-32 px-6 bg-white relative overflow-hidden"
+      className="py-20 sm:py-32 px-4 sm:px-6 bg-white relative overflow-hidden"
     >
       {/* Background texture */}
       <div
@@ -29,7 +29,7 @@ export function TheHuman() {
       />
 
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
 
           {/* LEFT SIDE */}
           <div className="lg:col-span-2">
@@ -39,28 +39,30 @@ export function TheHuman() {
               transition={{ duration: 0.8 }}
             >
               {/* Title */}
-              <div className="relative mb-16">
-                <h2 className="font-[family-name:var(--font-serif)] text-6xl md:text-7xl text-[#6B1B2E] mb-4">
+              <div className="relative mb-10 lg:mb-16">
+                <h2 className="font-[family-name:var(--font-serif)] text-[#6B1B2E] mb-4"
+                  style={{ fontSize: 'clamp(44px, 10vw, 80px)' }}
+                >
                   The Human
                 </h2>
                 <div className="w-24 h-1 bg-[#D4A574]" />
-                <div className="absolute -top-6 right-0 font-[family-name:var(--font-handwritten)] text-xl text-[#C97B63]">
+                <div className="absolute -top-5 right-0 font-[family-name:var(--font-handwritten)] text-base sm:text-xl text-[#C97B63]">
                   (the real story)
                 </div>
               </div>
 
               {/* STORY */}
-              <div className="space-y-8 font-[family-name:var(--font-body)] text-xl leading-relaxed text-[#2D1B1B]">
+              <div className="space-y-6 sm:space-y-8 font-[family-name:var(--font-body)] text-lg sm:text-xl leading-relaxed text-[#2D1B1B]">
 
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.2 }}
                 >
-                  <p>I didn’t start here.</p>
+                  <p>I didn't start here.</p>
                   <p className="mt-4">
                     I started in <span className="text-[#6B1B2E] italic">operations</span> — spreadsheets, SOPs, exception handling.
-                    Managing 200+ records weekly where mistakes weren’t an option.
+                    Managing 200+ records weekly where mistakes weren't an option.
                   </p>
                 </motion.div>
 
@@ -68,10 +70,10 @@ export function TheHuman() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.4 }}
-                  className="bg-[#FAF7F2] p-8 -mx-4 rotate-[-0.5deg] shadow-sm"
+                  className="bg-[#FAF7F2] p-6 sm:p-8 -mx-2 sm:-mx-4 rotate-[-0.5deg] shadow-sm"
                 >
                   <p className="italic text-[#6B5B4F]">
-                    “Every process I fixed, every workflow I mapped — had the same problem.”
+                    "Every process I fixed, every workflow I mapped — had the same problem."
                   </p>
                 </motion.div>
 
@@ -81,7 +83,7 @@ export function TheHuman() {
                   transition={{ delay: 0.6 }}
                 >
                   <p className="text-[#6B1B2E] font-semibold">
-                    They weren’t designed for humans.
+                    They weren't designed for humans.
                   </p>
                   <p className="mt-4">
                     Systems optimized for efficiency, not clarity. Tools that worked — but felt like punishment.
@@ -92,13 +94,13 @@ export function TheHuman() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.8 }}
-                  className="pl-8 border-l-4 border-[#C97B63]"
+                  className="pl-6 sm:pl-8 border-l-4 border-[#C97B63]"
                 >
-                  <p className="text-2xl text-[#6B1B2E]">
+                  <p className="text-xl sm:text-2xl text-[#6B1B2E]">
                     So I taught myself design.
                   </p>
                   <p className="mt-4 text-[#6B5B4F]">
-                    Not to make things pretty —  
+                    Not to make things pretty —
                     but to make them <span className="italic text-[#2D1B1B]">make sense</span>.
                   </p>
                 </motion.div>
@@ -120,15 +122,15 @@ export function TheHuman() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 1.2 }}
-                  className="bg-[#6B1B2E] text-[#FAF7F2] p-8 -mx-4 shadow-lg"
+                  className="bg-[#6B1B2E] text-[#FAF7F2] p-6 sm:p-8 -mx-2 sm:-mx-4 shadow-lg"
                 >
-                  <p className="text-2xl">
-                    Now I’m deepening my product thinking through a PG in Product Management.
+                  <p className="text-lg sm:text-2xl">
+                    Now I'm deepening my product thinking through a PG in Product Management.
                   </p>
                   <p className="mt-4 text-[#E8A5A0]">
                     Not just design. Not just ops.
                   </p>
-                  <p className="mt-4 text-xl">
+                  <p className="mt-4 text-lg sm:text-xl">
                     I understand the <span className="italic">full system</span>.
                   </p>
                 </motion.div>
@@ -138,8 +140,8 @@ export function TheHuman() {
                   animate={inView ? { opacity: 1 } : {}}
                   transition={{ delay: 1.4 }}
                 >
-                  <p className="text-2xl">
-                    I don’t just design interfaces.  
+                  <p className="text-xl sm:text-2xl">
+                    I don't just design interfaces.
                     <span className="text-[#6B1B2E] italic"> I design how things work.</span>
                   </p>
                 </motion.div>
@@ -149,16 +151,17 @@ export function TheHuman() {
           </div>
 
           {/* RIGHT SIDE - SKILLS TAGS */}
-          <div className="relative hidden lg:flex justify-start">
-            <div className="sticky top-32 w-full">
+          {/* On mobile/tablet: shown inline below story. On desktop: sticky sidebar */}
+          <div className="relative lg:flex lg:justify-start">
+            <div className="lg:sticky lg:top-32 w-full">
 
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
                 transition={{ delay: 0.3 }}
-                className="font-[family-name:var(--font-handwritten)] text-base text-[#C97B63] mb-5 tracking-wide"
+                className="font-[family-name:var(--font-handwritten)] text-base text-[#C97B63] mb-4 tracking-wide"
               >
-                things I’m good at
+                things I'm good at
               </motion.p>
 
               <motion.div
