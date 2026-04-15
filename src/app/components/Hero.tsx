@@ -422,12 +422,12 @@ export function Hero() {
                 className="hidden sm:block"
                 style={{
                   position: "absolute",
-                  right: 0,
-                  top: "20%",
+                  right: -80px,
+                  top: "50%",
                   fontFamily: "var(--font-handwritten)",
                   fontSize: "clamp(16px, 2vw, 22px)",
                   color: TERRACOTTA,
-                  transform: "rotate(-4deg)",
+                  transform: "rotate(-5deg)",
                 }}
               >
                 this is me →
