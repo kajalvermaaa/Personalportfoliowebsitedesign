@@ -426,7 +426,7 @@ export function Hero() {
                   top: "50%",
                   fontFamily: "var(--font-handwritten)",
                   fontSize: "clamp(16px, 2vw, 22px)",
-                  color: C.TERRACOTTA,
+                  color: TERRACOTTA,
                   transform: "translateY(-50%) rotate(-5deg)",
                 }}
               >
