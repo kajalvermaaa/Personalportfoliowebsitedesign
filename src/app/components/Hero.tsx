@@ -328,11 +328,11 @@ export function Hero() {
                 style={{
                   position: "absolute",
                   top: "38%",
-                  left: "-60px",
+                  left: "-40px",
                   fontFamily: "var(--font-handwritten)",
                   fontSize: 15,
                   color: TERRACOTTA,
-                  transform: "rotate(-8deg)",
+                  transform: "rotate(-10deg)",
                   whiteSpace: "nowrap",
                 }}
                 className="hidden lg:block"
