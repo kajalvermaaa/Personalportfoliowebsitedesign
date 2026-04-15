@@ -58,29 +58,38 @@ const projects: Project[] = [
     liveLink: "https://www.ashwingupta.dev",
     liveLinkLabel: "visit live site",
     summary: "An AI engineer needed a portfolio that proved performance engineering — not just claimed it.",
-    hook: "Most portfolios look the same. This one had to be different.",
+    hook: "Most portfolios showcase work. This one explains it.",
     sections: [
       {
         label: "The Problem",
         content:
-          "The client — Ashwin Gupta, an AI Systems Researcher at Coforge — had a site claiming performance engineering that shipped with 400 CSS-animated DOM nodes, a 2 MB JPEG hero, and 72 unvetted dependencies. The artifact directly contradicted the claim. He needed a portfolio that communicated both craft and product thinking — not just pretty visuals.",
+          "The client — Ashwin Gupta, an AI Systems Researcher at Coforge — had a portfolio that looked fine visually, but didn’t communicate the depth of his work. It felt like a template — not something that reflected how he thinks, builds, or solves problems. He needed a portfolio that could communicate both technical depth and clarity — not just aesthetics..",
       },
       {
         label: "The Insight",
         content:
-          "Portfolios aren't about you — they're about what you can do for someone else. The best ones tell a story and prove you understand problems, not just tools. For an engineer whose work spans inference systems, scientific ML, and distributed infrastructure, the design had to reflect that same rigor.",
+          "A portfolio isn’t about showing everything — it’s about making the right things understood. Especially for someone working across inference systems, ML, and distributed infrastructure, the experience needed to reflect that same clarity and intent.",
       },
       {
         label: "What I Built",
         content:
-          "Designed a narrative-first experience with editorial aesthetics. Rebuilt around a three-layer spatial architecture — every visual effect collapsed into a single RAF loop, offscreen canvas pre-rendering, lazy boundaries enforcing below-fold deferral. Every section answers: what was built, why it matters, how it was done. The result: 90% image reduction, 72% JS bundle cut, frame time from 18–25ms down to 4–6ms, stable 60fps under CPU throttle.",
+          "I redesigned the portfolio as a narrative-first experience with editorial aesthetics. Instead of listing projects, I structured the content to answer: 
+          — what was built  — why it matters  — how it works  Focused on:
+— reducing visual noise  
+— improving content hierarchy  
+— guiding attention intentionally  
+The goal was to make the portfolio feel thoughtful and structured — not templated.",
       },
     ],
     outcome:
-      "A portfolio that stands out in a sea of templates. Shows design execution, product thinking, and real engineering performance in one cohesive experience. Deployed and live at ashwingupta.dev.",
+      "A clearer, more intentional portfolio that better communicates Ashwin’s work and thinking. Positions him beyond just another developer portfolio — toward someone who understands systems, not just builds them.",
     productThinking:
-      "I treated this as a product launch, not a design handoff. Defined performance targets upfront, designed for them, then validated. The visual aesthetic and the technical execution both had to earn their place.",
-    tags: ["Product Design", "UX/UI", "React", "Performance", "End-to-End Build"],
+      "I approached this as a positioning problem, not just a design task. Instead of asking “how should it look?”  I focused on:
+— what should a recruiter understand in 10 seconds  
+— what makes this different from others  
+— how to guide attention effectively  
+Because good design isn’t just visual — it’s communicative.",
+    tags: ["Product Thinking · UX/UI · Information Architecture · Portfolio Design"],
   },
 ];
 
