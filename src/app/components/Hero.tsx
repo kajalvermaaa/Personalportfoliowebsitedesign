@@ -283,7 +283,7 @@ export function Hero() {
                 value="200+"
                 label="workflows handled"
                 rotate={-4}
-                style={{ top: "12%", right: "30px" }}
+                style={{ top: "12%", right: "-50px" }}
               />
               <StatNote
                 value="15%"
