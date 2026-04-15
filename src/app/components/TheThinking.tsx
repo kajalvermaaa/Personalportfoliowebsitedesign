@@ -13,7 +13,7 @@ export function TheThinking() {
         "Because they're designed by people who never have to use them. Add a layer for every stakeholder, never subtract.",
       takeaway: "Start with the user's mental model, not your org chart.",
       annotation: "this one stings →",
-      annotationRotate: "rotate-0deg]",
+      annotationRotate: "rotate 20deg]",
       annotationColor: "text-[#C97B63]",
       tapeRotate: "-rotate-[12deg]",
       cardRotate: "-0.6deg",
