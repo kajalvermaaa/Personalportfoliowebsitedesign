@@ -91,7 +91,7 @@ function StatNote({
       animate={{ opacity: 1, y: 0, rotate }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       style={{
-        position: "relative",
+        position: "absolute",
         background: CREAM,
         border: `1px solid ${CREAM_DARK}`,
         borderRadius: 4,
@@ -283,7 +283,7 @@ export function Hero() {
                 value="200+"
                 label="workflows handled"
                 rotate={-4}
-                style={{ top: "12%", right: "-35px" }}
+                style={{ top: "12%", right: "0px" }}
               />
               <StatNote
                 value="15%"
