@@ -91,7 +91,7 @@ function StatNote({
       animate={{ opacity: 1, y: 0, rotate }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       style={{
-        position: "absolute",
+        position: "relative",
         background: CREAM,
         border: `1px solid ${CREAM_DARK}`,
         borderRadius: 4,
