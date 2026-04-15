@@ -283,19 +283,19 @@ export function Hero() {
                 value="200+"
                 label="workflows handled"
                 rotate={-4}
-                style={{ top: "18%", right: "-28px" }}
+                style={{ top: "18%", right: "-20px" }}
               />
               <StatNote
                 value="15%"
                 label="less rework"
                 rotate={3}
-                style={{ bottom: "22%", left: "-28px" }}
+                style={{ bottom: "22%", left: "-30px" }}
               />
               <StatNote
                 value="1 yr"
                 label="in operations"
                 rotate={-2}
-                style={{ bottom: "8%", right: "-16px" }}
+                style={{ bottom: "8%", right: "-24px" }}
               />
 
               {/* Sparkle badge */}
