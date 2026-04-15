@@ -295,7 +295,7 @@ export function Hero() {
                 value="1 yr"
                 label="in operations"
                 rotate={-2}
-                style={{ bottom: "8%", right: "-24px" }}
+                style={{ bottom: "8%", right: "-35px" }}
               />
 
               {/* Sparkle badge */}
@@ -328,7 +328,7 @@ export function Hero() {
                 style={{
                   position: "absolute",
                   top: "38%",
-                  left: "-80px",
+                  left: "-60px",
                   fontFamily: "var(--font-handwritten)",
                   fontSize: 15,
                   color: TERRACOTTA,
