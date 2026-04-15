@@ -2,14 +2,6 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import profileImage from "figma:asset/7fae8e88ae5df6c80fe030cdc91b8e3f1740ad32.png";
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   HERO — Designer's Scrapbook Edition
-   Concept: The portfolio page IS the scrapbook. Torn paper, layered washi tape,
-   rubber-stamp role tags, hand-drawn arrows, sticky notes with squiggly borders,
-   highlighter swipes, circle doodles. Messy-but-intentional. Everything feels
-   cut, glued, and annotated by hand.
-   ───────────────────────────────────────────────────────────────────────── */
-
 const C = {
   burgundy:   "#6B1B2E",
   terracotta: "#C97B63",
@@ -23,7 +15,6 @@ const C = {
   mustard:    "#E8C547",
 };
 
-/* ── Washi tape strip ── */
 function WashiTape({
   color, width = 80, height = 20, rotate = 0, style,
 }: {
@@ -40,6 +31,7 @@ function WashiTape({
         opacity: 0.82,
         borderRadius: 2,
         zIndex: 10,
+        pointerEvents: "none",
         ...style,
       }}
     >
@@ -57,7 +49,6 @@ function WashiTape({
   );
 }
 
-/* ── Rubber stamp tag ── */
 function Stamp({
   label, color, rotate = 0, style,
 }: {
@@ -93,7 +84,6 @@ function Stamp({
   );
 }
 
-/* ── Sticky note ── */
 function StickyNote({
   children, bg, rotate = 0, delay = 0, style,
 }: {
@@ -111,6 +101,7 @@ function StickyNote({
         padding: "10px 14px 14px",
         boxShadow: "2px 4px 16px rgba(45,27,27,0.18)",
         zIndex: 20,
+        pointerEvents: "none",
         ...style,
       }}
     >
@@ -125,26 +116,6 @@ function StickyNote({
   );
 }
 
-/* ── Hand-drawn dashed circle ── */
-function DoodleCircle({
-  size = 100, color = C.terracotta, style,
-}: {
-  size?: number; color?: string; style?: React.CSSProperties;
-}) {
-  return (
-    <svg
-      width={size} height={size} viewBox="0 0 100 100"
-      style={{ position: "absolute", pointerEvents: "none", zIndex: 0, ...style }}
-    >
-      <ellipse cx="50" cy="50" rx="44" ry="40"
-        fill="none" stroke={color} strokeWidth="2.5" strokeDasharray="6 3"
-        style={{ transform: "rotate(-8deg)", transformOrigin: "50% 50%" }}
-      />
-    </svg>
-  );
-}
-
-/* ── Highlighter mark ── */
 function Highlight({ children, color }: { children: React.ReactNode; color: string }) {
   return (
     <span style={{ position: "relative", display: "inline" }}>
@@ -163,7 +134,6 @@ function Highlight({ children, color }: { children: React.ReactNode; color: stri
   );
 }
 
-/* ── Star doodle ── */
 function StarDoodle({ size = 20, color = C.gold, style }: {
   size?: number; color?: string; style?: React.CSSProperties;
 }) {
@@ -180,9 +150,178 @@ function StarDoodle({ size = 20, color = C.gold, style }: {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   MAIN EXPORT
-═══════════════════════════════════════════════════════════════ */
+function PhotoCollage() {
+  return (
+    <div
+      style={{
+        position: "relative",
+        padding: "52px 80px 72px 40px",
+        overflow: "visible",
+      }}
+    >
+      {/* Polaroid frame */}
+      <div
+        style={{
+          position: "relative",
+          background: "#fff",
+          padding: "10px 10px 52px",
+          boxShadow: "4px 8px 32px rgba(45,27,27,0.15), 1px 2px 6px rgba(45,27,27,0.07)",
+          transform: "rotate(-1.5deg)",
+          zIndex: 2,
+        }}
+      >
+        <WashiTape
+          color={`${C.gold}BB`} width={70} height={20} rotate={-8}
+          style={{ top: -10, left: 24, zIndex: 12 }}
+        />
+        <WashiTape
+          color={`${C.peach}EE`} width={58} height={18} rotate={6}
+          style={{ top: -10, right: 36, zIndex: 12 }}
+        />
+
+        <img
+          src={profileImage}
+          alt="Kajal Verma"
+          style={{
+            width: "100%",
+            height: "clamp(260px, 40vw, 480px)",
+            objectFit: "cover",
+            objectPosition: "top",
+            display: "block",
+          }}
+        />
+
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0,
+          height: 52,
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 12,
+          padding: "0 16px",
+        }}>
+          <span style={{ fontFamily: "var(--font-handwritten)", fontSize: 13, color: C.muted }}>
+            Bangalore, IN
+          </span>
+          <span style={{ color: C.gold, fontSize: 10 }}>✦</span>
+          <span style={{ fontFamily: "var(--font-handwritten)", fontSize: 12, color: C.terracotta }}>
+            probably over-caffeinated
+          </span>
+        </div>
+      </div>
+
+      {/* Sticky note — top-right */}
+      <StickyNote bg="#FFF8DC" rotate={5} delay={0.9}
+        style={{ top: 4, right: 4, width: 124 }}
+      >
+        <div style={{ fontFamily: "var(--font-sans)", fontSize: 26, fontWeight: 800, color: C.burgundy, lineHeight: 1 }}>
+          200+
+        </div>
+        <div style={{ fontFamily: "var(--font-sans)", fontSize: 9, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.muted, marginTop: 4 }}>
+          workflows handled
+        </div>
+        <svg viewBox="0 0 100 6" style={{ width: "100%", height: 6, marginTop: 6 }}>
+          <path d="M 0 3 Q 12 0,25 3 Q 38 6,50 3 Q 62 0,75 3 Q 88 6,100 3"
+            stroke={C.gold} strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        </svg>
+      </StickyNote>
+
+      {/* Sticky note — left-center */}
+      <StickyNote bg={C.peach} rotate={-6} delay={1.05}
+        style={{ top: "38%", left: 0, width: 112 }}
+      >
+        <div style={{ fontFamily: "var(--font-sans)", fontSize: 24, fontWeight: 800, color: C.burgundy, lineHeight: 1 }}>
+          15%
+        </div>
+        <div style={{ fontFamily: "var(--font-sans)", fontSize: 9, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.muted, marginTop: 4 }}>
+          less rework
+        </div>
+        <svg viewBox="0 0 80 6" style={{ width: "100%", height: 6, marginTop: 6 }}>
+          <path d="M 0 3 Q 10 6,20 3 Q 30 0,40 3 Q 50 6,60 3 Q 70 0,80 3"
+            stroke={C.terracotta} strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        </svg>
+      </StickyNote>
+
+      {/* Sticky note — bottom-right */}
+      <StickyNote bg={C.sage} rotate={3} delay={1.2}
+        style={{ bottom: 4, right: 4, width: 108 }}
+      >
+        <div style={{ fontFamily: "var(--font-sans)", fontSize: 24, fontWeight: 800, color: C.ink, lineHeight: 1 }}>
+          1 yr
+        </div>
+        <div style={{ fontFamily: "var(--font-sans)", fontSize: 9, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#4a5f3a", marginTop: 4 }}>
+          in operations
+        </div>
+        <svg viewBox="0 0 80 6" style={{ width: "100%", height: 6, marginTop: 6 }}>
+          <path d="M 0 3 Q 10 0,20 3 Q 30 6,40 3 Q 50 0,60 3 Q 70 6,80 3"
+            stroke="#7a9a6a" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        </svg>
+      </StickyNote>
+
+      {/* "yes that's me" annotation + arrow */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.3 }}
+        className="hidden lg:block"
+        style={{
+          position: "absolute",
+          bottom: 12,
+          left: 8,
+          zIndex: 15,
+          pointerEvents: "none",
+        }}
+      >
+        <span style={{
+          fontFamily: "var(--font-handwritten)",
+          fontSize: 14,
+          color: C.terracotta,
+          transform: "rotate(-10deg)",
+          display: "inline-block",
+          whiteSpace: "nowrap",
+          marginBottom: 2,
+        }}>
+          yes, that's me :)
+        </span>
+        <svg
+          viewBox="0 0 70 36" width="70" height="36"
+          style={{ display: "block", marginTop: 2 }}
+        >
+          <path
+            d="M 4 32 Q 18 20, 36 14 Q 50 8, 62 6"
+            stroke={C.terracotta} strokeWidth="1.8" fill="none" strokeLinecap="round"
+          />
+          <path
+            d="M 54 2 L 62 6 L 56 13"
+            stroke={C.terracotta} strokeWidth="1.8" fill="none" strokeLinecap="round"
+          />
+        </svg>
+      </motion.div>
+
+      <WashiTape
+        color={`${C.sage}AA`} width={54} height={16} rotate={-14}
+        style={{ bottom: 60, left: 28, zIndex: 5 }}
+      />
+
+      <motion.div
+        animate={{ rotate: [0, -10, 5, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          position: "absolute",
+          bottom: 20,
+          left: 50,
+          width: 44, height: 44, borderRadius: "50%",
+          background: C.burgundy,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: `2px 4px 0 ${C.ink}33`,
+          zIndex: 25,
+          fontSize: 18, color: C.cream,
+          pointerEvents: "none",
+        }}
+      >
+        ✦
+      </motion.div>
+    </div>
+  );
+}
+
 export function Hero() {
   return (
     <section
@@ -202,20 +341,17 @@ export function Hero() {
 
       {/* Background decorative elements */}
       <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}>
-        {/* Big faint circle top-right */}
         <div style={{
           position: "absolute", top: -80, right: -80,
           width: 360, height: 360, borderRadius: "50%",
           border: `2px dashed ${C.gold}28`,
         }} />
-        {/* Ruled lines */}
         {[160, 220, 280, 340, 400].map((y) => (
           <div key={y} style={{
             position: "absolute", left: 0, right: 0, top: y,
             height: 1, background: `${C.gold}14`,
           }} />
         ))}
-        {/* Tiny dots */}
         {[[8, 42], [91, 18], [5, 72], [94, 60], [52, 6], [76, 91]].map(([x, y], i) => (
           <div key={i} style={{
             position: "absolute",
@@ -227,7 +363,7 @@ export function Hero() {
         ))}
       </div>
 
-      {/* ══════════════════════════ LAYOUT ══════════════════════════ */}
+      {/* Layout */}
       <div
         style={{
           maxWidth: 1280,
@@ -243,7 +379,7 @@ export function Hero() {
       >
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_440px] xl:grid-cols-[1fr_480px] gap-y-6 lg:gap-x-10 xl:gap-x-16 items-center">
 
-          {/* ═══════════ LEFT — Text ═══════════ */}
+          {/* LEFT — Text */}
           <motion.div
             initial={{ opacity: 0, x: -28 }}
             animate={{ opacity: 1, x: 0 }}
@@ -251,8 +387,7 @@ export function Hero() {
             className="order-last lg:order-first"
             style={{ paddingBottom: 24 }}
           >
-
-            {/* Rubber stamp role tags */}
+            {/* Stamp tags */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -264,16 +399,8 @@ export function Hero() {
               <Stamp label="Design"     color={C.terracotta} rotate={-1} />
             </motion.div>
 
-            {/* Giant name */}
+            {/* Name — no circle */}
             <div style={{ position: "relative", marginBottom: 4 }}>
-
-              {/* Doodle circle around Kajal */}
-              <DoodleCircle
-                size={190}
-                color={`${C.gold}70`}
-                style={{ top: -20, left: -16 }}
-              />
-
               <motion.h1
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -302,7 +429,7 @@ export function Hero() {
                 </span>
               </motion.h1>
 
-              {/* "this is me →" */}
+              {/* "← this is me" annotation */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -310,24 +437,25 @@ export function Hero() {
                 className="hidden sm:block"
                 style={{
                   position: "absolute",
-                  right: "clamp(-20px, 3vw, 30px)",
-                  top: "28%",
+                  left: "clamp(220px, 55%, 480px)",
+                  bottom: "10%",
                   fontFamily: "var(--font-handwritten)",
                   fontSize: "clamp(14px, 1.6vw, 20px)",
                   color: C.terracotta,
                   transform: "rotate(-5deg)",
                   whiteSpace: "nowrap",
+                  zIndex: 2,
+                  pointerEvents: "none",
                 }}
               >
-                this is me →
+                ← this is me
               </motion.div>
 
-              {/* Star doodles */}
               <StarDoodle size={22} color={C.gold}       style={{ bottom: 8,  right: "22%" }} />
               <StarDoodle size={13} color={C.terracotta} style={{ top: 8,    right: "36%" }} />
             </div>
 
-            {/* Highlighter headline */}
+            {/* Headline */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -344,11 +472,11 @@ export function Hero() {
                   fontWeight: 400,
                 }}
               >
-                Turning messy systems into{" "}
+                I make things look good{" "}
                 <br className="hidden sm:block" />
                 <Highlight color={C.mustard}>
                   <em style={{ fontStyle: "italic", color: C.burgundy }}>
-                    meaningful experiences
+                    and actually work
                   </em>
                 </Highlight>
               </h2>
@@ -368,8 +496,9 @@ export function Hero() {
                 margin: "0 0 clamp(16px, 2.8vw, 28px)",
               }}
             >
-              I fix what's broken, build what's missing, and design what people
-              actually want to use.
+              Part designer, part problem-solver, fully obsessed with making
+              things feel effortless. If it's confusing, cluttered, or broken —
+              I'm already itching to fix it.
             </motion.p>
 
             {/* Wavy divider */}
@@ -394,7 +523,7 @@ export function Hero() {
               transition={{ delay: 0.85 }}
               style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 20 }}
             >
-              <a
+              
                 href="#work"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: 8,
@@ -422,10 +551,10 @@ export function Hero() {
                   el.style.boxShadow = `3px 5px 0 ${C.ink}33`;
                 }}
               >
-                explore my work <ArrowRight size={13} />
+                see my work <ArrowRight size={13} />
               </a>
 
-              <a
+              
                 href="#contact"
                 style={{
                   fontFamily: "var(--font-handwritten)",
@@ -436,7 +565,7 @@ export function Hero() {
                   paddingBottom: 4,
                 }}
               >
-                say hello ✦
+                let's talk ✦
                 <svg viewBox="0 0 100 8"
                   style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: 8 }}
                   preserveAspectRatio="none"
@@ -450,175 +579,17 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ═══════════ RIGHT — Scrapbook photo collage ═══════════
-              Key fix: the entire column has overflow:visible and
-              enough internal padding so sticky notes don't clip.
-          ════════════════════════════════════════════════════════ */}
+          {/* RIGHT — Photo collage */}
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="order-first lg:order-last"
-            style={{
-              position: "relative",
-              /* generous padding so notes bleed outside photo but stay in layout */
-              padding: "56px 72px 88px 48px",
-              overflow: "visible",
-            }}
+            style={{ overflow: "visible" }}
           >
-
-            {/* ── Polaroid frame ── */}
-            <div
-              style={{
-                position: "relative",
-                background: "#fff",
-                padding: "10px 10px 52px",
-                boxShadow: "4px 8px 32px rgba(45,27,27,0.15), 1px 2px 6px rgba(45,27,27,0.07)",
-                transform: "rotate(-1.5deg)",
-                zIndex: 2,
-              }}
-            >
-              {/* Washi tape top corners */}
-              <WashiTape color={`${C.gold}BB`}  width={70} height={20} rotate={-8} style={{ top: -10, left: 24 }} />
-              <WashiTape color={`${C.peach}EE`} width={58} height={18} rotate={6}  style={{ top: -10, right: 36 }} />
-
-              {/* Profile photo */}
-              <img
-                src={profileImage}
-                alt="Kajal Verma"
-                style={{
-                  width: "100%",
-                  height: "clamp(260px, 42vw, 500px)",
-                  objectFit: "cover",
-                  objectPosition: "top",
-                  display: "block",
-                }}
-              />
-
-              {/* Polaroid caption strip */}
-              <div style={{
-                position: "absolute", bottom: 0, left: 0, right: 0,
-                height: 52,
-                display: "flex", alignItems: "center", justifyContent: "center", gap: 12,
-                padding: "0 16px",
-              }}>
-                <span style={{ fontFamily: "var(--font-handwritten)", fontSize: 13, color: C.muted }}>
-                  Bangalore, IN
-                </span>
-                <span style={{ color: C.gold, fontSize: 10 }}>✦</span>
-                <span style={{ fontFamily: "var(--font-handwritten)", fontSize: 12, color: C.terracotta }}>
-                  still figuring it out :)
-                </span>
-              </div>
-            </div>
-
-            {/* ════ STICKY NOTES — inside the padding box, never clipped ════ */}
-
-            {/* Note 1 — top-right */}
-            <StickyNote bg="#FFF8DC" rotate={5} delay={0.9}
-              style={{ top: 0, right: 0, width: 128 }}
-            >
-              <div style={{ fontFamily: "var(--font-sans)", fontSize: 26, fontWeight: 800, color: C.burgundy, lineHeight: 1 }}>
-                200+
-              </div>
-              <div style={{ fontFamily: "var(--font-sans)", fontSize: 9, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.muted, marginTop: 4 }}>
-                workflows handled
-              </div>
-              <svg viewBox="0 0 100 6" style={{ width: "100%", height: 6, marginTop: 6 }}>
-                <path d="M 0 3 Q 12 0,25 3 Q 38 6,50 3 Q 62 0,75 3 Q 88 6,100 3"
-                  stroke={C.gold} strokeWidth="1.5" fill="none" strokeLinecap="round" />
-              </svg>
-            </StickyNote>
-
-            {/* Note 2 — left */}
-            <StickyNote bg={C.peach} rotate={-6} delay={1.05}
-              style={{ top: "36%", left: 0, width: 116 }}
-            >
-              <div style={{ fontFamily: "var(--font-sans)", fontSize: 24, fontWeight: 800, color: C.burgundy, lineHeight: 1 }}>
-                15%
-              </div>
-              <div style={{ fontFamily: "var(--font-sans)", fontSize: 9, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.muted, marginTop: 4 }}>
-                less rework
-              </div>
-              <svg viewBox="0 0 80 6" style={{ width: "100%", height: 6, marginTop: 6 }}>
-                <path d="M 0 3 Q 10 6,20 3 Q 30 0,40 3 Q 50 6,60 3 Q 70 0,80 3"
-                  stroke={C.terracotta} strokeWidth="1.5" fill="none" strokeLinecap="round" />
-              </svg>
-            </StickyNote>
-
-            {/* Note 3 — bottom-right */}
-            <StickyNote bg={C.sage} rotate={3} delay={1.2}
-              style={{ bottom: 8, right: 0, width: 112 }}
-            >
-              <div style={{ fontFamily: "var(--font-sans)", fontSize: 24, fontWeight: 800, color: C.ink, lineHeight: 1 }}>
-                1 yr
-              </div>
-              <div style={{ fontFamily: "var(--font-sans)", fontSize: 9, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#4a5f3a", marginTop: 4 }}>
-                in operations
-              </div>
-              <svg viewBox="0 0 80 6" style={{ width: "100%", height: 6, marginTop: 6 }}>
-                <path d="M 0 3 Q 10 0,20 3 Q 30 6,40 3 Q 50 0,60 3 Q 70 6,80 3"
-                  stroke="#7a9a6a" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-              </svg>
-            </StickyNote>
-
-            {/* "built from chaos" annotation + arrow */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.3 }}
-              className="hidden lg:block"
-              style={{
-                position: "absolute",
-                top: "54%",
-                left: 4,
-                fontFamily: "var(--font-handwritten)",
-                fontSize: 14,
-                color: C.terracotta,
-                transform: "rotate(-10deg)",
-                whiteSpace: "nowrap",
-                zIndex: 15,
-              }}
-            >
-              built from chaos
-            </motion.div>
-
-            {/* Scribble arrow */}
-            <svg
-              viewBox="0 0 80 40" width="80" height="40"
-              className="hidden lg:block"
-              style={{ position: "absolute", top: "50%", left: 64, zIndex: 15, pointerEvents: "none" }}
-            >
-              <path d="M 4 20 Q 20 8,40 18 Q 58 28,72 14"
-                stroke={C.terracotta} strokeWidth="1.8" fill="none" strokeLinecap="round" />
-              <path d="M 65 8 L 72 14 L 63 18"
-                stroke={C.terracotta} strokeWidth="1.8" fill="none" strokeLinecap="round" />
-            </svg>
-
-            {/* Extra washi tape — bottom-left of photo */}
-            <WashiTape color={`${C.sage}AA`} width={54} height={16} rotate={-14}
-              style={{ bottom: 72, left: 20 }}
-            />
-
-            {/* Sparkle button */}
-            <motion.div
-              animate={{ rotate: [0, -10, 5, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              style={{
-                position: "absolute",
-                bottom: 32, left: 12,
-                width: 44, height: 44, borderRadius: "50%",
-                background: C.burgundy,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                boxShadow: `2px 4px 0 ${C.ink}33`,
-                zIndex: 15,
-                fontSize: 18, color: C.cream,
-              }}
-            >
-              ✦
-            </motion.div>
-
+            <PhotoCollage />
           </motion.div>
+
         </div>
       </div>
 
@@ -634,5 +605,3 @@ export function Hero() {
     </section>
   );
 }
-
-
