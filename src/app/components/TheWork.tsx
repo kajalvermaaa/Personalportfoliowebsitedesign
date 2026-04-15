@@ -31,7 +31,7 @@ const projects: Project[] = [
       {
         label: "The Problem",
         content:
-          "MakeMyTrip's refund process had zero visibility. Users submitted requests and then waited in silence — no status updates, no clear timelines, no way to know what was actually happening. Support teams were drowning in 'where's my refund?' tickets because the product wasn't answering the most basic question: what is going on?",
+          "You cancel a trip. You request a refund. And then… nothing. No status. No timeline. No clarity. Just a vague “7–10 working days” — with no idea when those days even start. So users do the only thing they can: 👉 raise support tickets asking “what’s happening?",
       },
       {
         label: "The Insight",
@@ -41,14 +41,14 @@ const projects: Project[] = [
       {
         label: "My Approach",
         content:
-          "I mapped the entire end-to-end journey across every touchpoint — app, email, support chat. Identified 6 friction points. Then designed a transparent flow with real-time status tracking (Submitted → Reviewed → Approved → Processed), clear timeline estimates, and proactive notifications so users never had to wonder.",
+          "I mapped the refund journey across app, email, and support. Instead of redesigning screens, I focused on one question: 👉 What does the user need to know at each moment? Then I designed a transparent flow: Clear status stages: Submitted → Reviewed → Approved → Processed. Real-time status visibility inside the app. Timeline estimates tied to each stage (not vague promises). Proactive notifications to eliminate “where is my refund?” moments",
       },
     ],
     outcome:
       "Defined success metrics: reduce refund inquiry tickets by 40%, improve CSAT scores, cut average processing time by 30%. Designed for both user trust and operational efficiency — not one at the expense of the other.",
     productThinking:
       "This wasn't a redesign — it was product strategy. I started with user research, mapped pain points, defined metrics, then designed the solution. The design serves the outcome, not the other way around.",
-    tags: ["UX Research", "Product Strategy", "User Flows", "Metrics Design"],
+    tags: ["UX Research", "Product Strategy", " Product Thinking", "User Flows", "Systems Design"],
   },
   {
     id: "portfolio",
