@@ -21,7 +21,7 @@ export function TheHuman() {
   const timeline = [
     {
       era: "chapter 01",
-      label: "The ops years",
+      label: "The ops years- Gallagher Center of Excellence",
       body: "200+ records a week. Zero margin for error. Spreadsheets at 11pm, SOPs before coffee. I was the person who made broken systems survivable.",
       accent: false,
     },
@@ -40,7 +40,7 @@ export function TheHuman() {
     {
       era: "right now",
       label: "Both brains, one person",
-      body: "PG in Product Management. Ops instincts + design eye + systems thinking. Not just design. Not just ops. The whole picture.",
+      body: "PG in Product Management- upGrad. Ops instincts + design eye + systems thinking. Not just design. Not just ops. The whole picture.",
       accent: true,
     },
   ];
