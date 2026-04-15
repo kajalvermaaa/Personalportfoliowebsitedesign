@@ -4,6 +4,47 @@ import { useInView } from "./hooks/useInView";
 export function TheHuman() {
   const { ref, inView } = useInView();
 
+  const skills = [
+    { label: "UX Design",        variant: "filled"  },
+    { label: "Wireframing",       variant: "outline-accent" },
+    { label: "Product Thinking",  variant: "outline" },
+    { label: "User Research",     variant: "filled"  },
+    { label: "Figma",             variant: "outline" },
+    { label: "User Journeys",     variant: "outline" },
+    { label: "SOP Design",        variant: "filled"  },
+    { label: "Design Systems",    variant: "outline-accent" },
+    { label: "Prototyping",       variant: "outline" },
+    { label: "System Clarity",    variant: "filled"  },
+    { label: "Ops & Process",     variant: "outline" },
+  ];
+
+  const timeline = [
+    {
+      era: "chapter 01",
+      label: "The ops years",
+      body: "200+ records a week. Zero margin for error. Spreadsheets at 11pm, SOPs before coffee. I was the person who made broken systems survivable.",
+      accent: false,
+    },
+    {
+      era: "the pivot",
+      label: "Wait — why does this feel like punishment?",
+      body: "Every workflow I fixed had the same flaw. Optimised for efficiency. Hostile to humans. So I did the obvious thing nobody expected.",
+      accent: true,
+    },
+    {
+      era: "chapter 02",
+      label: "Taught myself design",
+      body: "Not to make things pretty. To make them make sense. Built a full portfolio for an AI engineer — end to end. Redesigned a refund flow. Found the friction. Killed it.",
+      accent: false,
+    },
+    {
+      era: "right now",
+      label: "Both brains, one person",
+      body: "PG in Product Management. Ops instincts + design eye + systems thinking. Not just design. Not just ops. The whole picture.",
+      accent: true,
+    },
+  ];
+
   return (
     <section
       id="about"
@@ -31,7 +72,7 @@ export function TheHuman() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
 
-          {/* LEFT SIDE */}
+          {/* LEFT / MAIN STORY */}
           <div className="lg:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -39,119 +80,113 @@ export function TheHuman() {
               transition={{ duration: 0.8 }}
             >
               {/* Title */}
-              <div className="relative mb-10 lg:mb-16">
-                <h2 className="font-[family-name:var(--font-serif)] text-[#6B1B2E] mb-4"
-                  style={{ fontSize: 'clamp(44px, 10vw, 80px)' }}
+              <div className="relative mb-12 lg:mb-16">
+                <h2
+                  className="font-[family-name:var(--font-serif)] text-[#6B1B2E] mb-4"
+                  style={{ fontSize: "clamp(44px, 10vw, 80px)" }}
                 >
                   The Human
                 </h2>
                 <div className="w-24 h-1 bg-[#D4A574]" />
                 <div className="absolute -top-5 right-0 font-[family-name:var(--font-handwritten)] text-base sm:text-xl text-[#C97B63]">
-                  (the real story)
+                  (yes, a real one)
                 </div>
               </div>
 
-              {/* STORY */}
-              <div className="space-y-6 sm:space-y-8 font-[family-name:var(--font-body)] text-lg sm:text-xl leading-relaxed text-[#2D1B1B]">
+              {/* Opening line */}
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.2 }}
+                className="font-[family-name:var(--font-body)] text-xl sm:text-2xl text-[#2D1B1B] leading-relaxed mb-12"
+              >
+                I didn't open Figma first.{" "}
+                <span className="text-[#6B5B4F]">
+                  I opened a spreadsheet. At 11pm. For fun. (We were all young once.)
+                </span>
+              </motion.p>
 
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.2 }}
-                >
-                  <p>I didn't start here.</p>
-                  <p className="mt-4">
-                    I started in <span className="text-[#6B1B2E] italic">operations</span> — spreadsheets, SOPs, exception handling.
-                    Managing 200+ records weekly where mistakes weren't an option.
-                  </p>
-                </motion.div>
+              {/* Timeline */}
+              <div className="relative">
+                {/* Vertical line */}
+                <div className="absolute left-[11px] top-2 bottom-2 w-px bg-[#E8D5C8]" />
 
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.4 }}
-                  className="bg-[#FAF7F2] p-6 sm:p-8 -mx-2 sm:-mx-4 rotate-[-0.5deg] shadow-sm"
-                >
-                  <p className="italic text-[#6B5B4F]">
-                    "Every process I fixed, every workflow I mapped — had the same problem."
-                  </p>
-                </motion.div>
+                <div className="space-y-10 sm:space-y-12">
+                  {timeline.map(({ era, label, body, accent }, i) => (
+                    <motion.div
+                      key={era}
+                      initial={{ opacity: 0, x: -24 }}
+                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.3 + i * 0.2 }}
+                      className="relative pl-10"
+                    >
+                      {/* Dot */}
+                      <div
+                        className={`absolute left-0 top-1.5 w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center
+                          ${accent
+                            ? "bg-[#6B1B2E] border-[#6B1B2E]"
+                            : "bg-white border-[#C97B63]"
+                          }`}
+                      >
+                        {accent && (
+                          <div className="w-2 h-2 rounded-full bg-[#FAF7F2]" />
+                        )}
+                      </div>
 
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.6 }}
-                >
-                  <p className="text-[#6B1B2E] font-semibold">
-                    They weren't designed for humans.
-                  </p>
-                  <p className="mt-4">
-                    Systems optimized for efficiency, not clarity. Tools that worked — but felt like punishment.
-                  </p>
-                </motion.div>
+                      {/* Era label */}
+                      <p className="font-[family-name:var(--font-handwritten)] text-sm text-[#C97B63] mb-1 tracking-wide">
+                        {era}
+                      </p>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.8 }}
-                  className="pl-6 sm:pl-8 border-l-4 border-[#C97B63]"
-                >
-                  <p className="text-xl sm:text-2xl text-[#6B1B2E]">
-                    So I taught myself design.
-                  </p>
-                  <p className="mt-4 text-[#6B5B4F]">
-                    Not to make things pretty —
-                    but to make them <span className="italic text-[#2D1B1B]">make sense</span>.
-                  </p>
-                </motion.div>
+                      {/* Chapter title */}
+                      <h3
+                        className={`font-[family-name:var(--font-body)] font-semibold mb-3 leading-snug
+                          ${accent ? "text-[#6B1B2E] text-xl sm:text-2xl" : "text-[#2D1B1B] text-lg sm:text-xl"}`}
+                      >
+                        {label}
+                      </h3>
 
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 1 }}
-                >
-                  <p>
-                    I built real things — a full portfolio for an AI engineer, end-to-end.
-                  </p>
-                  <p className="mt-4">
-                    Then redesigned a refund system. Found friction. Fixed it.
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 1.2 }}
-                  className="bg-[#6B1B2E] text-[#FAF7F2] p-6 sm:p-8 -mx-2 sm:-mx-4 shadow-lg"
-                >
-                  <p className="text-lg sm:text-2xl">
-                    Now I'm deepening my product thinking through a PG in Product Management.
-                  </p>
-                  <p className="mt-4 text-[#E8A5A0]">
-                    Not just design. Not just ops.
-                  </p>
-                  <p className="mt-4 text-lg sm:text-xl">
-                    I understand the <span className="italic">full system</span>.
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : {}}
-                  transition={{ delay: 1.4 }}
-                >
-                  <p className="text-xl sm:text-2xl">
-                    I don't just design interfaces.
-                    <span className="text-[#6B1B2E] italic"> I design how things work.</span>
-                  </p>
-                </motion.div>
-
+                      {/* Body */}
+                      {accent ? (
+                        <div className="bg-[#FAF7F2] p-5 sm:p-6 -ml-1 rotate-[-0.3deg] shadow-sm">
+                          <p className="font-[family-name:var(--font-body)] text-base sm:text-lg text-[#6B5B4F] leading-relaxed italic">
+                            {body}
+                          </p>
+                        </div>
+                      ) : (
+                        <p className="font-[family-name:var(--font-body)] text-base sm:text-lg text-[#6B5B4F] leading-relaxed">
+                          {body}
+                        </p>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
+
+              {/* Closing punch */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 1.4 }}
+                className="mt-14 bg-[#6B1B2E] text-[#FAF7F2] p-6 sm:p-8 -mx-2 sm:-mx-4 shadow-lg"
+              >
+                <p className="font-[family-name:var(--font-body)] text-xl sm:text-2xl leading-snug">
+                  I don't just design interfaces.
+                </p>
+                <p className="mt-3 font-[family-name:var(--font-body)] text-lg sm:text-xl italic text-[#E8A5A0]">
+                  I design how things work.
+                </p>
+                <div className="mt-5 pt-5 border-t border-[#8B3A4E]">
+                  <p className="text-sm text-[#C97B63] font-[family-name:var(--font-handwritten)] tracking-wide">
+                    — the full-system person your team didn't know it needed
+                  </p>
+                </div>
+              </motion.div>
+
             </motion.div>
           </div>
 
-          {/* RIGHT SIDE - SKILLS TAGS */}
-          {/* On mobile/tablet: shown inline below story. On desktop: sticky sidebar */}
+          {/* RIGHT — SKILLS */}
           <div className="relative lg:flex lg:justify-start">
             <div className="lg:sticky lg:top-32 w-full">
 
@@ -170,19 +205,7 @@ export function TheHuman() {
                 transition={{ delay: 0.5 }}
                 className="flex flex-wrap gap-2 mb-2"
               >
-                {[
-                  { label: "UX Design",        variant: "filled"  },
-                  { label: "Wireframing",       variant: "outline-accent" },
-                  { label: "Product Thinking",  variant: "outline" },
-                  { label: "User Research",     variant: "filled"  },
-                  { label: "Figma",             variant: "outline" },
-                  { label: "User Journeys",     variant: "outline" },
-                  { label: "SOP Design",        variant: "filled"  },
-                  { label: "Design Systems",    variant: "outline-accent" },
-                  { label: "Prototyping",       variant: "outline" },
-                  { label: "System Clarity",    variant: "filled"  },
-                  { label: "Ops & Process",     variant: "outline" },
-                ].map(({ label, variant }, i) => (
+                {skills.map(({ label, variant }, i) => (
                   <motion.span
                     key={label}
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -202,11 +225,40 @@ export function TheHuman() {
                 ))}
               </motion.div>
 
+              {/* Fun stat cards */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 1.0 }}
+                className="mt-8 space-y-3"
+              >
+                {[
+                  { num: "200+", desc: "records/week — zero oops" },
+                  { num: "2×",   desc: "career pivots, 0 regrets" },
+                  { num: "∞",    desc: "broken flows spotted" },
+                ].map(({ num, desc }, i) => (
+                  <motion.div
+                    key={num + desc}
+                    initial={{ opacity: 0, x: 16 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 1.0 + i * 0.12 }}
+                    className="flex items-baseline gap-3 py-3 border-b border-[#E8D5C8]"
+                  >
+                    <span className="font-[family-name:var(--font-serif)] text-2xl text-[#6B1B2E] min-w-[3rem]">
+                      {num}
+                    </span>
+                    <span className="font-[family-name:var(--font-body)] text-sm text-[#6B5B4F]">
+                      {desc}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
+
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
-                transition={{ delay: 1.2 }}
-                className="mt-4 font-[family-name:var(--font-handwritten)] text-sm text-[#C97B63] tracking-wide"
+                transition={{ delay: 1.5 }}
+                className="mt-5 font-[family-name:var(--font-handwritten)] text-sm text-[#C97B63] tracking-wide"
               >
                 + always learning something new
               </motion.p>
