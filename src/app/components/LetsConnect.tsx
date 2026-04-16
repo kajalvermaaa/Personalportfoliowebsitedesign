@@ -12,12 +12,31 @@ export function LetsConnect() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus("success");
-      setFormData({ name: "", email: "", message: "" });
+
+    try {
+      const response = await fetch("https://formspree.io/f/xaqaeyva", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      } else {
+        setSubmitStatus("error");
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      }
+    } catch {
+      setSubmitStatus("error");
       setTimeout(() => setSubmitStatus("idle"), 5000);
-    }, 1500);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -272,49 +291,21 @@ export function LetsConnect() {
                   </motion.div>
                 )}
 
+                {/* Error message */}
+                {submitStatus === "error" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-[#FAF7F2] border-l-4 border-[#C97B63] px-4 py-3"
+                  >
+                    <p className="font-[family-name:var(--font-body)] text-sm text-[#2D1B1B]">
+                      Hmm, something went wrong.
+                    </p>
+                    <p className="font-[family-name:var(--font-handwritten)] text-base text-[#C97B63] mt-0.5">
+                      Try emailing me directly instead ♡
+                    </p>
+                  </motion.div>
+                )}
+
                 {/* Submit button */}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  style={{ touchAction: "manipulation" }}
-                  className="w-full bg-[#6B1B2E] text-[#FAF7F2] px-8 py-4 font-[family-name:var(--font-sans)] text-sm tracking-widest uppercase hover:bg-[#C97B63] transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      <span>Sending...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Send it over</span>
-                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </>
-                  )}
-                </button>
-
-                <p className="text-center font-[family-name:var(--font-handwritten)] text-base sm:text-lg text-[#C97B63]">
-                  (I read every single one ♡)
-                </p>
-              </form>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 1 }}
-          className="mt-16 sm:mt-20 pt-6 border-t border-[#6B1B2E]/10 text-center space-y-1"
-        >
-          <p className="font-[family-name:var(--font-handwritten)] text-base text-[#C97B63]">
-            built from scratch, one pixel at a time
-          </p>
-          <p className="font-[family-name:var(--font-sans)] text-xs text-[#6B5B4F]">
-            © 2026 Kajal Verma — designed with love, caffeine, and mild obsession ♡
-          </p>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
+                <b
