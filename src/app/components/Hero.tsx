@@ -1,19 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import profileImage from "figma:asset/7fae8e88ae5df6c80fe030cdc91b8e3f1740ad32.png";
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   REDESIGNED HERO
-   Design decisions (senior POV):
-   • Stronger typographic scale — name breaks the grid intentionally
-   • Role tags moved into a pill-strip for cleaner scan
-   • Image frame uses a ruled-paper / ticket-stub notch system for character
-   • Scroll-parallax on image for depth on desktop
-   • Floating annotation cards (stats) positioned as sticky notes on image
-   • CTA pair: primary action + subtle secondary link
-   • Thin ruled line across top of section as editorial separator
-   • All motion is purposeful — no decorative spins; only entrance + scroll
-   ───────────────────────────────────────────────────────────────────────── */
 
 const BURGUNDY   = "#6B1B2E";
 const TERRACOTTA = "#C97B63";
@@ -23,7 +10,6 @@ const INK        = "#2D1B1B";
 const WARM_MUTED = "#6B5B4F";
 const CREAM_DARK = "#EDE8E0";
 
-/* Wavy SVG underline */
 function WavyUnderline({ color = GOLD, width = 120 }: { color?: string; width?: number }) {
   return (
     <svg
@@ -42,7 +28,6 @@ function WavyUnderline({ color = GOLD, width = 120 }: { color?: string; width?: 
   );
 }
 
-/* Tape strip decorating photo corners */
 function TapeStrip({
   rotate,
   top,
@@ -73,7 +58,6 @@ function TapeStrip({
   );
 }
 
-/* Sticky-note stat card floating on image */
 function StatNote({
   value,
   label,
@@ -143,7 +127,7 @@ export function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* ── Top ruled line (editorial separator) ── */}
+      {/* ── Top ruled line ── */}
       <div
         style={{
           position: "absolute",
@@ -155,7 +139,7 @@ export function Hero() {
         }}
       />
 
-      {/* ── Subtle grain overlay ── */}
+      {/* ── Grain overlay ── */}
       <div
         aria-hidden
         style={{
@@ -168,7 +152,7 @@ export function Hero() {
         }}
       />
 
-      {/* ── Large background letter (editorial device) ── */}
+      {/* ── Large background letter ── */}
       <div
         aria-hidden
         style={{
@@ -197,24 +181,15 @@ export function Hero() {
           zIndex: 1,
         }}
       >
-        {/*
-          MOBILE / TABLET: stacked — image on top, text below
-          DESKTOP (lg): side-by-side, text left, image right
-          Using a CSS class approach via inline responsive isn't ideal in TSX,
-          so we use the className utilities from the existing Tailwind setup.
-        */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px] gap-y-10 gap-x-12 xl:gap-x-20 items-center">
 
-          {/* ══════════════════════════════════════════════
-              PHOTO COLUMN — appears first on mobile, second on desktop
-          ══════════════════════════════════════════════ */}
+          {/* ══ PHOTO COLUMN ══ */}
           <motion.div
             style={{ y: imageY }}
             className="order-first lg:order-last"
           >
             <div style={{ position: "relative", maxWidth: 400, margin: "0 auto" }}>
 
-              {/* Photo frame */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.93, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -226,7 +201,6 @@ export function Hero() {
                   boxShadow: "0 8px 48px rgba(107,27,46,0.13), 0 2px 8px rgba(107,27,46,0.06)",
                 }}
               >
-                {/* Tape strips on corners */}
                 <TapeStrip rotate={-6} top="-10px" left="32px" />
                 <TapeStrip rotate={7}  top="-10px" right="32px" />
 
@@ -242,7 +216,6 @@ export function Hero() {
                   }}
                 />
 
-                {/* Caption strip at bottom of polaroid */}
                 <div
                   style={{
                     position: "absolute",
@@ -278,7 +251,7 @@ export function Hero() {
                 </div>
               </motion.div>
 
-              {/* ── Floating stat notes ── */}
+              {/* ── Stat notes ── */}
               <StatNote
                 value="200+"
                 label="workflows handled"
@@ -298,29 +271,7 @@ export function Hero() {
                 style={{ bottom: "8%", right: "-35px" }}
               />
 
-              {/* Sparkle badge */}
-              <motion.div
-                animate={{ rotate: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                style={{
-                  position: "absolute",
-                  top: "55%",
-                  left: "-20px",
-                  background: BURGUNDY,
-                  color: CREAM,
-                  borderRadius: "50%",
-                  width: 44,
-                  height: 44,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  boxShadow: `0 4px 20px ${BURGUNDY}55`,
-                }}
-              >
-                <Sparkles size={18} />
-              </motion.div>
-
-              {/* Annotation: "built from chaos" */}
+              {/* ── "built from chaos" annotation ── */}
               <motion.div
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -342,9 +293,7 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* ══════════════════════════════════════════════
-              TEXT COLUMN
-          ══════════════════════════════════════════════ */}
+          {/* ══ TEXT COLUMN ══ */}
           <motion.div
             initial={{ opacity: 0, x: -32 }}
             animate={{ opacity: 1, x: 0 }}
@@ -353,7 +302,49 @@ export function Hero() {
             style={{ paddingTop: "clamp(0px, 2vh, 32px)" }}
           >
 
-            {/* ── Role pill strip ── */}
+            {/* ── Availability badge ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 }}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: "#fff",
+                border: "1.5px solid rgba(45,106,79,0.28)",
+                borderRadius: 100,
+                padding: "6px 14px 6px 10px",
+                marginBottom: 20,
+                fontFamily: "var(--font-sans)",
+                fontSize: 11,
+                fontWeight: 500,
+                color: "#1B4332",
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+                boxShadow: "0 2px 12px rgba(45,106,79,0.10)",
+              }}
+            >
+              <span
+                style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  background: "#2D6A4F",
+                  flexShrink: 0,
+                  animation: "availPulse 2s ease-in-out infinite",
+                }}
+              />
+              Open to full-time &amp; freelance
+              <style>{`
+                @keyframes availPulse {
+                  0%, 100% { box-shadow: 0 0 0 0 rgba(45,106,79,0.4); }
+                  50%       { box-shadow: 0 0 0 5px rgba(45,106,79,0); }
+                }
+              `}</style>
+            </motion.div>
+
+            {/* ── Role pill strip — no active highlight ── */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -365,7 +356,7 @@ export function Hero() {
                 marginBottom: 20,
               }}
             >
-              {["Operations", "Product", "Design"].map((tag, i) => (
+              {["Operations", "Product", "Design"].map((tag) => (
                 <span
                   key={tag}
                   style={{
@@ -373,11 +364,11 @@ export function Hero() {
                     fontSize: 11,
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
-                    color: i === 0 ? BURGUNDY : WARM_MUTED,
-                    border: `1px solid ${i === 0 ? BURGUNDY : CREAM_DARK}`,
+                    color: WARM_MUTED,
+                    border: `1px solid ${CREAM_DARK}`,
                     borderRadius: 100,
                     padding: "4px 14px",
-                    background: i === 0 ? `${BURGUNDY}0E` : "transparent",
+                    background: "transparent",
                   }}
                 >
                   {tag}
@@ -385,7 +376,7 @@ export function Hero() {
               ))}
             </motion.div>
 
-            {/* ── Name — oversized, grid-breaking ── */}
+            {/* ── Name ── */}
             <div style={{ position: "relative", marginBottom: "clamp(16px, 3vw, 28px)" }}>
               <motion.h1
                 initial={{ opacity: 0, y: 24 }}
@@ -414,7 +405,6 @@ export function Hero() {
                 </span>
               </motion.h1>
 
-              {/* Handwritten annotation — desktop only */}
               <motion.div
                 initial={{ opacity: 0, rotate: -8 }}
                 animate={{ opacity: 1, rotate: -4 }}
@@ -481,7 +471,8 @@ export function Hero() {
               }}
             >
               I fix what's broken, build what's missing, and design what people
-              actually want to use.
+              actually want to use — and I'm currently looking for the right team
+              to do that with.
             </motion.p>
 
             {/* ── Divider ── */}
@@ -536,7 +527,7 @@ export function Hero() {
                 }}
               >
                 explore my work
-                <ArrowRight size={15} style={{ transition: "transform 0.2s" }} />
+                <ArrowRight size={15} />
               </a>
 
               <a
