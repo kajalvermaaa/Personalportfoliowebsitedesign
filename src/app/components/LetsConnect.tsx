@@ -12,30 +12,23 @@ export function LetsConnect() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
-      const response = await fetch("https://formspree.io/f/xaqaeyva", {
+      const res = await fetch("https://formspree.io/f/xaqaeyva", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(formData),
       });
-
-      if (response.ok) {
+      if (res.ok) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", message: "" });
-        setTimeout(() => setSubmitStatus("idle"), 5000);
       } else {
         setSubmitStatus("error");
-        setTimeout(() => setSubmitStatus("idle"), 5000);
       }
     } catch {
       setSubmitStatus("error");
-      setTimeout(() => setSubmitStatus("idle"), 5000);
     } finally {
       setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     }
   };
 
@@ -49,7 +42,6 @@ export function LetsConnect() {
       ref={ref}
       className="py-20 sm:py-32 px-4 sm:px-6 bg-white relative overflow-hidden"
     >
-      {/* Background texture */}
       <div
         className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{
@@ -58,7 +50,6 @@ export function LetsConnect() {
         }}
       />
 
-      {/* Torn edge */}
       <div
         className="absolute top-0 left-0 right-0 h-8 bg-[#FAF7F2]"
         style={{
@@ -70,14 +61,13 @@ export function LetsConnect() {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-          {/* LEFT — Title & Info */}
+          {/* LEFT */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
             className="space-y-6 sm:space-y-8"
           >
-            {/* Heading */}
             <div className="relative">
               <div className="font-[family-name:var(--font-handwritten)] text-base sm:text-lg text-[#C97B63] mb-3 tracking-wide">
                 don't be a stranger —
@@ -91,7 +81,6 @@ export function LetsConnect() {
               <div className="w-24 h-1 bg-[#D4A574] rotate-[-1deg]" />
             </div>
 
-            {/* Subtext */}
             <div className="space-y-4">
               <p className="font-[family-name:var(--font-body)] text-lg sm:text-xl md:text-2xl text-[#2D1B1B] leading-relaxed">
                 Got a broken flow that needs fixing? A product that needs a human who thinks in systems?
@@ -104,7 +93,6 @@ export function LetsConnect() {
               </p>
             </div>
 
-            {/* Contact Links */}
             <div className="space-y-3 sm:space-y-4 pt-2">
               {[
                 {
@@ -153,7 +141,6 @@ export function LetsConnect() {
               ))}
             </div>
 
-            {/* Info sticky-note cards */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-4">
               <motion.div
                 initial={{ opacity: 0, rotate: -2, y: 10 }}
@@ -198,13 +185,10 @@ export function LetsConnect() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            {/* Tape strips */}
             <div className="absolute -top-3 sm:-top-4 left-8 sm:left-10 w-16 sm:w-20 h-5 sm:h-7 bg-[#D4A574]/40 rotate-[-7deg]" />
             <div className="absolute -top-3 sm:-top-4 right-8 sm:right-10 w-16 sm:w-20 h-5 sm:h-7 bg-[#E8A5A0]/50 rotate-[7deg]" />
 
             <div className="bg-white border-4 border-[#FAF7F2] shadow-2xl p-6 sm:p-8 md:p-10 relative">
-
-              {/* Form header */}
               <div className="mb-6 sm:mb-8">
                 <p className="font-[family-name:var(--font-handwritten)] text-base text-[#C97B63] mb-1">
                   slide into my inbox —
@@ -215,7 +199,6 @@ export function LetsConnect() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Name */}
                 <div className="space-y-1.5">
                   <label
                     htmlFor="name"
@@ -235,7 +218,6 @@ export function LetsConnect() {
                   />
                 </div>
 
-                {/* Email */}
                 <div className="space-y-1.5">
                   <label
                     htmlFor="email"
@@ -255,7 +237,6 @@ export function LetsConnect() {
                   />
                 </div>
 
-                {/* Message */}
                 <div className="space-y-1.5">
                   <label
                     htmlFor="message"
@@ -275,7 +256,6 @@ export function LetsConnect() {
                   />
                 </div>
 
-                {/* Success message */}
                 {submitStatus === "success" && (
                   <motion.div
                     initial={{ opacity: 0, y: -8 }}
@@ -291,7 +271,6 @@ export function LetsConnect() {
                   </motion.div>
                 )}
 
-                {/* Error message */}
                 {submitStatus === "error" && (
                   <motion.div
                     initial={{ opacity: 0, y: -8 }}
@@ -307,5 +286,47 @@ export function LetsConnect() {
                   </motion.div>
                 )}
 
-                {/* Submit button */}
-                <b
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  style={{ touchAction: "manipulation" }}
+                  className="w-full bg-[#6B1B2E] text-[#FAF7F2] px-8 py-4 font-[family-name:var(--font-sans)] text-sm tracking-widest uppercase hover:bg-[#C97B63] transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Send it over</span>
+                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
+                </button>
+
+                <p className="text-center font-[family-name:var(--font-handwritten)] text-base sm:text-lg text-[#C97B63]">
+                  (I read every single one ♡)
+                </p>
+              </form>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 1 }}
+          className="mt-16 sm:mt-20 pt-6 border-t border-[#6B1B2E]/10 text-center space-y-1"
+        >
+          <p className="font-[family-name:var(--font-handwritten)] text-base text-[#C97B63]">
+            built from scratch, one pixel at a time
+          </p>
+          <p className="font-[family-name:var(--font-sans)] text-xs text-[#6B5B4F]">
+            © 2026 Kajal Verma — designed with love, caffeine, and mild obsession ♡
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
