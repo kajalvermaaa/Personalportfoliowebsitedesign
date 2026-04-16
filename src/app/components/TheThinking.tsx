@@ -13,7 +13,7 @@ export function TheThinking() {
         "Because they're designed by people who never have to use them. Add a layer for every stakeholder, never subtract.",
       takeaway: "Start with the user's mental model, not your org chart.",
       annotation: "this one stings →",
-      annotationRotate: "rotate-10deg]",
+      annotationRotate: "rotate-[10deg]",
       annotationColor: "text-[#C97B63]",
       tapeRotate: "-rotate-[12deg]",
       cardRotate: "-0.6deg",
@@ -92,16 +92,13 @@ export function TheThinking() {
           </div>
 
           <div className="relative inline-block">
-            <h2 className="font-[family-name:var(--font-serif)] text-[#6B1B2E] leading-none"
-              style={{ fontSize: 'clamp(48px, 10vw, 96px)' }}
+            <h2
+              className="font-[family-name:var(--font-serif)] text-[#6B1B2E] leading-none"
+              style={{ fontSize: "clamp(48px, 10vw, 96px)" }}
             >
               The Thinking
             </h2>
-            <svg
-              className="absolute -bottom-3 left-0 w-full"
-              viewBox="0 0 480 14"
-              fill="none"
-            >
+            <svg className="absolute -bottom-3 left-0 w-full" viewBox="0 0 480 14" fill="none">
               <path d="M4 9 C80 4, 160 12, 240 7 S380 3, 476 8" stroke="#D4A574" strokeWidth="2.5" strokeLinecap="round" />
               <path d="M20 12 C100 9, 180 13, 260 10 S400 6, 460 11" stroke="#D4A574" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
             </svg>
@@ -123,22 +120,21 @@ export function TheThinking() {
         </motion.div>
 
         {/* Thought Cards */}
-        <div className="space-y-10 sm:space-y-16">
+        {/* Outer wrapper adds horizontal padding on lg+ to make room for annotations */}
+        <div className="space-y-10 sm:space-y-16 lg:px-28">
           {thoughts.map((thought, index) => (
             <motion.div
               key={thought.title}
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.15 + index * 0.18, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-              /* On mobile: full width. On larger screens: offset left/right */
-              className={`relative w-full ${thought.pullDir === "right" ? "sm:ml-auto" : ""}`}
-              style={{ maxWidth: "100%", ["--sm-max" as any]: "88%" }}
+              className="relative w-full"
             >
-              {/* Side annotation — desktop only */}
+              {/* Side annotation — visible on lg+, positioned outside the card in the padding zone */}
               <div
                 className={`absolute ${
-                  thought.pullDir === "left" ? "-right-20" : "-left-20"
-                } top-1/2 -translate-y-1/2 font-[family-name:var(--font-handwritten)] text-xl ${thought.annotationColor} ${thought.annotationRotate} hidden lg:block select-none`}
+                  thought.pullDir === "left" ? "-right-24" : "-left-24"
+                } top-1/2 -translate-y-1/2 z-10 font-[family-name:var(--font-handwritten)] text-lg ${thought.annotationColor} ${thought.annotationRotate} hidden lg:block select-none pointer-events-none`}
               >
                 {thought.annotation}
               </div>
@@ -154,7 +150,8 @@ export function TheThinking() {
                 <div className="p-6 sm:p-8 md:p-10">
                   {/* Top row */}
                   <div className="flex items-center justify-between mb-5">
-                    <span className="font-[family-name:var(--font-handwritten)] text-4xl sm:text-5xl text-[#FAF7F2] select-none leading-none"
+                    <span
+                      className="font-[family-name:var(--font-handwritten)] text-4xl sm:text-5xl text-[#FAF7F2] select-none leading-none"
                       style={{ WebkitTextStroke: "1.5px #E8DED0" }}
                     >
                       {thought.number}
