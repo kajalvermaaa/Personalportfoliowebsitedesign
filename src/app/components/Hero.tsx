@@ -30,33 +30,6 @@ function WavyUnderline({ color = GOLD, width = 120 }: { color?: string; width?: 
   );
 }
 
-function ScribbleCircle({ size = 120, color = GOLD }: { size?: number; color?: string }) {
-  return (
-    <svg
-      viewBox="0 0 120 120"
-      style={{
-        position: "absolute",
-        width: size,
-        height: size,
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        pointerEvents: "none",
-        zIndex: 0,
-      }}
-    >
-      <ellipse
-        cx="60" cy="60" rx="54" ry="46"
-        stroke={color}
-        strokeWidth="2.2"
-        strokeDasharray="6 4"
-        fill="none"
-        transform="rotate(-8 60 60)"
-        opacity="0.55"
-      />
-    </svg>
-  );
-}
 
 function TapeStrip({ rotate, top, left, right }: { rotate: number; top?: string; left?: string; right?: string }) {
   return (
@@ -339,8 +312,7 @@ export function Hero() {
                 >
                   Verma
                 </span>
-                {/* scribble circle around the name */}
-                <ScribbleCircle size={260} color={GOLD} />
+
               </motion.h1>
 
               {/* "this is me" annotation */}
