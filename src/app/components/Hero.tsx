@@ -111,6 +111,14 @@ export function Hero() {
         overflow: "hidden",
       }}
     >
+      {/* ── Google Fonts: Cormorant Garamond ── */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+        .name-cormorant {
+          font-family: 'Cormorant Garamond', Georgia, serif !important;
+        }
+      `}</style>
+
       {/* ── ruled lines ── */}
       <div style={{ position: "absolute", top: 64, left: 0, right: 0, height: 1, background: `linear-gradient(to right, transparent, ${GOLD}88, ${TERRACOTTA}66, transparent)` }} />
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 1, background: `linear-gradient(to right, transparent, ${GOLD}44, transparent)` }} />
@@ -119,7 +127,7 @@ export function Hero() {
       <div aria-hidden style={{ position: "absolute", inset: 0, opacity: 0.028, pointerEvents: "none", backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
 
       {/* ── background ghost letter ── */}
-      <div aria-hidden style={{ position: "absolute", top: "6%", right: "-5%", fontFamily: "var(--font-handwritten)", fontSize: "clamp(200px, 28vw, 420px)", color: `${BURGUNDY}05`, lineHeight: 1, userSelect: "none", pointerEvents: "none", letterSpacing: "-0.06em" }}>
+      <div aria-hidden style={{ position: "absolute", top: "6%", right: "-5%", fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "clamp(200px, 28vw, 420px)", color: `${BURGUNDY}05`, lineHeight: 1, userSelect: "none", pointerEvents: "none", letterSpacing: "-0.06em" }}>
         K
       </div>
 
@@ -178,7 +186,13 @@ export function Hero() {
                     objectFit: "cover",
                     objectPosition: "top",
                     display: "block",
-                  }}
+                    /* ── sharpness fixes ── */
+                    imageRendering: "auto",
+                    WebkitFontSmoothing: "antialiased",
+                    transform: "translateZ(0)",          /* force GPU layer, prevents subpixel blur */
+                    backfaceVisibility: "hidden",
+                    willChange: "transform",
+                  } as React.CSSProperties}
                 />
 
                 {/* caption strip */}
@@ -290,14 +304,16 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.7 }}
                 style={{
-                  fontFamily: "var(--font-handwritten)",
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
                   fontSize: "clamp(72px, 15vw, 148px)",
                   lineHeight: 0.88,
-                  letterSpacing: "-0.03em",
+                  letterSpacing: "-0.02em",
                   color: BURGUNDY,
                   margin: 0,
                   position: "relative",
                   display: "inline-block",
+                  fontWeight: 600,
+                  fontStyle: "italic",
                 }}
               >
                 <span style={{ display: "block" }}>Kajal</span>
@@ -308,11 +324,11 @@ export function Hero() {
                     WebkitTextStroke: `1.5px ${BURGUNDY}`,
                     WebkitTextFillColor: "transparent",
                     color: "transparent",
+                    fontStyle: "italic",
                   }}
                 >
                   Verma
                 </span>
-
               </motion.h1>
 
               {/* "this is me" annotation */}
