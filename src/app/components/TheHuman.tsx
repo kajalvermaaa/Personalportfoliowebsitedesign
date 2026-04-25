@@ -73,13 +73,13 @@ export function TheHuman() {
     {
       degree: "PG in Product Management",
       school: "Duke CE",
-      year: "2025 — Present",
+      year: "Dec 2025 — Present",
       current: true,
     },
     {
       degree: "BBA",
       school: "IFIM College, Bangalore University",
-      year: "2020 — 2023",
+      year: "Aug 2020 — Aug 2023",
       current: false,
     },
   ];
