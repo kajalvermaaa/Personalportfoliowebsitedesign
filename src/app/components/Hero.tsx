@@ -48,40 +48,6 @@ function TapeStrip({ rotate, top, left, right }: { rotate: number; top?: string;
   );
 }
 
-function StickyNote({
-  value, label, rotate, style,
-}: {
-  value: string; label: string; rotate: number; style?: React.CSSProperties;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.7, rotate: rotate - 10 }}
-      animate={{ opacity: 1, scale: 1, rotate }}
-      transition={{ duration: 0.5, type: "spring", bounce: 0.5 }}
-      whileHover={{ scale: 1.1, rotate: rotate + 2, zIndex: 20 }}
-      style={{
-        position: "absolute",
-        background: CREAM,
-        border: `1.5px solid ${CREAM_DARK}`,
-        borderRadius: 4,
-        padding: "8px 14px",
-        boxShadow: `0 4px 20px rgba(107,27,46,0.14), 3px 3px 0 ${GOLD}55`,
-        fontFamily: "var(--font-sans)",
-        cursor: "default",
-        zIndex: 10,
-        ...style,
-      }}
-    >
-      <div style={{ fontSize: "clamp(15px, 2vw, 19px)", fontWeight: 700, color: BURGUNDY, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
-        {value}
-      </div>
-      <div style={{ fontSize: 10, color: WARM_MUTED, marginTop: 2, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-        {label}
-      </div>
-    </motion.div>
-  );
-}
-
 /* ──────────────────────────── main export ──────────────────────────── */
 
 export function Hero() {
@@ -189,7 +155,7 @@ export function Hero() {
                     /* ── sharpness fixes ── */
                     imageRendering: "auto",
                     WebkitFontSmoothing: "antialiased",
-                    transform: "translateZ(0)",          /* force GPU layer, prevents subpixel blur */
+                    transform: "translateZ(0)",
                     backfaceVisibility: "hidden",
                     willChange: "transform",
                   } as React.CSSProperties}
@@ -202,11 +168,6 @@ export function Hero() {
                   <span style={{ fontFamily: "var(--font-handwritten)", fontSize: 13, color: TERRACOTTA }}>still figuring it out :)</span>
                 </div>
               </motion.div>
-
-              {/* sticky stat notes */}
-              <StickyNote value="200+" label="workflows handled" rotate={-4} style={{ top: "12%", right: "-80px" }} />
-              <StickyNote value="15%" label="less rework" rotate={3} style={{ bottom: "22%", left: "-30px" }} />
-              <StickyNote value="1 yr" label="in operations" rotate={-2} style={{ bottom: "8%", right: "-35px" }} />
 
               {/* scribble annotation */}
               <motion.div
