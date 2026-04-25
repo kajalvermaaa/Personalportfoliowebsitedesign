@@ -56,12 +56,37 @@ export function TheHuman() {
         <svg viewBox="0 0 240 234" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
           <defs>
             <linearGradient id="exGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#E535AB"/>
-              <stop offset="100%" stopColor="#7B2FBE"/>
+              <stop offset="0%" stopColor="#FF2BC2"/>
+              <stop offset="50%" stopColor="#C738ED"/>
+              <stop offset="100%" stopColor="#5C4AE4"/>
             </linearGradient>
           </defs>
           <rect width="240" height="234" rx="42" fill="url(#exGrad)"/>
-          <path d="M168 68H72c-2.2 0-4 1.8-4 4v90c0 2.2 1.8 4 4 4h96c2.2 0 4-1.8 4-4V72c0-2.2-1.8-4-4-4zm-72 70l24-52 24 52h-48z" fill="white"/>
+          {/* Correct Adobe Express "Ae" spark bolt logo */}
+          <path d="M152 58L108 130h28l-20 46 72-84h-32l24-34z" fill="white"/>
+        </svg>
+      ),
+    },
+    {
+      label: "Notion",
+      icon: (
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+          <rect width="100" height="100" rx="18" fill="white" stroke="#e5e5e5" strokeWidth="2"/>
+          <path d="M26 24c0-1.7 1.3-3.1 3-3.3l38-4.6c2-.2 3.9 1.3 3.9 3.3v6.1L26 30V24z" fill="#1a1a1a"/>
+          <path d="M26 30h45v48c0 1.8-1.5 3.2-3.3 3.2H29.3c-1.8 0-3.3-1.4-3.3-3.2V30z" fill="white" stroke="#1a1a1a" strokeWidth="2.5"/>
+          <path d="M26 30l45-4.5" stroke="#1a1a1a" strokeWidth="2.5"/>
+          <path d="M36 44h28M36 54h28M36 64h18" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round"/>
+          {/* Notion-style bold N top-left */}
+          <path d="M31 33l6 8V33h3v13h-3l-6-8v8h-3V33z" fill="#1a1a1a" fontSize="11" fontWeight="bold"/>
+        </svg>
+      ),
+    },
+    {
+      label: "GitHub",
+      icon: (
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+          <rect width="100" height="100" rx="18" fill="#24292E"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M50 18C32.3 18 18 32.7 18 50.7c0 14.5 9.1 26.8 21.8 31.2 1.6.3 2.2-.7 2.2-1.6v-5.6c-8.9 2-10.7-4.4-10.7-4.4-1.5-3.8-3.6-4.8-3.6-4.8-2.9-2 .2-2 .2-2 3.2.2 4.9 3.4 4.9 3.4 2.9 5 7.5 3.5 9.3 2.7.3-2.1 1.1-3.5 2-4.3-7.1-.8-14.6-3.6-14.6-16.2 0-3.6 1.2-6.5 3.3-8.8-.3-.8-1.4-4.2.3-8.7 0 0 2.7-.9 8.8 3.4 2.6-.7 5.3-1.1 8-1.1 2.7 0 5.5.4 8 1.1 6.1-4.3 8.8-3.4 8.8-3.4 1.7 4.5.6 7.9.3 8.7 2.1 2.3 3.3 5.2 3.3 8.8 0 12.6-7.5 15.4-14.7 16.2 1.2 1 2.2 3 2.2 6.1v9c0 .9.6 1.9 2.2 1.6C72.9 77.5 82 65.2 82 50.7 82 32.7 67.7 18 50 18z" fill="white"/>
         </svg>
       ),
     },
