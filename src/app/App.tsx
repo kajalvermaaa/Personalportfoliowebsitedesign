@@ -1,6 +1,10 @@
-import { RouterProvider } from 'react-router';
-import { router } from './routes';
+import { CustomCursor } from "./CustomCursor";
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <CustomCursor />
+      {/* rest of your app */}
+    </>
+  );
 }
