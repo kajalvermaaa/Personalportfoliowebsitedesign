@@ -22,7 +22,7 @@ export function TheHuman() {
     {
       label: "Figma",
       icon: (
-        <svg viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+        <svg viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
           <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
           <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
           <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
@@ -32,38 +32,45 @@ export function TheHuman() {
       ),
     },
     {
-      label: "Canva",
-      icon: (
-        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-          <circle cx="25" cy="25" r="25" fill="#7D2AE8"/>
-          <path d="M25 10c-8.284 0-15 6.716-15 15s6.716 15 15 15 15-6.716 15-15-6.716-15-15-15zm6.5 20.5c-1.1 1.5-2.9 2.5-5 2.5-3.6 0-6.5-3.1-6.5-7s2.9-7 6.5-7c2 0 3.8.9 5 2.4l-2.3 1.9c-.7-.9-1.7-1.5-2.8-1.5-2.1 0-3.8 1.9-3.8 4.2s1.7 4.2 3.8 4.2c1.1 0 2.1-.6 2.8-1.6l2.3 1.9z" fill="white"/>
-        </svg>
-      ),
-    },
-    {
       label: "Photoshop",
       icon: (
-        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-          <rect width="50" height="50" rx="8" fill="#001E36"/>
-          <text x="7" y="35" fontFamily="Arial" fontWeight="bold" fontSize="22" fill="#31A8FF">Ps</text>
+        <svg viewBox="0 0 240 234" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+          <rect width="240" height="234" rx="42" fill="#001E36"/>
+          <path d="M54 164V67.1c0-.9.4-1.4 1.3-1.4 2.2 0 4.3 0 7.2-.1 3-.1 6.1-.1 9.4-.1 3.3 0 6.7 0 10.1.1 9.9.3 17.9 2.9 23.7 7.8 5.3 4.5 8.3 11.3 8.3 19.7 0 9-3.1 16.2-9.4 21.3-6.4 5.2-15.7 7.8-27.7 7.8-2.4 0-3.9-.1-4.9-.1V164c0 1-.3 1.3-1.3 1.3H55.3c-1 0-1.3-.4-1.3-1.3zm17.1-81.7v33.8c.9.1 1.7.1 2.4.1h4.1c4.3 0 8.4-1 11.5-3.1 3.3-2.1 5.1-5.8 5.1-11.1 0-4.6-1.6-8.1-4.7-10.4-3.1-2.3-7.5-3.4-13.2-3.4-1.7 0-3.3 0-5.2.1z" fill="#31A8FF"/>
+          <path d="M186 124.5c-2.8-1.5-5.8-2.6-9-3.3-3.3-.8-6.6-1.2-9.8-1.2-2.1 0-4 .2-5.6.7-1.5.4-2.7 1-3.5 1.8-.8.7-1.2 1.6-1.2 2.6 0 1.1.5 2.1 1.4 2.9 1 .9 2.4 1.7 4.1 2.4 1.8.7 3.8 1.4 6.1 2.1 4.3 1.2 8.2 2.6 11.6 4.3 3.4 1.7 6.1 3.9 8 6.7 2 2.8 3 6.4 3 10.9 0 4.9-1.3 9-4 12.3-2.6 3.3-6.3 5.8-10.9 7.4-4.6 1.6-9.9 2.4-15.8 2.4-4.3 0-8.5-.4-12.6-1.3-4.1-.9-7.8-2.1-10.9-3.8-.8-.4-1.1-1-.9-2l2.6-9.8c.1-.5.4-.8.8-1 .4-.1.8 0 1.3.3 3.4 1.8 6.9 3.1 10.6 4 3.7.9 7.2 1.3 10.5 1.3 3.5 0 6.1-.5 7.9-1.4 1.8-.9 2.7-2.3 2.7-4.2 0-1.3-.5-2.3-1.5-3.2-1-.9-2.5-1.7-4.5-2.5-2-.8-4.4-1.6-7.3-2.5-4.1-1.3-7.7-2.7-10.7-4.4-3-1.7-5.3-3.9-7-6.6-1.6-2.7-2.5-6.2-2.5-10.4 0-4.4 1.2-8.3 3.7-11.6 2.5-3.3 5.9-5.9 10.4-7.7 4.5-1.8 9.7-2.7 15.8-2.7 3.8 0 7.5.3 11.1 1 3.6.7 6.7 1.6 9.3 2.8.5.2.8.5.9.9.1.4 0 .8-.2 1.3l-2.6 9.3c-.1.5-.4.8-.8 1-.3 0-.7-.1-1.1-.3z" fill="#31A8FF"/>
         </svg>
       ),
     },
     {
       label: "Illustrator",
       icon: (
-        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-          <rect width="50" height="50" rx="8" fill="#300"/>
-          <text x="7" y="35" fontFamily="Arial" fontWeight="bold" fontSize="22" fill="#FF9A00">Ai</text>
+        <svg viewBox="0 0 240 234" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+          <rect width="240" height="234" rx="42" fill="#330000"/>
+          <path d="M101 144H70.3l-6.4 20.1c-.2.8-.7 1.1-1.6 1.1H46.6c-1 0-1.2-.5-.9-1.5L74.3 69c.3-.9.6-1.8.9-2.9.3-1.8.5-3.6.5-5.4 0-.7.3-1 .9-1h22.4c.8 0 1.2.3 1.3.8L132.1 164c.3 1 0 1.5-1 1.5h-17.6c-.8 0-1.3-.3-1.5-1L101 144zm-26-16.3h21.2c-.5-1.9-1.3-4.5-2.2-7.4-1-2.9-1.9-6-2.9-9.2-1-3.2-1.9-6.4-2.9-9.5-1-3.1-1.8-6.1-2.6-8.8h-.2c-.7 3-1.6 6.1-2.5 9.3-1 3.2-1.9 6.4-2.9 9.5-1 3.1-1.9 6.1-2.7 8.9-.8 2.8-1.6 5.3-2.3 7.2zm68.5 37.2c0 1-.4 1.4-1.3 1.4h-15.9c-1 0-1.4-.5-1.4-1.4V95.3c0-1 .4-1.4 1.4-1.4h15.9c.9 0 1.3.5 1.3 1.4v69.6zm-9.4-82.2c-3 0-5.6-.9-7.5-2.8-2-1.8-3-4.2-3-7.2 0-3.1 1-5.5 3.1-7.3 2-1.8 4.6-2.7 7.6-2.7 3.1 0 5.7.9 7.6 2.7 2 1.8 2.9 4.2 2.9 7.3 0 2.9-1 5.3-3 7.1-1.9 2-4.5 2.9-7.7 2.9z" fill="#FF9A00"/>
         </svg>
       ),
     },
     {
-      label: "Express",
+      label: "Adobe Express",
       icon: (
-        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-          <rect width="50" height="50" rx="8" fill="#1A0033"/>
-          <text x="5" y="35" fontFamily="Arial" fontWeight="bold" fontSize="19" fill="#E535AB">Ex</text>
+        <svg viewBox="0 0 240 234" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+          <defs>
+            <linearGradient id="exGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#E535AB"/>
+              <stop offset="100%" stopColor="#7B2FBE"/>
+            </linearGradient>
+          </defs>
+          <rect width="240" height="234" rx="42" fill="url(#exGrad)"/>
+          <path d="M168 68H72c-2.2 0-4 1.8-4 4v90c0 2.2 1.8 4 4 4h96c2.2 0 4-1.8 4-4V72c0-2.2-1.8-4-4-4zm-72 70l24-52 24 52h-48z" fill="white"/>
+        </svg>
+      ),
+    },
+    {
+      label: "Canva",
+      icon: (
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+          <rect width="100" height="100" rx="18" fill="#7D2AE8"/>
+          <path d="M50 18C32.3 18 18 32.3 18 50s14.3 32 32 32 32-14.3 32-32S67.7 18 50 18zm13.5 42.5c-2.3 3.1-6 5.1-10.4 5.1-7.5 0-13.5-6.4-13.5-14.6S45.6 36.4 53.1 36.4c4.2 0 7.8 1.9 10.2 5l-4.7 4c-1.4-1.8-3.4-3-5.7-3-4.3 0-7.8 3.9-7.8 8.6s3.5 8.6 7.8 8.6c2.3 0 4.3-1.2 5.7-3.2l4.9 4.1z" fill="white"/>
         </svg>
       ),
     },
@@ -73,13 +80,13 @@ export function TheHuman() {
     {
       degree: "PG in Product Management",
       school: "Duke CE",
-      year: "Dec 2025 — Present",
+      year: "2025 — Present",
       current: true,
     },
     {
       degree: "BBA",
       school: "IFIM College, Bangalore University",
-      year: "Aug 2020 — Aug 2023",
+      year: "2020 — 2023",
       current: false,
     },
   ];
@@ -339,19 +346,21 @@ export function TheHuman() {
                 <p className="font-[family-name:var(--font-handwritten)] text-base text-[#C97B63] mb-4 tracking-wide">
                   tools I live in
                 </p>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-4 items-center">
                   {tools.map(({ label, icon }, i) => (
                     <motion.div
                       key={label}
-                      initial={{ opacity: 0, scale: 0.85 }}
+                      initial={{ opacity: 0, scale: 0.7 }}
                       animate={inView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ delay: 1.65 + i * 0.08 }}
-                      className="flex items-center gap-2 px-3 py-2 bg-[#FAF7F2] border border-[#E8D5C8] hover:border-[#C97B63] hover:shadow-sm transition-all duration-200 cursor-default group"
+                      transition={{ delay: 1.65 + i * 0.08, type: "spring", stiffness: 200 }}
+                      className="relative group cursor-default"
+                      title={label}
                     >
-                      <span className="flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
+                      <span className="block transition-transform duration-200 group-hover:scale-125 group-hover:-translate-y-1 drop-shadow-sm">
                         {icon}
                       </span>
-                      <span className="font-[family-name:var(--font-body)] text-xs text-[#6B5B4F] group-hover:text-[#6B1B2E] transition-colors duration-200">
+                      {/* Tooltip */}
+                      <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-[family-name:var(--font-body)] text-[10px] text-[#6B5B4F] opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none">
                         {label}
                       </span>
                     </motion.div>
