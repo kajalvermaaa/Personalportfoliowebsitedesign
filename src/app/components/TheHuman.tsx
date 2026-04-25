@@ -53,17 +53,23 @@ export function TheHuman() {
     {
       label: "Adobe Express",
       icon: (
-        <svg viewBox="0 0 240 234" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
           <defs>
-            <linearGradient id="exGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FF2BC2"/>
-              <stop offset="50%" stopColor="#C738ED"/>
-              <stop offset="100%" stopColor="#5C4AE4"/>
+            <linearGradient id="adobeRainbow" x1="75" y1="15" x2="25" y2="85" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stopColor="#FF3A00"/>
+              <stop offset="25%"  stopColor="#FF9500"/>
+              <stop offset="45%"  stopColor="#FFDD00"/>
+              <stop offset="62%"  stopColor="#00C170"/>
+              <stop offset="80%"  stopColor="#1EAAFF"/>
+              <stop offset="100%" stopColor="#9B59FF"/>
             </linearGradient>
           </defs>
-          <rect width="240" height="234" rx="42" fill="url(#exGrad)"/>
-          {/* Correct Adobe Express "Ae" spark bolt logo */}
-          <path d="M152 58L108 130h28l-20 46 72-84h-32l24-34z" fill="white"/>
+          {/* Dark navy background */}
+          <rect width="100" height="100" rx="20" fill="#0C1220"/>
+          {/* Outer A shape */}
+          <path d="M50 16 L84 80 H66 L50 46 L34 80 H16 Z" fill="url(#adobeRainbow)"/>
+          {/* Inner hollow cutout */}
+          <path d="M50 38 L61 62 H39 Z" fill="#0C1220"/>
         </svg>
       ),
     },
