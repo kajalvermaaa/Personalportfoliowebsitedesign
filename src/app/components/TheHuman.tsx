@@ -18,6 +18,72 @@ export function TheHuman() {
     { label: "Ops & Process",     variant: "outline" },
   ];
 
+  const tools = [
+    {
+      label: "Figma",
+      icon: (
+        <svg viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+          <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
+          <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
+          <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
+          <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/>
+          <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#FF7262"/>
+        </svg>
+      ),
+    },
+    {
+      label: "Canva",
+      icon: (
+        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+          <circle cx="25" cy="25" r="25" fill="#7D2AE8"/>
+          <path d="M25 10c-8.284 0-15 6.716-15 15s6.716 15 15 15 15-6.716 15-15-6.716-15-15-15zm6.5 20.5c-1.1 1.5-2.9 2.5-5 2.5-3.6 0-6.5-3.1-6.5-7s2.9-7 6.5-7c2 0 3.8.9 5 2.4l-2.3 1.9c-.7-.9-1.7-1.5-2.8-1.5-2.1 0-3.8 1.9-3.8 4.2s1.7 4.2 3.8 4.2c1.1 0 2.1-.6 2.8-1.6l2.3 1.9z" fill="white"/>
+        </svg>
+      ),
+    },
+    {
+      label: "Photoshop",
+      icon: (
+        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+          <rect width="50" height="50" rx="8" fill="#001E36"/>
+          <text x="7" y="35" fontFamily="Arial" fontWeight="bold" fontSize="22" fill="#31A8FF">Ps</text>
+        </svg>
+      ),
+    },
+    {
+      label: "Illustrator",
+      icon: (
+        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+          <rect width="50" height="50" rx="8" fill="#300"/>
+          <text x="7" y="35" fontFamily="Arial" fontWeight="bold" fontSize="22" fill="#FF9A00">Ai</text>
+        </svg>
+      ),
+    },
+    {
+      label: "Express",
+      icon: (
+        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+          <rect width="50" height="50" rx="8" fill="#1A0033"/>
+          <text x="5" y="35" fontFamily="Arial" fontWeight="bold" fontSize="19" fill="#E535AB">Ex</text>
+        </svg>
+      ),
+    },
+  ];
+
+  const education = [
+    {
+      degree: "PG in Product Management",
+      school: "Duke CE",
+      year: "2025 — Present",
+      current: true,
+    },
+    {
+      degree: "BBA",
+      school: "IFIM College, Bangalore University",
+      year: "2020 — 2023",
+      current: false,
+    },
+  ];
+
   const timeline = [
     {
       era: "chapter 01",
@@ -186,7 +252,7 @@ export function TheHuman() {
             </motion.div>
           </div>
 
-          {/* RIGHT — SKILLS */}
+          {/* RIGHT — SKILLS + EDUCATION + TOOLS */}
           <div className="relative lg:flex lg:justify-start">
             <div className="lg:sticky lg:top-32 w-full">
 
@@ -262,6 +328,82 @@ export function TheHuman() {
               >
                 + always learning something new
               </motion.p>
+
+              {/* ── TOOLS SECTION ── */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 1.6 }}
+                className="mt-10"
+              >
+                <p className="font-[family-name:var(--font-handwritten)] text-base text-[#C97B63] mb-4 tracking-wide">
+                  tools I live in
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {tools.map(({ label, icon }, i) => (
+                    <motion.div
+                      key={label}
+                      initial={{ opacity: 0, scale: 0.85 }}
+                      animate={inView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ delay: 1.65 + i * 0.08 }}
+                      className="flex items-center gap-2 px-3 py-2 bg-[#FAF7F2] border border-[#E8D5C8] hover:border-[#C97B63] hover:shadow-sm transition-all duration-200 cursor-default group"
+                    >
+                      <span className="flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
+                        {icon}
+                      </span>
+                      <span className="font-[family-name:var(--font-body)] text-xs text-[#6B5B4F] group-hover:text-[#6B1B2E] transition-colors duration-200">
+                        {label}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* ── EDUCATION SECTION ── */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 1.9 }}
+                className="mt-10"
+              >
+                <p className="font-[family-name:var(--font-handwritten)] text-base text-[#C97B63] mb-5 tracking-wide">
+                  where I studied
+                </p>
+
+                <div className="space-y-4">
+                  {education.map(({ degree, school, year, current }, i) => (
+                    <motion.div
+                      key={school}
+                      initial={{ opacity: 0, x: 16 }}
+                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 1.95 + i * 0.15 }}
+                      className={`relative p-4 border-l-2 ${
+                        current
+                          ? "border-[#6B1B2E] bg-[#FAF7F2]"
+                          : "border-[#E8D5C8] bg-transparent"
+                      }`}
+                    >
+                      {current && (
+                        <span className="absolute top-3 right-3 flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#6B1B2E] animate-pulse" />
+                          <span className="font-[family-name:var(--font-handwritten)] text-[10px] text-[#6B1B2E] tracking-wide">
+                            now
+                          </span>
+                        </span>
+                      )}
+                      <p className="font-[family-name:var(--font-body)] font-semibold text-sm text-[#2D1B1B] leading-snug mb-0.5">
+                        {degree}
+                      </p>
+                      <p className="font-[family-name:var(--font-body)] text-xs text-[#6B5B4F] mb-1">
+                        {school}
+                      </p>
+                      <p className="font-[family-name:var(--font-handwritten)] text-xs text-[#C97B63] tracking-wide">
+                        {year}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
 
             </div>
           </div>
