@@ -423,22 +423,17 @@ export function TheHuman() {
                           : "border-[#E8D5C8] bg-transparent"
                       }`}
                     >
-                      {current && (
-                        <span className="absolute top-3 right-3 flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#6B1B2E] animate-pulse" />
-                          <span className="font-[family-name:var(--font-handwritten)] text-[20px] text-[#6B1B2E] tracking-wide">
-                            now
-                          </span>
-                        </span>
-                      )}
-                      <p className="font-[family-name:var(--font-body)] font-semibold text-sm text-[#2D1B1B] leading-snug mb-0.5">
-                        {degree}
-                      </p>
-                      <p className="font-[family-name:var(--font-body)] text-xs text-[#6B5B4F] mb-1">
+                      {/* Degree + year row */}
+                      <div className="flex items-start justify-between gap-2">
+                        <p className="font-[family-name:var(--font-body)] font-semibold text-sm text-[#2D1B1B] leading-snug mb-0.5">
+                          {degree}
+                        </p>
+                        <p className="font-[family-name:var(--font-handwritten)] text-xs text-[#C97B63] tracking-wide whitespace-nowrap shrink-0 mt-0.5">
+                          {year}
+                        </p>
+                      </div>
+                      <p className="font-[family-name:var(--font-body)] text-xs text-[#6B5B4F]">
                         {school}
-                      </p>
-                      <p className="font-[family-name:var(--font-handwritten)] text-xs text-[#C97B63] tracking-wide">
-                        {year}
                       </p>
                     </motion.div>
                   ))}
