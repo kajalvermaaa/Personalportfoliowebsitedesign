@@ -1,9 +1,6 @@
-import { TheHuman } from "./TheHuman";
+import { RouterProvider } from 'react-router';
+import { router } from './routes';
 
 export default function App() {
-  return (
-    <>
-      <TheHuman />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
