@@ -64,11 +64,8 @@ export function TheHuman() {
               <stop offset="100%" stopColor="#9B59FF"/>
             </linearGradient>
           </defs>
-          {/* Dark navy background */}
           <rect width="100" height="100" rx="20" fill="#0C1220"/>
-          {/* Outer A shape */}
           <path d="M50 16 L84 80 H66 L50 46 L34 80 H16 Z" fill="url(#adobeRainbow)"/>
-          {/* Inner hollow cutout */}
           <path d="M50 38 L61 62 H39 Z" fill="#0C1220"/>
         </svg>
       ),
@@ -82,7 +79,6 @@ export function TheHuman() {
           <path d="M26 30h45v48c0 1.8-1.5 3.2-3.3 3.2H29.3c-1.8 0-3.3-1.4-3.3-3.2V30z" fill="white" stroke="#1a1a1a" strokeWidth="2.5"/>
           <path d="M26 30l45-4.5" stroke="#1a1a1a" strokeWidth="2.5"/>
           <path d="M36 44h28M36 54h28M36 64h18" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round"/>
-          {/* Notion-style bold N top-left */}
           <path d="M31 33l6 8V33h3v13h-3l-6-8v8h-3V33z" fill="#1a1a1a" fontSize="11" fontWeight="bold"/>
         </svg>
       ),
@@ -107,29 +103,6 @@ export function TheHuman() {
     },
   ];
 
-  const experience = [
-    {
-      role: "Associate — Operations & Process Design",
-      company: "Gallagher Centre of Excellence, Bangalore",
-      year: "Aug 2024 — Aug 2025",
-      bullets: [
-        "Identified friction in validation workflows and redesigned SOPs end-to-end — reducing process rework by 15% and improving team adoption.",
-        "Built Excel dashboards that translated messy operational data into clear signals for decision-makers — early product thinking, before I had the vocabulary for it.",
-        "Mapped manual workflows across departments to surface automation opportunities — essentially doing journey mapping before I knew what to call it.",
-        "Coordinated cross-functional data fixes by acting as the connector between teams — bridging gaps the system wasn't designed to handle.",
-      ],
-    },
-    {
-      role: "Administrative Assistant — Intern",
-      company: "Maa Samaleswari Educational and Welfare Trust",
-      year: "Aug 2023 — Jan 2024",
-      bullets: [
-        "Restructured internal scheduling systems for 30+ people — spotted the UX problem hiding inside an operations problem.",
-        "Reduced administrative errors by 25% by rethinking how information was organised and handed off between people.",
-      ],
-    },
-  ];
-
   const education = [
     {
       degree: "PG in Product Management",
@@ -147,14 +120,14 @@ export function TheHuman() {
 
   const experience = [
     {
-      role: "Associate — Operations Management",
+      role: "Associate — Operations & Process Design",
       company: "Gallagher Centre of Excellence, Bangalore",
       year: "Aug 2024 — Aug 2025",
       bullets: [
-        "Identified friction in data validation workflows and redesigned the process, cutting exception rates and improving operator experience end-to-end.",
-        "Built Excel dashboards that translated messy SLA data into clear, actionable views — essentially doing information design before I had the word for it.",
-        "Co-authored SOPs that reduced process rework by 15%; treated each doc as a UX problem: how do people actually read and follow instructions?",
-        "Mapped cross-functional handoff gaps and redesigned information flows — my first real systems-thinking project.",
+        "Redesigned a broken validation workflow end-to-end — mapped user pain points, identified friction, and rebuilt the process so people could actually follow it. Cut rework by 15%.",
+        "Built Excel dashboards that turned noisy SLA data into clear decisions — essentially doing information design before I had the vocabulary for it.",
+        "Ran informal usability tests on internal SOPs: watched where people got confused, rewrote the flows. First taste of user research.",
+        "Mapped cross-functional handoffs to surface where information died in transit — my first real systems-thinking project with a product lens.",
       ],
     },
     {
@@ -162,8 +135,8 @@ export function TheHuman() {
       company: "Maa Samaleswari Educational and Welfare Trust",
       year: "Aug 2023 — Jan 2024",
       bullets: [
-        "Restructured scheduling and task allocation for 30+ staff — identified the real pain point (unclear ownership) and solved for that, not just the symptom.",
-        "Redesigned administrative data systems, reducing errors by 25% by making the right action the easiest one to take.",
+        "Restructured scheduling for 30+ staff by identifying the real pain point — unclear ownership, not missing calendars. Solved for the root cause.",
+        "Redesigned how information was handed off between people, reducing errors by 25% by making the right action the path of least resistance.",
       ],
     },
   ];
@@ -171,26 +144,26 @@ export function TheHuman() {
   const timeline = [
     {
       era: "chapter 01",
-      label: "Where it started — mapping how things actually work",
-      body: "Before I had design vocabulary, I had instincts. I redesigned broken workflows, built dashboards people actually used, and kept asking: why does this feel so hard to navigate?",
+      label: "Where it started — noticing what was broken",
+      body: "Before I had design vocabulary, I had instincts. I kept asking: why does this feel so hard to use? I redesigned workflows, built dashboards people actually read, and documented processes that humans could follow. Classic UX thinking — I just didn't know to call it that yet.",
       accent: false,
     },
     {
       era: "the realisation",
-      label: "Every system I fixed had a UX problem at its core",
-      body: "The inefficiencies weren't just process gaps — they were design failures. Hostile flows, unclear handoffs, information no one could find. I was doing user research without knowing it.",
+      label: "Every broken system had a design problem at its core",
+      body: "The inefficiencies weren't just process gaps — they were design failures. Hostile flows, unclear handoffs, information no one could find. I was doing user research, journey mapping, and information architecture. Without the job title. That's when the pivot became obvious.",
       accent: true,
     },
     {
       era: "chapter 02",
-      label: "Taught myself design. Built real things.",
-      body: "Designed a full portfolio for an AI engineer — end to end. Redesigned a refund flow. Ran usability tests. Learned Figma by doing, not by watching. Shipped work that solved actual problems.",
+      label: "Taught myself design. Shipped real work.",
+      body: "Designed a full portfolio for an AI engineer — end to end in Figma. Redesigned a refund flow with usability testing baked in. Built prototypes, ran feedback rounds, iterated. Learned by doing, not by watching. Every project was a real brief with a real problem to solve.",
       accent: false,
     },
     {
       era: "right now",
       label: "Product thinking. Design eye. Systems brain.",
-      body: "PG in Product Management at Duke CE. I bring ops rigour to product decisions and design clarity to strategy. I don't just make things look right — I make them work right.",
+      body: "PG in Product Management at Duke CE. I bring a designer's empathy to product decisions and an operator's rigour to design critiques. I don't just make things look right — I make them work right, for the people using them.",
       accent: true,
     },
   ];
@@ -383,9 +356,9 @@ export function TheHuman() {
                 className="mt-8 space-y-3"
               >
                 {[
-                  { num: "200+", desc: "records/week — zero oops" },
-                  { num: "2×",   desc: "career pivots, 0 regrets" },
-                  { num: "∞",    desc: "broken flows spotted" },
+                  { num: "3+",  desc: "end-to-end design projects shipped" },
+                  { num: "2×",  desc: "career pivots, 0 regrets" },
+                  { num: "∞",   desc: "broken flows spotted (and fixed)" },
                 ].map(({ num, desc }, i) => (
                   <motion.div
                     key={num + desc}
@@ -436,7 +409,6 @@ export function TheHuman() {
                       <span className="block transition-transform duration-200 group-hover:scale-125 group-hover:-translate-y-1 drop-shadow-sm">
                         {icon}
                       </span>
-                      {/* Tooltip */}
                       <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-[family-name:var(--font-body)] text-[10px] text-[#6B5B4F] opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none">
                         {label}
                       </span>
@@ -469,7 +441,6 @@ export function TheHuman() {
                           : "border-[#E8D5C8] bg-transparent"
                       }`}
                     >
-                      {/* Degree + year row */}
                       <div className="flex items-start justify-between gap-2">
                         <p className="font-[family-name:var(--font-body)] font-semibold text-sm text-[#2D1B1B] leading-snug mb-0.5">
                           {degree}
@@ -506,7 +477,6 @@ export function TheHuman() {
                       transition={{ delay: 2.15 + i * 0.15 }}
                       className="p-4 border-l-2 border-[#E8D5C8] bg-transparent"
                     >
-                      {/* Role + year row */}
                       <div className="flex items-start justify-between gap-2 mb-0.5">
                         <p className="font-[family-name:var(--font-body)] font-semibold text-sm text-[#2D1B1B] leading-snug">
                           {role}
