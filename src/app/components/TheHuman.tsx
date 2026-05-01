@@ -107,6 +107,29 @@ export function TheHuman() {
     },
   ];
 
+  const experience = [
+    {
+      role: "Associate — Operations & Process Design",
+      company: "Gallagher Centre of Excellence, Bangalore",
+      year: "Aug 2024 — Aug 2025",
+      bullets: [
+        "Identified friction in validation workflows and redesigned SOPs end-to-end — reducing process rework by 15% and improving team adoption.",
+        "Built Excel dashboards that translated messy operational data into clear signals for decision-makers — early product thinking, before I had the vocabulary for it.",
+        "Mapped manual workflows across departments to surface automation opportunities — essentially doing journey mapping before I knew what to call it.",
+        "Coordinated cross-functional data fixes by acting as the connector between teams — bridging gaps the system wasn't designed to handle.",
+      ],
+    },
+    {
+      role: "Administrative Assistant — Intern",
+      company: "Maa Samaleswari Educational and Welfare Trust",
+      year: "Aug 2023 — Jan 2024",
+      bullets: [
+        "Restructured internal scheduling systems for 30+ people — spotted the UX problem hiding inside an operations problem.",
+        "Reduced administrative errors by 25% by rethinking how information was organised and handed off between people.",
+      ],
+    },
+  ];
+
   const education = [
     {
       degree: "PG in Product Management",
@@ -122,29 +145,52 @@ export function TheHuman() {
     },
   ];
 
+  const experience = [
+    {
+      role: "Associate — Operations Management",
+      company: "Gallagher Centre of Excellence, Bangalore",
+      year: "Aug 2024 — Aug 2025",
+      bullets: [
+        "Identified friction in data validation workflows and redesigned the process, cutting exception rates and improving operator experience end-to-end.",
+        "Built Excel dashboards that translated messy SLA data into clear, actionable views — essentially doing information design before I had the word for it.",
+        "Co-authored SOPs that reduced process rework by 15%; treated each doc as a UX problem: how do people actually read and follow instructions?",
+        "Mapped cross-functional handoff gaps and redesigned information flows — my first real systems-thinking project.",
+      ],
+    },
+    {
+      role: "Administrative Assistant — Intern",
+      company: "Maa Samaleswari Educational and Welfare Trust",
+      year: "Aug 2023 — Jan 2024",
+      bullets: [
+        "Restructured scheduling and task allocation for 30+ staff — identified the real pain point (unclear ownership) and solved for that, not just the symptom.",
+        "Redesigned administrative data systems, reducing errors by 25% by making the right action the easiest one to take.",
+      ],
+    },
+  ];
+
   const timeline = [
     {
       era: "chapter 01",
-      label: "The ops years- Gallagher Center of Excellence",
-      body: "200+ records a week. Zero margin for error. Spreadsheets at 11pm, SOPs before coffee. I was the person who made broken systems survivable.",
+      label: "Where it started — mapping how things actually work",
+      body: "Before I had design vocabulary, I had instincts. I redesigned broken workflows, built dashboards people actually used, and kept asking: why does this feel so hard to navigate?",
       accent: false,
     },
     {
-      era: "the pivot",
-      label: "Wait — why does this feel like punishment?",
-      body: "Every workflow I fixed had the same flaw. Optimised for efficiency. Hostile to humans. So I did the obvious thing nobody expected.",
+      era: "the realisation",
+      label: "Every system I fixed had a UX problem at its core",
+      body: "The inefficiencies weren't just process gaps — they were design failures. Hostile flows, unclear handoffs, information no one could find. I was doing user research without knowing it.",
       accent: true,
     },
     {
       era: "chapter 02",
-      label: "Taught myself design",
-      body: "Not to make things pretty. To make them make sense. Built a full portfolio for an AI engineer — end to end. Redesigned a refund flow. Found the friction. Killed it.",
+      label: "Taught myself design. Built real things.",
+      body: "Designed a full portfolio for an AI engineer — end to end. Redesigned a refund flow. Ran usability tests. Learned Figma by doing, not by watching. Shipped work that solved actual problems.",
       accent: false,
     },
     {
       era: "right now",
-      label: "Both brains, one person",
-      body: "PG in Product Management- upGrad. Ops instincts + design eye + systems thinking. Not just design. Not just ops. The whole picture.",
+      label: "Product thinking. Design eye. Systems brain.",
+      body: "PG in Product Management at Duke CE. I bring ops rigour to product decisions and design clarity to strategy. I don't just make things look right — I make them work right.",
       accent: true,
     },
   ];
@@ -435,6 +481,53 @@ export function TheHuman() {
                       <p className="font-[family-name:var(--font-body)] text-xs text-[#6B5B4F]">
                         {school}
                       </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* ── EXPERIENCE SECTION ── */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 2.1 }}
+                className="mt-10"
+              >
+                <p className="font-[family-name:var(--font-handwritten)] text-base text-[#C97B63] mb-5 tracking-wide">
+                  where I've worked
+                </p>
+
+                <div className="space-y-5">
+                  {experience.map(({ role, company, year, bullets }, i) => (
+                    <motion.div
+                      key={company}
+                      initial={{ opacity: 0, x: 16 }}
+                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 2.15 + i * 0.15 }}
+                      className="p-4 border-l-2 border-[#E8D5C8] bg-transparent"
+                    >
+                      {/* Role + year row */}
+                      <div className="flex items-start justify-between gap-2 mb-0.5">
+                        <p className="font-[family-name:var(--font-body)] font-semibold text-sm text-[#2D1B1B] leading-snug">
+                          {role}
+                        </p>
+                        <p className="font-[family-name:var(--font-handwritten)] text-xs text-[#C97B63] tracking-wide whitespace-nowrap shrink-0 mt-0.5">
+                          {year}
+                        </p>
+                      </div>
+                      <p className="font-[family-name:var(--font-body)] text-xs text-[#6B5B4F] mb-3">
+                        {company}
+                      </p>
+                      <ul className="space-y-1.5">
+                        {bullets.map((point, j) => (
+                          <li key={j} className="flex gap-2 items-start">
+                            <span className="mt-1.5 w-1 h-1 rounded-full bg-[#C97B63] shrink-0" />
+                            <span className="font-[family-name:var(--font-body)] text-xs text-[#6B5B4F] leading-relaxed">
+                              {point}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
                     </motion.div>
                   ))}
                 </div>
