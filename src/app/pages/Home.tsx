@@ -1,19 +1,19 @@
-import { Hero } from "../components/Hero";
-import { TheHuman } from "../components/TheHuman";
-import { TheShift } from "../components/TheShift";
-import { TheWork } from "../components/TheWork";
-import { TheThinking } from "../components/TheThinking";
-import { LetsConnect } from "../components/LetsConnect";
+import { Navigation } from '../components/Navigation';
+import { Hero } from '../components/Hero';
+import { About } from '../components/About';
+import { Work } from '../components/Work';
+import { Contact } from '../components/Contact';
+import { Footer } from '../components/Footer';
 
 export function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <main>
+      <Navigation />
       <Hero />
-      <TheHuman />
-      <TheShift />
-      <TheWork />
-      <TheThinking />
-      <LetsConnect />
+      <About />
+      <Work />
+      <Contact />
+      <Footer />
     </main>
   );
 }
