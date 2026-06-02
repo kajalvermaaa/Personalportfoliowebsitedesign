@@ -50,38 +50,6 @@ const projects: Project[] = [
       "This wasn't a redesign — it was product strategy. I started with user research, mapped pain points, defined metrics, then designed the solution. The design serves the outcome, not the other way around.",
     tags: ["UX Research", "Product Strategy", " Product Thinking", "User Flows", "Systems Design"],
   },
-  {
-    id: "portfolio",
-    number: "02",
-    title: "Ashwin Gupta — Portfolio Website",
-    category: "End-to-End Design + Build",
-    liveLink: "https://www.ashwingupta.dev",
-    liveLinkLabel: "visit live site",
-    summary: "An AI engineer needed a portfolio that proved performance engineering — not just claimed it.",
-    hook: "Most portfolios showcase work. This one explains it.",
-    sections: [
-      {
-        label: "The Problem",
-        content:
-          "The client — Ashwin Gupta, an AI Systems Researcher at Coforge — had a portfolio that looked fine visually, but didn’t communicate the depth of his work. It felt like a template — not something that reflected how he thinks, builds, or solves problems. He needed a portfolio that could communicate both technical depth and clarity — not just aesthetics.",
-      },
-      {
-        label: "The Insight",
-        content:
-          "A portfolio isn’t about showing everything — it’s about making the right things understood. Especially for someone working across inference systems, ML, and distributed infrastructure, the experience needed to reflect that same clarity and intent.",
-      },
-      {
-        label: "What I Built",
-        content:
-          "I redesigned the portfolio as a narrative-first experience with editorial aesthetics. Instead of listing projects, I structured the content to answer: —what was built  —why it matters  —how it works.  Focused on: —reducing visual noise  —improving content hierarchy  —guiding attention intentionally. The goal was to make the portfolio feel thoughtful and structured —not templated.",
-      },
-    ],
-    outcome:
-      "A clearer, more intentional portfolio that better communicates Ashwin’s work and thinking. Positions him beyond just another developer portfolio —toward someone who understands systems, not just builds them.",
-    productThinking:
-      "I approached this as a positioning problem, not just a design task. Instead of asking “how should it look?”  I focused on: —what should a recruiter understand in 10 seconds  —what makes this different from others  —how to guide attention effectively.  Because good design isn’t just visual —it’s communicative.",
-    tags: ["Product Thinking · UX/UI · Information Architecture · Portfolio Design"],
-  },
 ];
 
 export function TheWork() {
