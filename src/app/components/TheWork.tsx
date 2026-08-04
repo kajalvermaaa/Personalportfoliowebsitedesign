@@ -19,8 +19,41 @@ type Project = {
 
 const projects: Project[] = [
   {
-    id: "mmt",
+    id: "society-os",
     number: "01",
+    title: "Society OS",
+    category: "AI Product Design · PM Intern Assignment",
+    liveLink: "https://societyos-reportanissue.lovable.app",
+    liveLinkLabel: "try the live prototype",
+    summary:
+      "WhatsApp doesn't lose messages. It loses accountability. I designed the AI layer that turns group-chat chaos into trackable, prioritised issues.",
+    hook: "Lift stopped. Lift isn't working. Elevator stuck. Three residents, one issue — if the system is smart enough to know that.",
+    sections: [
+      {
+        label: "The Problem",
+        content:
+          "Residential societies already have a complaint system — the building WhatsApp group. The issue was never that residents can't report problems. It's that reported issues disappear into chat history. No owner, no priority, no lifecycle. Committees track everything from memory. Vendors get called with conflicting information. Residents lose trust that anyone's actually handling it.",
+      },
+      {
+        label: "Why the AI Had to Be Load-Bearing",
+        content:
+          "A simpler version just stores whatever residents type in a list — that doesn't solve anything, it just moves the WhatsApp group into a different box. The AI has to do the part a person would otherwise do by hand: read casually-worded complaints (\"lift door's not shutting, be careful\" — mild tone, real safety issue) and turn them into something structured. It categorises, summarises, flags urgency based on content not tone, and — the hardest part — recognises when three differently-worded messages describe the same issue.",
+      },
+      {
+        label: "What I Built",
+        content:
+          "Two screens, no login, no download. The Issue Desk: a resident types their complaint exactly like they'd post it in the group, optionally adds a flat number, submits. The Committee Dashboard: a prioritised, mobile-first list showing AI-generated category, urgency, and affected-resident count, with tap-to-update status. On the live dashboard, five different phrasings of \"lift not working\" merge into one issue — 5 residents affected — while a related-but-distinct complaint about grinding noise correctly stays separate. That distinction is the whole product.",
+      },
+    ],
+    outcome:
+      "Working two-sided prototype, live and testable. Defined go-to-market around single-society adoption (not user count), and success metrics — repeat submission rate, committee response latency, duplicate merge rate — deliberately avoiding vanity metrics like sign-ups or clicks.",
+    productThinking:
+      "This was an exercise in deciding exactly what the AI needed to be responsible for, and being honest about where it would fail — sarcasm detection, over-merging distinct issues, under-flagging mild-toned safety complaints — before anyone else could point it out.",
+    tags: ["AI Product Design", "0→1", "Product Strategy", "GTM", "Prototyping"],
+  },
+  {
+    id: "mmt",
+    number: "02",
     title: "MakeMyTrip Refund Redesign",
     category: "UX Research · Product Strategy",
     liveLink: "https://casestudyrefundprocess.vercel.app",
