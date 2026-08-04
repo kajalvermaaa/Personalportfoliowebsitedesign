@@ -203,11 +203,6 @@ export function Hero() {
                 </div>
               </motion.div>
 
-              {/* sticky stat notes */}
-              <StickyNote value="200+" label="workflows handled" rotate={-4} style={{ top: "12%", right: "-80px" }} />
-              <StickyNote value="15%" label="less rework" rotate={3} style={{ bottom: "22%", left: "-30px" }} />
-              <StickyNote value="1 yr" label="in operations" rotate={-2} style={{ bottom: "8%", right: "-35px" }} />
-
               {/* scribble annotation */}
               <motion.div
                 initial={{ opacity: 0, x: 10 }}
