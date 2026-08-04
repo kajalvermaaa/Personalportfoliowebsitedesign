@@ -48,25 +48,38 @@ function TapeStrip({ rotate, top, left, right }: { rotate: number; top?: string;
   );
 }
 
-/* ── magnetic hover: pulls an element gently toward the cursor within its bounds ── */
-function useMagnetic(strength = 0.35, max = 14) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 150, damping: 15, mass: 0.2 });
-  const springY = useSpring(y, { stiffness: 150, damping: 15, mass: 0.2 });
-
-  function onMouseMove(e: React.MouseEvent<HTMLElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const relX = e.clientX - rect.left - rect.width / 2;
-    const relY = e.clientY - rect.top - rect.height / 2;
-    x.set(Math.max(-max, Math.min(max, relX * strength)));
-    y.set(Math.max(-max, Math.min(max, relY * strength)));
-  }
-  function reset() {
-    x.set(0);
-    y.set(0);
-  }
-  return { x: springX, y: springY, onMouseMove, reset };
+function StickyNote({
+  value, label, rotate, style,
+}: {
+  value: string; label: string; rotate: number; style?: React.CSSProperties;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.7, rotate: rotate - 10 }}
+      animate={{ opacity: 1, scale: 1, rotate }}
+      transition={{ duration: 0.5, type: "spring", bounce: 0.5 }}
+      whileHover={{ scale: 1.1, rotate: rotate + 2, zIndex: 20 }}
+      style={{
+        position: "absolute",
+        background: CREAM,
+        border: `1.5px solid ${CREAM_DARK}`,
+        borderRadius: 4,
+        padding: "8px 14px",
+        boxShadow: `0 4px 20px rgba(107,27,46,0.14), 3px 3px 0 ${GOLD}55`,
+        fontFamily: "var(--font-sans)",
+        cursor: "default",
+        zIndex: 10,
+        ...style,
+      }}
+    >
+      <div style={{ fontSize: "clamp(15px, 2vw, 19px)", fontWeight: 700, color: BURGUNDY, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+        {value}
+      </div>
+      <div style={{ fontSize: 10, color: WARM_MUTED, marginTop: 2, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+        {label}
+      </div>
+    </motion.div>
+  );
 }
 
 /* ──────────────────────────── main export ──────────────────────────── */
@@ -85,16 +98,6 @@ export function Hero() {
     mouseX.set((e.clientX - rect.left - rect.width / 2) / 30);
     mouseY.set((e.clientY - rect.top - rect.height / 2) / 30);
   }
-
-  // tilt amount for the polaroid — degrees, clamped by the /30 divisor above
-  const tiltY = useTransform(springX, (v) => v * 1.1);
-  const tiltX = useTransform(springY, (v) => v * -1.1);
-  // glare position follows the same cursor signal, mapped to a 0–100% gradient position
-  const glareX = useTransform(springX, [-12, 12], [15, 85]);
-  const glareY = useTransform(springY, [-12, 12], [15, 85]);
-
-  const magneticPrimary = useMagnetic(0.35, 14);
-  const magneticSecondary = useMagnetic(0.3, 10);
 
   return (
     <section
@@ -155,25 +158,21 @@ export function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px] gap-y-10 gap-x-12 xl:gap-x-20 items-center">
 
           {/* ══ PHOTO COLUMN ══ */}
-          <motion.div style={{ y: imageY }} className="order-first lg:order-last">
-            <div style={{ position: "relative", maxWidth: 400, margin: "0 auto", perspective: 1000 }}>
+          <motion.div style={{ y: imageY, x: springX }} className="order-first lg:order-last">
+            <div style={{ position: "relative", maxWidth: 400, margin: "0 auto" }}>
 
-              {/* polaroid card — tilts in 3D toward the cursor, like a physical photo being picked up */}
+              {/* polaroid card */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9, rotate: -3 }}
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ rotate: 1, scale: 1.015 }}
                 style={{
                   position: "relative",
                   background: "#fff",
                   padding: "10px 10px 44px",
                   boxShadow: "0 8px 48px rgba(107,27,46,0.14), 0 2px 8px rgba(107,27,46,0.07)",
-                  rotateX: tiltX,
-                  rotateY: tiltY,
-                  transformStyle: "preserve-3d",
-                  transformPerspective: 1000,
-                } as any}
+                }}
               >
                 <TapeStrip rotate={-6} top="-10px" left="32px" />
                 <TapeStrip rotate={7}  top="-10px" right="32px" />
@@ -190,27 +189,10 @@ export function Hero() {
                     /* ── sharpness fixes ── */
                     imageRendering: "auto",
                     WebkitFontSmoothing: "antialiased",
-                    transform: "translateZ(0)",
+                    transform: "translateZ(0)",          /* force GPU layer, prevents subpixel blur */
                     backfaceVisibility: "hidden",
                     willChange: "transform",
                   } as React.CSSProperties}
-                />
-
-                {/* light sheen — moves opposite the tilt, like glare crossing photo paper */}
-                <motion.div
-                  aria-hidden
-                  style={{
-                    position: "absolute",
-                    inset: "10px 10px 44px 10px",
-                    pointerEvents: "none",
-                    mixBlendMode: "overlay",
-                    opacity: 0.5,
-                    background: useTransform(
-                      [glareX, glareY],
-                      ([gx, gy]: number[]) =>
-                        `radial-gradient(circle at ${gx}% ${gy}%, rgba(255,255,255,0.55), transparent 55%)`
-                    ),
-                  }}
                 />
 
                 {/* caption strip */}
@@ -220,6 +202,11 @@ export function Hero() {
                   <span style={{ fontFamily: "var(--font-handwritten)", fontSize: 13, color: TERRACOTTA }}>still figuring it out :)</span>
                 </div>
               </motion.div>
+
+              {/* sticky stat notes */}
+              <StickyNote value="200+" label="workflows handled" rotate={-4} style={{ top: "12%", right: "-80px" }} />
+              <StickyNote value="15%" label="less rework" rotate={3} style={{ bottom: "22%", left: "-30px" }} />
+              <StickyNote value="1 yr" label="in operations" rotate={-2} style={{ bottom: "8%", right: "-35px" }} />
 
               {/* scribble annotation */}
               <motion.div
@@ -440,7 +427,6 @@ export function Hero() {
                 href="#work"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                onMouseMove={magneticPrimary.onMouseMove}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -455,8 +441,6 @@ export function Hero() {
                   textDecoration: "none",
                   boxShadow: `0 4px 20px ${BURGUNDY}40`,
                   transition: "background 0.2s, box-shadow 0.2s",
-                  x: magneticPrimary.x,
-                  y: magneticPrimary.y,
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLAnchorElement;
@@ -467,7 +451,6 @@ export function Hero() {
                   const el = e.currentTarget as HTMLAnchorElement;
                   el.style.background = BURGUNDY;
                   el.style.boxShadow = `0 4px 20px ${BURGUNDY}40`;
-                  magneticPrimary.reset();
                 }}
               >
                 see my work
@@ -477,7 +460,6 @@ export function Hero() {
               <motion.a
                 href="#contact"
                 whileHover={{ gap: "10px" } as any}
-                onMouseMove={magneticSecondary.onMouseMove}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -490,14 +472,9 @@ export function Hero() {
                   borderBottom: `1.5px solid ${GOLD}`,
                   paddingBottom: 2,
                   transition: "color 0.2s, gap 0.2s",
-                  x: magneticSecondary.x,
-                  y: magneticSecondary.y,
                 }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = TERRACOTTA)}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = BURGUNDY;
-                  magneticSecondary.reset();
-                }}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = BURGUNDY)}
               >
                 <Sparkles size={13} />
                 say hello
