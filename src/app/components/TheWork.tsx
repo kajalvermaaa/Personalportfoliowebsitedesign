@@ -22,34 +22,39 @@ const projects: Project[] = [
     id: "society-os",
     number: "01",
     title: "Society OS",
-    category: "AI Product Design · PM Intern Assignment",
+    category: "0→1 Product · AI-Powered Workflow",
     liveLink: "https://societyos-reportanissue.lovable.app",
     liveLinkLabel: "try the live prototype",
     summary:
-      "WhatsApp doesn't lose messages. It loses accountability. I designed the AI layer that turns group-chat chaos into trackable, prioritised issues.",
-    hook: "Lift stopped. Lift isn't working. Elevator stuck. Three residents, one issue — if the system is smart enough to know that.",
+      "Residential complaints already have a channel — WhatsApp. What's missing is ownership. I designed the layer that turns unstructured chat into trackable, prioritised issues.",
+    hook: "Three residents report the same broken lift, worded three different ways. The system has to know it's one issue — or it's just a fancier list.",
     sections: [
       {
-        label: "The Problem",
+        label: "Problem & Users",
         content:
-          "Residential societies already have a complaint system — the building WhatsApp group. The issue was never that residents can't report problems. It's that reported issues disappear into chat history. No owner, no priority, no lifecycle. Committees track everything from memory. Vendors get called with conflicting information. Residents lose trust that anyone's actually handling it.",
+          "Committees (unpaid volunteers) track every open issue from memory and chat history with no way to prioritise objectively. Residents report issues that get buried within hours and can't check status without asking again. Vendors get inconsistent, conflicting information from different residents contacting them directly. The channel isn't the problem — WhatsApp works fine for reach. The failure is that nothing reported through it has an owner, a priority, or a lifecycle.",
       },
       {
-        label: "Why the AI Had to Be Load-Bearing",
+        label: "Scope: In v1, and Deliberately Not",
         content:
-          "A simpler version just stores whatever residents type in a list — that doesn't solve anything, it just moves the WhatsApp group into a different box. The AI has to do the part a person would otherwise do by hand: read casually-worded complaints (\"lift door's not shutting, be careful\" — mild tone, real safety issue) and turn them into something structured. It categorises, summarises, flags urgency based on content not tone, and — the hardest part — recognises when three differently-worded messages describe the same issue.",
+          "In scope: a resident-facing submission link and a committee-facing triage dashboard, with zero behaviour change required — no login, no app install. Out of scope, by decision: a WhatsApp-native bot reading the group automatically (blocked by Meta's Business API — no passive read access to existing groups), vendor booking, payments, and any resident account system. Flat number is the only identifier collected. Solving for one society correctly came before solving for many.",
       },
       {
-        label: "What I Built",
+        label: "The Core Product Decision",
         content:
-          "Two screens, no login, no download. The Issue Desk: a resident types their complaint exactly like they'd post it in the group, optionally adds a flat number, submits. The Committee Dashboard: a prioritised, mobile-first list showing AI-generated category, urgency, and affected-resident count, with tap-to-update status. On the live dashboard, five different phrasings of \"lift not working\" merge into one issue — 5 residents affected — while a related-but-distinct complaint about grinding noise correctly stays separate. That distinction is the whole product.",
+          "The obvious build is a form that stores raw text in a list — that doesn't solve anything, it just relocates the WhatsApp group. The decision that made this a real product: the AI isn't a feature layered on top, it's the mechanism the entire value proposition depends on. It has to categorise, summarise, flag urgency from content rather than tone (so a casually-worded safety issue doesn't get under-rated), and — the hard part — recognise when differently-worded messages describe one underlying issue rather than three. Remove that layer and there's no product, just an unsorted inbox.",
+      },
+      {
+        label: "Metrics That Actually Mattered",
+        content:
+          "Rejected sign-ups and link clicks as success metrics — they measure curiosity, not adoption. Tracked instead: repeat submission rate (do residents trust the system enough to use it again), committee response latency versus WhatsApp baseline, and duplicate merge accuracy. The counter-metric that mattered most: over-merging rate — two related-but-distinct issues wrongly collapsed into one erodes committee trust faster than the original problem did.",
       },
     ],
     outcome:
-      "Working two-sided prototype, live and testable. Defined go-to-market around single-society adoption (not user count), and success metrics — repeat submission rate, committee response latency, duplicate merge rate — deliberately avoiding vanity metrics like sign-ups or clicks.",
+      "Shipped a working two-sided prototype, live and testable — not just specced. On the dashboard, five phrasings of one lift complaint correctly merge into a single issue (5 residents affected), while a related-but-distinct complaint stays separate — the exact trade-off the metrics above were designed to protect. GTM built around single-society adoption via existing committee channels, not multi-tenant user acquisition.",
     productThinking:
-      "This was an exercise in deciding exactly what the AI needed to be responsible for, and being honest about where it would fail — sarcasm detection, over-merging distinct issues, under-flagging mild-toned safety complaints — before anyone else could point it out.",
-    tags: ["AI Product Design", "0→1", "Product Strategy", "GTM", "Prototyping"],
+      "The hard product decision here wasn't what to build — it was what the AI gets to decide autonomously versus what stays advisory, with a human able to override every category, priority, and merge before it's final. Getting that boundary wrong in either direction breaks trust faster than shipping slower would.",
+    tags: ["0→1 Product", "AI Product Design", "Prioritisation", "GTM Strategy", "Trust & Risk Design"],
   },
   {
     id: "mmt",
