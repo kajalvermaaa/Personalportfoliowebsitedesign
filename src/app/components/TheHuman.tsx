@@ -144,26 +144,26 @@ export function TheHuman() {
   const timeline = [
     {
       era: "chapter 01",
-      label: "Where it started — noticing what was broken",
-      body: "Before I had design vocabulary, I had instincts. I kept asking: why does this feel so hard to use? I redesigned workflows, built dashboards people actually read, and documented processes that humans could follow. Classic UX thinking — I just didn't know to call it that yet.",
+      label: "It started with fixing systems— not building products.",
+      body: "Before I ever called it product management, I was obsessed with making work better. In operations, I questioned inefficient workflows, simplified documentation, redesigned SOPs, and built dashboards that teams actually relied on. I wasn't just completing tasks—I was improving the systems behind them. Looking back, those were my first product decisions.",
       accent: false,
     },
     {
       era: "the realisation",
-      label: "Every broken system had a design problem at its core",
-      body: "The inefficiencies weren't just process gaps — they were design failures. Hostile flows, unclear handoffs, information no one could find. I was doing user research, journey mapping, and information architecture. Without the job title. That's when the pivot became obvious.",
+      label: "Every operational problem was really a product problem.",
+      body: "Missed handoffs. Confusing processes. Information scattered across tools. People working around systems instead of with them. The more I investigated, the more I realized that the biggest bottlenecks weren't people—they were poorly designed experiences That's when I stopped seeing myself as someone who executes processes and started seeing myself as someone who improves them.",
       accent: true,
     },
     {
       era: "chapter 02",
-      label: "Taught myself design. Shipped real work.",
-      body: "Designed a full portfolio for an AI engineer — end to end in Figma. Redesigned a refund flow with usability testing baked in. Built prototypes, ran feedback rounds, iterated. Learned by doing, not by watching. Every project was a real brief with a real problem to solve.",
+      label: "Learning product by building.",
+      body: "To understand how products are built, I started building them myself.I redesigned MakeMyTrip's refund journey after studying customer pain points and business constraints.I designed and shipped an end-to-end portfolio experience for an AI engineer. Every project began with research, assumptions, prioritization, user flows, wireframes, prototypes, testing, and iteration. The goal wasn't to create pretty screens It was to solve real problems.",
       accent: false,
     },
     {
       era: "right now",
-      label: "Product thinking. Design eye. Systems brain.",
-      body: "PG in Product Management at Duke CE. I bring a designer's empathy to product decisions and an operator's rigour to design critiques. I don't just make things look right — I make them work right, for the people using them.",
+      label: "Product mindset. Operations discipline. User-first thinking.",
+      body: "I'm currently pursuing a PG Certificate in Product Management while continuing to work on real product problems.Coming from operations, I've learned that small improvements can have a huge impact—whether it's making a process easier to follow, reducing unnecessary steps, or helping someone complete a task without confusion.That's the mindset I bring to product. I like understanding why something isn't working, talking to the people affected by it, and finding practical ways to make it better.",
       accent: true,
     },
   ];
